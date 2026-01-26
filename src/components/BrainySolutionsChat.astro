@@ -1,0 +1,272 @@
+---
+// --- JSON Analysis Integration ---
+const problems = [
+  {
+    title: "Automate Meeting Summaries",
+    description: "Turn lengthy transcripts into actionable to-do lists.",
+    query:
+      "How can I turn our long Zoom transcripts into actionable to-do lists?",
+  },
+  {
+    title: "Draft Project Updates",
+    description:
+      "Generate status updates from Slack channels or project boards.",
+    query:
+      "Help me write a weekly project status update based on our team's Slack channel.",
+  },
+  {
+    title: "Find Key Information",
+    description: "Instantly locate data buried in documents or chat logs.",
+    query:
+      "I need to find the latest marketing brief for the 'Project Titan' launch.",
+  },
+  {
+    title: "Onboard New Team Members",
+    description: "Answer onboarding questions using your existing SOPs.",
+    query: "What are the first 5 things a new designer needs to do?",
+  },
+];
+
+const siteContext = {
+  productName: "Brainy AI-OS",
+  features: [
+    "Seamless Integration",
+    "Proactive Notifications",
+    "Automated Workflows",
+  ],
+};
+---
+
+<div
+  id="gemini-chat-container"
+  class="relative bs-container backdrop-blur-md rounded-2xl p-6 md:p-8 text-white font-sans overflow-hidden"
+>
+  <div
+    class="absolute inset-0 rounded-2xl border border-transparent [background:linear-gradient(120deg,rgba(255,255,255,0.1),transparent_80%,rgba(255,255,255,0.1))_border-box] [mask-composite:exclude]"
+  >
+  </div>
+  <div class="relative">
+    <!-- Content wrapper -->
+    <!-- Introductory Section -->
+    <div class="text-center mb-8">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-white tracking-tight font-display"
+      >
+        Solve Real Problems with AI
+      </h2>
+      <p class="mt-3 text-lg text-gray-400 max-w-2xl mx-auto">
+        Select an example below or ask your own question to see how our Brainy
+        AI-OS can streamline your workflows.
+      </p>
+    </div>
+
+    <!-- Problem Cards -->
+    <div
+      id="problem-cards"
+      class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 md:max-w-9/12 mx-auto"
+    >
+      {
+        problems.map((problem) => (
+          <button
+            class="problem-card text-left p-4 border border-gray-700 rounded-lg hover:bg-gray-800 hover:border-white-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white-500"
+            data-query={problem.query}
+          >
+            <p class="font-semibold text-white">{problem.title}</p>
+            <p class="text-sm text-gray-400 mt-1">{problem.description}</p>
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Interactive Chat Interface -->
+    <div class="max-w-4xl mx-auto">
+      <div
+        id="chat-window"
+        class="bg-transparent h-96 rounded-t-lg border border-b-0 border-gray-700 p-4 overflow-y-auto flex flex-col space-y-4"
+      >
+        <!-- Initial AI Message -->
+        <div class="chat-bubble ai-bubble">
+          <p>
+            I'm ready to help. Ask me how our AI-OS can solve a problem, or
+            choose an example above.
+          </p>
+        </div>
+        <!-- Messages will be injected here by JavaScript -->
+      </div>
+      <form id="chat-form" class="relative flex">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="e.g., 'How can I automate image descriptions?'"
+          class="w-full min-w-full bg-gray-800 border border-gray-700 rounded-b-lg p-4 pr-28 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow duration-300 animate-glow-focus"
+          aria-label="Chat input"
+        />
+        <button
+          type="submit"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-white font-bold py-2 px-4 rounded"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="text-center py-12 flex flex-col items-center">
+    <span class="bs-h3 my-6 md:max-w-7/12 text-gradient"
+      >This is just a demonstration. Let's get started on the path to
+      integrating your first AI Teammate.</span
+    >
+    <button
+      type="button"
+      class="min-w-32 bs-btn hidden md:block"
+      onclick="demo.showModal()"
+    >
+      AI with ROI
+    </button>
+  </div>
+</div>
+
+<style>
+  .chat-bubble {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    line-height: 1.5;
+    animation: slide-fade-in 0.5s ease-out forwards;
+  }
+
+  .user-bubble {
+    background-color: #4285f4;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  .ai-bubble {
+    background-color: rgba(40, 40, 40, 0.6);
+    color: #e0e0e0;
+    align-self: flex-start;
+    border-bottom-left-radius: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @keyframes subtle-glow {
+    from {
+      box-shadow:
+        0 0 2px rgba(255, 255, 255, 0.1),
+        0 0 4px rgba(255, 255, 255, 0.1);
+    }
+    to {
+      box-shadow:
+        0 0 6px rgba(255, 255, 255, 0.2),
+        0 0 8px rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .animate-glow-focus:focus {
+    box-shadow:
+      0 0 8px rgba(255, 255, 255, 0.6),
+      0 0 12px rgba(255, 255, 255, 0.5);
+  }
+
+  @keyframes slide-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script define:vars={{ siteContext }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatWindow = document.getElementById("chat-window");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const submitButton = chatForm.querySelector('button[type="submit"]');
+    const problemCards = document.querySelectorAll(".problem-card");
+
+    // --- Event Listener for Problem Cards ---
+    problemCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const query = card.getAttribute("data-query");
+        chatInput.value = query;
+        chatForm.dispatchEvent(new Event("submit", { cancelable: true }));
+      });
+    });
+
+    // --- Chat Form Submission Logic ---
+    chatForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userInput = chatInput.value.trim();
+      if (!userInput) return;
+
+      appendMessage(userInput, "user");
+      chatInput.value = "";
+      setLoading(true);
+
+      const aiResponse = await getSimulatedAIOSResponse(userInput);
+
+      setLoading(false);
+      appendMessage(aiResponse, "ai");
+    });
+
+    function appendMessage(text, sender) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("chat-bubble", `${sender}-bubble`);
+      messageElement.innerHTML = `<p>${text}</p>`;
+      chatWindow.appendChild(messageElement);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function setLoading(isLoading) {
+      submitButton.disabled = isLoading;
+      if (isLoading) {
+        submitButton.textContent = "Thinking...";
+        const loadingBubble = document.createElement("div");
+        loadingBubble.id = "loading-bubble";
+        loadingBubble.classList.add("chat-bubble", "ai-bubble");
+        loadingBubble.innerHTML = `<p class="animate-pulse">● ● ●</p>`;
+        chatWindow.appendChild(loadingBubble);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      } else {
+        submitButton.textContent = "Send";
+        const loadingBubble = document.getElementById("loading-bubble");
+        if (loadingBubble) {
+          loadingBubble.remove();
+        }
+      }
+    }
+
+    // --- AI Response Simulation Logic ---
+    async function getSimulatedAIOSResponse(query) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      let response = `Of course! With the <strong>${siteContext.productName}</strong>, we can solve that. `;
+
+      // Based on the site's JSON content, we can tailor the response.
+      if (
+        query.toLowerCase().includes("transcript") ||
+        query.toLowerCase().includes("summary")
+      ) {
+        response += `Using our <strong>Automated Workflows</strong> feature, the AI-OS can parse the text, identify key topics and action items, and generate a clean summary.`;
+      } else if (
+        query.toLowerCase().includes("update") ||
+        query.toLowerCase().includes("slack")
+      ) {
+        response += `Our <strong>Seamless Integration</strong> with tools like Slack allows the AI-OS to read relevant channels and draft a concise project update for you. You just need to review and send.`;
+      } else if (
+        query.toLowerCase().includes("find") ||
+        query.toLowerCase().includes("document")
+      ) {
+        response += `The powerful search and reasoning capabilities of our AI-OS allow it to act as an intelligent search engine across all your connected apps, finding exactly what you need in seconds.`;
+      } else {
+        response += `Leveraging our core features like <strong>${siteContext.features.join(", ")}</strong>, we can build a custom solution to tackle that specific challenge, powered by the versatile capabilities of our AI-OS.`;
+      }
+
+      return response + "<br><br>How else can I help?";
+    }
+  });
+</script>

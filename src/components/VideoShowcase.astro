@@ -1,0 +1,184 @@
+---
+interface Props {
+  rows: {
+    title: string;
+    subtitle: string;
+    videoUrl: string;
+    ctaText?: string;
+  }[];
+}
+
+const { rows } = Astro.props;
+
+// Import video assets
+import brainy1 from "../assets/theme-images/brainy1.gif";
+import brainy2 from "../assets/theme-images/home/Home-section4-tools.png";
+import brainy3 from "../assets/theme-images/home/contract.png";
+
+const videoAssets: Record<string, any> = {
+  "~/assets/theme-images/brainy1.gif": brainy1,
+  "~/assets/theme-images/Home-section4-tools.png": brainy2,
+  "~/assets/theme-images/home/contract.png": brainy3,
+};
+
+const processedRows = rows.map(row => {
+  const asset = videoAssets[row.videoUrl];
+  return {
+    ...row,
+    videoSrc: asset ? (typeof asset === 'string' ? asset : asset.src) : row.videoUrl
+  };
+});
+---
+
+<section class="relative py-6 sm:py-8 lg:py-12">
+  <div class="bs-container">
+    <div class="video-showcase-wrapper">
+      {processedRows.map((row, index) => (
+        <div 
+          class={`video-showcase-row ${index === 0 ? 'active' : ''}`}
+          data-row-index={index}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <!-- Left: Title & Subtitle -->
+            <div class="text-content space-y-6">
+              <h2 class="bs-h2 text-gradient">{row.title}</h2>
+              <p class="bs-h3 text-gray-300 leading-relaxed">{row.subtitle}</p>
+              {row.ctaText && (
+                  <div class="text-left mt-12">
+                    <button
+                      type="button"
+                      class="bs-btn"
+                      onclick="demo.showModal()"
+                    >
+                      {row.ctaText}
+                    </button>
+                  </div>
+              )}
+            </div>
+
+            <!-- Right: Video/GIF -->
+            <div class="video-container relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-red-500/10">
+              <div class="aspect-video bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                <img
+                  class="w-full h-full object-cover"
+                  src={row.videoSrc}
+                  alt={row.title}
+                  data-video-index={index}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .video-showcase-wrapper {
+    position: relative;
+    min-height: 500px;
+  }
+
+  .video-showcase-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  }
+
+  .video-showcase-row.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+
+  .video-showcase-row.fading-out {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  .text-content {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .video-container {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .video-showcase-wrapper {
+    }
+  }
+
+  @media (max-width: 640px) {
+    .video-showcase-wrapper {
+      min-height: 439px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('.video-showcase-row');
+    
+    if (rows.length === 0) return;
+
+    let currentIndex = 0;
+    const GIF_DISPLAY_DURATION = 18000;
+
+    function switchToNextRow() {
+      const currentRow = rows[currentIndex];
+      
+      currentRow.classList.add('fading-out');
+      currentRow.classList.remove('active');
+      
+      // Move to next row (loop back to start if at end)
+      currentIndex = (currentIndex + 1) % rows.length;
+      
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          currentRow.classList.remove('fading-out');
+        });
+        
+        const nextRow = rows[currentIndex];
+        requestAnimationFrame(() => {
+          nextRow.classList.add('active');
+        });
+        
+
+        setTimeout(switchToNextRow, GIF_DISPLAY_DURATION);
+      }, 1000); 
+    }
+
+    // Start the automatic rotation after initial display duration
+    setTimeout(switchToNextRow, GIF_DISPLAY_DURATION);
+  });
+</script>

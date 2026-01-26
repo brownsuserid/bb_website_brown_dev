@@ -1,0 +1,108 @@
+{
+  "hero_title": "Living Up To The Promise of AI",
+  "hero_content": "<p>We built Brain Bridge after watching capable leaders and their teams stall under tools that promised automation but delivered confusion instead.</p>",
+  "demo": {
+    "cta": "Learn About Our Approach"
+  },
+  "approach_title": "Our Approach: AI with ROI",
+  "approach_content": "<p>We view AI as more than just a technological advancement—it's a transformative tool that, when applied correctly, can revolutionize business operations. However, many organizations face a 'Perception vs. Reality' challenge with AI, akin to owning a high-performance car that's stuck in traffic. At BrainBridge, we provide a complete upgrade, finely tuning your existing systems with laser-focused, market-ready AI tools that make a significant impact where it matters most—your bottom line.</p>",
+  "secret_sauce_sub": "OUR PHILOSOPHY",
+  "secret_sauce_title": "Adoption > Automation",
+  "secret_sauce_content": "<p>AI adoption is about learning how to work differently. When adoption is right, automation stops feeling risky and starts feeling obvious.</p>",
+  "brainyStory": {
+    "headline": "How To Work With Us",
+    "subheadline": "Our process is designed to remove guesswork. We create clarity first, align on a path that makes financial sense, and launch in a way your team can actually adopt.",
+    "blocks": [
+      {
+        "title": "Book A Clarity Session",
+        "content": "We start by grounding everything in reality. The clarity session is where we examine your goals, tools, workflows, and readiness. You leave with a shared understanding of where you are today and what problems are worth solving first."
+      },
+      {
+        "title": "Optimize Your AI Journey",
+        "content": "Once clarity exists, we design a practical path forward. We map your priorities, opportunities, and constraints. We connect automation where it actually matters. The result is a clear, defensible plan that aligns leadership intent with frontline reality and focuses investment where it delivers ROI."
+      },
+      {
+        "title": "Kickoff",
+        "content": "Our kickoff brings the right people into the process with shared expectations, ownership, and success criteria. From day one, the system is built for real use, not demos."
+      },
+      {
+        "title": "Ready to Start?",
+        "content": "",
+        "isCTA": true,
+        "buttonText": "Book Your Free AI Clarity Session"
+      }
+    ]
+  },
+  "AIOSContent": {
+    "title": "What is an AI-OS?",
+    "description": "An AI Operating System (AI-OS) is the invisible layer that connects your team's tools (Slack, Email, Docs) to the work they're already doing. It goes beyond simple automation, acting as an operational brain that learns and adapts to your unique workflows. It proactively flags what's being missed, automatically closes loops, tracks execution in real-time, and optimizes processes without adding another complex system to learn. Its goal is to free your team from repetitive tasks and 'tool fatigue,' allowing them to focus on strategic work.",
+    "notSection": {
+      "title": "The AI-OS is NOT:",
+      "items": [
+        "A platform your team has to log into or learn a new interface.",
+        "A static dashboard that gets ignored or requires constant monitoring.",
+        "An assistant that needs constant prompting or micromanagement to function.",
+        "A generic 'one-size-fits-all' solution that doesn't adapt to your specific processes.",
+        "A replacement for your team, but rather an enhancer of their capabilities."
+      ]
+    },
+    "isSection": {
+      "title": "The AI-OS IS:",
+      "items": [
+        "A system tailored to your unique business and processes, evolving with your needs.",
+        "An invisible operator that watches for failures, opportunities, and bottlenecks in real-time.",
+        "A system that makes real work observable, automatable, and predictable, improving decision-making.",
+        "An intelligent layer that integrates discreetly into your existing tools (Slack, Email, Docs).",
+        "A facilitator of collaboration, ensuring the right information reaches the right person at the right time."
+      ]
+    }
+  },
+  "secret_sauce_cards": [
+    {
+      "title": "If You Build It, They Might Not Show Up",
+      "description": "We have seen expensive AI systems stall because leadership optimized for capability instead of adoption. The workflows did not. Usage quietly dropped. Models were blamed. Brain Bridge fixes this at the root. We design AI alongside the people who will rely on it, inside their real constraints, habits, and incentives. Our work starts on the floor, not in a slide deck, and ends with tools teams actually use because they make work easier on day one.",
+      "icon": "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    },
+    {
+      "title": "Great AI Requires Great People",
+      "description": "Great AI is built on human judgment, context, and care. Without great people, even the smartest systems make the wrong decisions faster.",
+      "icon": "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+    },
+    {
+      "title": "There is No Substitute For Humans",
+      "description": "AI does not create judgment. It amplifies it. When human context is missing, even the best system accelerates the wrong decisions with impressive efficiency. We design AI to elevate people, not replace them. Our systems are built around human checkpoints, frontline judgment, and clear ownership. AI handles the heavy lifting. Humans make the calls that matter.",
+      "icon": "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+    },
+    {
+      "title": "AI With ROI Should Be Boring",
+      "description": "When AI works, it does not feel like a breakthrough. It feels like things finally run the way they should.",
+      "icon": "M13 10V3L4 14h7v7l9-11h-7z"
+    },
+    {
+      "title": "This Isn’t Rocket Surgery",
+      "description": "High ROI AI is rarely impressive to watch. It quietly removes friction, shortens cycles, and fades into the background of daily work. If it feels dramatic, it is usually compensating for poor design. Brain Bridge takes the opposite approach. We start with boring problems that cost real money and solve them with simple, durable systems that teams can understand, trust, and maintain. No unnecessary novelty. No fragile magic.",
+      "icon": "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+    }
+  ],
+  "impact_title": "Proven Impact: Delivering Measurable Results",
+  "impact_content": "<p>Our approach isn't just theoretical—it delivers tangible outcomes. In the past year, our projects have resulted in 70% efficiency gains for our clients. We are confident in the value we bring, guaranteeing every client a 120% return on their investment.</p>",
+  "impact_stats": [
+    {
+      "value": "70%",
+      "title": "Efficiency Gains",
+      "description": "Average improvement in operational efficiency for our clients"
+    },
+    {
+      "value": "120%",
+      "title": "ROI Guarantee",
+      "description": "We stand by the value we deliver to your business"
+    }
+  ],
+  "journey_title": "I want this team in the room",
+  "journey_content": "<p>An AI-OS Lab is an immersive, personalized session to build an operational layer your team trusts, controls, and can keep building on—without getting locked into a SaaS model.</p>",
+  "journey_button": "Schedule AI-OS Lab Discovery Call",
+  "journey_button_2": "Book an AI Strategy Session",
+  "journey_button_url": "/contact",
+  "quote_content": "Feel free to <strong>reach out to us</strong> to <strong>learn more</strong> about how we can help <strong>transform your business</strong>. Let's <strong>embark on this journey</strong> together.",
+  "quote_cite": "BrainBridge Team"
+}

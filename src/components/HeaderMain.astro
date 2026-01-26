@@ -1,0 +1,97 @@
+---
+import Logo from "../assets/theme-images/brainbridgelogo.png";
+import NavMobile from "./NavMobile.astro";
+
+const { settings } = Astro.props;
+---
+
+<header
+  class="wrapper fixed top-0 bg-black/30 font-semibold z-50 backdrop-blur-xl w-full"
+>
+  <!-- Wrapper -->
+  <div
+    class="bs-container py-2 md: py-4 px-2 flex justify-between items-center"
+  >
+    <!-- Logo -->
+    <a
+      class="flex xl:min-w-32 group"
+      href="/"
+      aria-label={settings.title + " - Home"}
+    >
+      <img
+        class="max-w-45 md:max-w-60 h-auto"
+        src={Logo.src}
+        alt=""
+        srcset=""
+      />
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden col-span-6 md:flex mx-auto self-stretch lg:gap-2">
+      <!-- Links -->
+      {
+        settings.nav.map((item) => (
+          <a
+            class="bs-btn !bg-transparent before:translate-y-full hover:before:translate-y-0 !text-bs-foreground-light"
+            href={item.link}
+          >
+            {item.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- CTA -->
+    <!-- CTA -->
+    <button
+      type="button"
+      class="min-w-32 bs-btn hidden md:block"
+      onclick="demo.showModal()"
+    >
+      {settings.demo.title}
+    </button>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-button"
+      class="md:hidden relative w-5 h-5 text-bs-foreground-light focus:outline-none z-50"
+    >
+      <span class="menu-toggle-bar menu-toggle-bar--top !top-0"></span>
+      <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
+      <span class="menu-toggle-bar menu-toggle-bar--bottom !top-[100%]"></span>
+    </button>
+  </div>
+</header>
+
+<NavMobile {settings} />
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    const setMenuPosition = () => {
+      if (header && mobileMenu) {
+        const headerHeight = header.offsetHeight;
+        mobileMenu.style.height = `calc(100vh - ${headerHeight}px)`;
+        mobileMenu.style.top = `${headerHeight}px`;
+      }
+    };
+
+    setMenuPosition();
+    window.addEventListener("resize", setMenuPosition);
+
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+
+    const body = document.querySelector("body");
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("is-open");
+        mobileMenuButton.classList.toggle("is-open");
+        body.classList.toggle("overflow-hidden");
+        body.classList.toggle("header-open");
+      });
+    }
+  });
+</script>

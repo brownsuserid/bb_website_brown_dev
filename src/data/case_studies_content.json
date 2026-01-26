@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Successful Case Studies",
+    "subtitle": "Transforming Businesses with AI-Powered Solutions",
+    "content": "<p><strong>Building Tomorrow Today</strong> to help kick start your business.</p><p>We call this AI with ROI. Our team at Brain Bridge combines decades of technology expertise with current cutting-edge leaders within the AI movement. Making these transitions practical, scalable, and profitable while building stellar workplace cultures is not only our goal, but our defined mission.</p>"
+  },
+  "case_studies": [
+    {
+      "id": "case-study-1",
+      "title": "Revolutionizing Retail with AI-Powered Insights",
+      "subtitle": "How we helped a leading retailer increase sales by 45% using predictive analytics",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "image": "/images/case-study-1.jpg",
+      "client": "Global Retail Corp",
+      "industry": "Retail & E-commerce",
+      "results": [
+        "45% increase in online sales",
+        "30% improvement in customer retention",
+        "60% faster decision making",
+        "Reduced operational costs by 25%"
+      ],
+      "date": "Q2 2024"
+    },
+    {
+      "id": "case-study-2",
+      "title": "Transforming Healthcare with Machine Learning",
+      "subtitle": "Implementing AI diagnostics that improved patient outcomes by 60%",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+      "image": "/images/case-study-2.jpg",
+      "client": "MediCare Solutions",
+      "industry": "Healthcare",
+      "results": [
+        "60% improvement in diagnostic accuracy",
+        "40% reduction in diagnosis time",
+        "85% patient satisfaction rate",
+        "30% cost savings on diagnostics"
+      ],
+      "date": "Q1 2024"
+    },
+    {
+      "id": "case-study-3",
+      "title": "Optimizing Supply Chain with AI",
+      "subtitle": "Reducing delivery times by 50% through intelligent logistics",
+      "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+      "image": "/images/case-study-3.jpg",
+      "client": "LogiTech Global",
+      "industry": "Logistics",
+      "results": [
+        "50% reduction in delivery times",
+        "35% decrease in operational costs",
+        "99.9% on-time delivery rate",
+        "45% improvement in route efficiency"
+      ],
+      "date": "Q4 2023"
+    }
+  ],
+  "cta": {
+    "title": "Ready to transform your business?",
+    "description": "Let's discuss how we can help you achieve similar results with our AI solutions.",
+    "button_text": "Get in Touch",
+    "button_url": "/contact"
+  }
+}

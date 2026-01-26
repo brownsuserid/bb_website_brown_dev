@@ -1,0 +1,153 @@
+---
+const { title, subtitle, roles } = Astro.props;
+---
+
+<section
+    class="py-20 relative overflow-hidden bg-gradient-to-b from-black to-[#050505]"
+>
+    <div class="bs-container relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="bs-h2 mb-4">{title}</h2>
+            {subtitle && <p class="text-xl text-gray-400">{subtitle}</p>}
+        </div>
+
+        <div
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+            {
+                roles.map((role) => (
+                    <div class="p-6 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-default">
+                        <div class="mb-3 text-indigo-400 group-hover:text-white transition-colors">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-8 h-8"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                {role.icon === "mail" && (
+                                    <>
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </>
+                                )}
+                                {role.icon === "database" && (
+                                    <>
+                                        <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                                    </>
+                                )}
+                                {role.icon === "video" && (
+                                    <>
+                                        <polygon points="23 7 16 12 23 17 23 7" />
+                                        <rect
+                                            x="1"
+                                            y="5"
+                                            width="15"
+                                            height="14"
+                                            rx="2"
+                                            ry="2"
+                                        />
+                                    </>
+                                )}
+                                {role.icon === "table" && (
+                                    <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
+                                )}
+                                {role.icon === "folder" && (
+                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                                )}
+                                {role.icon === "calendar" && (
+                                    <>
+                                        <rect
+                                            x="3"
+                                            y="4"
+                                            width="18"
+                                            height="18"
+                                            rx="2"
+                                            ry="2"
+                                        />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </>
+                                )}
+                                {role.icon === "book" && (
+                                    <>
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                    </>
+                                )}
+                                {role.icon === "clipboard" && (
+                                    <>
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                        <rect
+                                            x="8"
+                                            y="2"
+                                            width="8"
+                                            height="4"
+                                            rx="1"
+                                            ry="1"
+                                        />
+                                    </>
+                                )}
+                                {role.icon === "message" && (
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                )}
+                                {role.icon === "file-text" && (
+                                    <>
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <line x1="16" y1="13" x2="8" y2="13" />
+                                        <line x1="16" y1="17" x2="8" y2="17" />
+                                        <polyline points="10 9 9 9 8 9" />
+                                    </>
+                                )}
+                                {role.icon === "search" && (
+                                    <>
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line
+                                            x1="21"
+                                            y1="21"
+                                            x2="16.65"
+                                            y2="16.65"
+                                        />
+                                    </>
+                                )}
+                                {role.icon === "bar-chart" && (
+                                    <>
+                                        <line x1="18" y1="20" x2="18" y2="10" />
+                                        <line x1="12" y1="20" x2="12" y2="4" />
+                                        <line x1="6" y1="20" x2="6" y2="14" />
+                                    </>
+                                )}
+                                {![
+                                    "mail",
+                                    "database",
+                                    "video",
+                                    "table",
+                                    "folder",
+                                    "calendar",
+                                    "book",
+                                    "clipboard",
+                                    "message",
+                                    "file-text",
+                                    "search",
+                                    "bar-chart",
+                                ].includes(role.icon) && (
+                                    <circle cx="12" cy="12" r="10" />
+                                )}
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-300">
+                            {role.title}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

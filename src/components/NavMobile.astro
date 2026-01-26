@@ -1,0 +1,18 @@
+---
+const { settings } = Astro.props;
+---
+
+<div id="mobile-menu" class="fixed w-full bg-bs-background/80 backdrop-blur-lg transition-transform duration-500 ease-in-out md:hidden z-40">
+  <div class="bs-container flex flex-col items-center justify-center h-full">
+    <nav class="flex flex-col items-center gap-8 ">
+      {settings.nav.map((item, index) => (
+        <a href={item.link} class="nav-item text-3xl font-semibold text-bs-foreground-light ">
+          {item.title}
+        </a>
+      ))}
+    </nav>
+    <button type="button" class="nav-item min-w-32 bs-btn mt-12 opacity-0 intersect:opacity-100 transition-opacity duration-1000" onclick="demo.showModal()">
+      {settings.demo.title}
+    </button>
+  </div>
+</div>

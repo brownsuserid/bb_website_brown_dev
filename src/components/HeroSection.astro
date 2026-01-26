@@ -1,0 +1,133 @@
+---
+import hero_screens from "../assets/theme-images/hero-screens.png";
+
+interface Props {
+  settings: any;
+  title: string;
+  content: string;
+  image?: any;
+  imageAlt?: string;
+  reversed?: boolean;
+}
+
+const {
+  settings,
+  title,
+  content,
+  image,
+  imageAlt,
+  reversed = false,
+} = Astro.props;
+
+// Use provided image or fall back to default
+const heroImage = image || hero_screens;
+const altText =
+  imageAlt || "Screens showing phone, tablet and desktop views of our website";
+
+// Get the src path from the image object
+const imageSrc = typeof heroImage === "string" ? heroImage : heroImage.src;
+
+// Get the URLs
+const url = settings.demo?.url || "";
+const url2 = settings.demo2?.url || "";
+
+// Check if the image is a GIF
+const isGif = imageSrc.toLowerCase().endsWith("gif");
+const imageClasses = isGif
+  ? "max-w-full h-auto rounded-lg overflow-hidden shadow-2xl shadow-purple-500/20"
+  : "max-w-full h-auto rounded-lg overflow-hidden aca";
+---
+
+<section
+  class:list={[
+    "bs-container py-18 lg:py-32 flex flex-col gap-3 lg:gap-14 items-center",
+    reversed ? "lg:flex-row-reverse" : "lg:flex-row",
+  ]}
+>
+  <div class="flex flex-col gap-6 lg:max-w-2xl w-full py-16">
+    <h1 class="bs-h1 text-gradient" set:html={title} />
+
+    <div
+      class="bs-body-text xl:text-xl flex flex-col gap-4 [&_p]:last:text-bs-foreground-dark lg:max-w-lg"
+      set:html={content}
+    />
+
+    <div class="flex flex-col lg:flex-row gap-3 z-4">
+      {
+        url ? (
+          <a
+            id="btn-diag"
+            href={url}
+            class="bs-btn btn-diag self-center bs-mt-sm"
+            onclick="handleLinkClick(event)"
+          >
+            {settings.demo.cta}
+          </a>
+        ) : (
+          <button
+            id="btn-diag"
+            type="button"
+            class="bs-btn btn-diag self-center bs-mt-sm"
+            onclick="demo.showModal()"
+          >
+            {settings.demo.cta}
+          </button>
+        )
+      }
+
+      {
+        settings.demo2?.cta && (
+          <>
+            {url2 ? (
+              <a
+                id="btn-pro"
+                href={url2}
+                class="bs-btn-secondary self-center bs-mt-sm"
+                onclick="handleLinkClick(event)"
+              >
+                {settings.demo2.cta}
+              </a>
+            ) : (
+              <button
+                id="btn-pro"
+                type="button"
+                class="bs-btn-secondary self-center bs-mt-sm"
+                onclick="demo.showModal()"
+              >
+                {settings.demo2.cta}
+              </button>
+            )}
+          </>
+        )
+      }
+    </div>
+  </div>
+
+  <figure class="flex place-content-center -mt-4 lg:mt-0">
+    <img
+      src={imageSrc}
+      alt={altText}
+      loading="eager"
+      decoding="async"
+      class={imageClasses}
+      data-gif={isGif}
+    />
+  </figure>
+</section>
+
+<script>
+  function handleLinkClick(event) {
+    const link = event.currentTarget as HTMLAnchorElement;
+    const href = link.getAttribute("href");
+
+    if (href && href.startsWith("#")) {
+      event.preventDefault();
+      const elementId = href.substring(1);
+      const targetElement = document.getElementById(elementId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }
+</script>

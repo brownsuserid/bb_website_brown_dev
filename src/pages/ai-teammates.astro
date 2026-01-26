@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PathToClarity from "../components/PathToClarity.astro";
+import ClientsSection from "../components/ClientsSection.astro";
+import aiTeammatesData from "../data/ai-teammates.json";
+
+const mainHeroImage = "../assets/theme-images/Selection.webp";
+const robotImageSrc22 =
+  "~/assets/theme-images/ai-teammate/section1_diagram.png";
+
+const allImages = import.meta.glob("../assets/theme-images/ai-teammate/*", {
+  eager: true,
+});
+
+const getImageSrc = (filename) => {
+  const path = `../assets/theme-images/ai-teammate/${filename}`;
+  return allImages[path]?.default?.src || "";
+};
+
+const onboardingMapping = {
+  Healthcare: "section4_healthcare.png",
+  Sales: "section4_sales.png",
+  Marketing: "section4_marketing.png",
+  Staffing: "section4_staffing.png",
+  "HR & Culture": "section4_hr.png",
+  Leadership: "section4_leadership_teams.png",
+  Construction: "section4_construction.png",
+  "Admin & Support": "section4_admin.png",
+  Finance: "section4_finance.png",
+  Purchasing: "section4_purchasing.png",
+  Nonprofit: "section4_non_profit.png",
+  "R&D": "section4_rnd.png",
+  Consulting: "section4_consulting.png",
+  Education: "section4_education.png",
+};
+
+const onboardingList = aiTeammatesData.onboarding.list.map((item) => ({
+  ...item,
+  title: item.title,
+  image: getImageSrc(onboardingMapping[item.title]),
+}));
+
+const trainTasksMapping = {
+  Execution: "section2_rem.png",
+  Support: "section2_hipp.png",
+  Coordination: "section2_qwerk.png",
+  Analysis: "section2_noggin.png",
+};
+
+const trainTasksData = {
+  ...aiTeammatesData.train_tasks,
+  cards: aiTeammatesData.train_tasks.cards.map((card) => ({
+    ...card,
+    image: getImageSrc(trainTasksMapping[card.title]),
+  })),
+};
+
+// Build Tools list using the composite images
+const toolsList = [
+  {
+    title: "Integration Tools 1",
+    image: getImageSrc("section3_left_tools.png"),
+    link: "#",
+  },
+  {
+    title: "Integration Tools 2",
+    image: getImageSrc("section3_right_tools.png"),
+    link: "#",
+  },
+];
+
+// Hero Images
+const heroImageSrc = getImageSrc("aihero.png");
+const robotImageSrc = getImageSrc("section1_diagram.png");
+---
+
+<Layout title="AI Teammates | Brain Bridge Labs">
+  <!-- Hero Section -->
+  <HeroSection
+    title={aiTeammatesData.hero_title}
+    content={aiTeammatesData.hero_content}
+    settings={aiTeammatesData.hero_settings}
+    image={heroImageSrc}
+    imageAlt="AI Teammate Dashboard"
+  />
+
+  <!-- How a Great Teammate Works (Reversed Hero) -->
+  <HeroSection
+    title={aiTeammatesData.how_it_works.title}
+    content={aiTeammatesData.how_it_works.content}
+    settings={aiTeammatesData.how_it_works.settings}
+    image={robotImageSrc}
+    imageAlt="Robot working alongside humans"
+    reversed={true}
+  />
+
+  <!-- Train Them On Your Actual Tasks (PathToClarity 4-col with Images) -->
+  <PathToClarity
+    clarityCardsData={trainTasksData}
+    gridClass="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+  />
+
+  <!-- Connect Them To The Tools (ClientsSection with large images) -->
+  <ClientsSection
+    title={aiTeammatesData.tools_integration.title}
+    clients={toolsList}
+    logoClass="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+  />
+
+  <!-- Onboard Them Into Your Team (ClientsSection with standard icons) -->
+  <ClientsSection
+    title={aiTeammatesData.onboarding.title}
+    clients={onboardingList}
+  />
+
+  <!-- Hiring Process (PathToClarity Standard) -->
+  <PathToClarity clarityCardsData={aiTeammatesData.hiring_process_cards} />
+
+  <!-- AI Awareness Pillars (PathToClarity Standard) -->
+  <PathToClarity clarityCardsData={aiTeammatesData.ai_pillars} />
+
+  <!-- ROI & Offers (PathToClarity 4-colish or Standard) -->
+  <PathToClarity
+    clarityCardsData={aiTeammatesData.roi_offers}
+    gridClass="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+  />
+</Layout>

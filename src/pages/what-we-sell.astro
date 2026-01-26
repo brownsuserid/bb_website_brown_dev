@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PathToClarity from "../components/PathToClarity.astro";
+import Image from "astro/components/Image.astro";
+import pageContent from "../data/what-we-sell.json";
+import global_settings from "../data/global_settings.json";
+import brainyImage from "../assets/theme-images/botsbbjoint.png";
+import howItWorksContent from "../data/howItWorks.json";
+import HowItWorks from "../components/HowItWorks.astro";
+import heroImage from "../assets/theme-images/brainy3.gif";
+import WhatIsAios from "../components/WhatIsAios.astro";
+import whatIsAiosContent from "../data/whatIsAios.json";
+import BrainySolutionsChat from "../components/BrainySolutionsChat.astro";
+import ProblemCards from "../components/ProblemCards.astro";
+import visualHTML from "../assets/theme-images/relaybot.png";
+import visualHTML2 from "../assets/theme-images/hitchbrainbridgebot.png";
+import visualHTML3 from "../assets/theme-images/fusebot.png";
+import ProcessDiagram from "../components/ProcessDiagram.astro";
+import pathFlow from "../data/path-flow.json";
+import BrainyStory from "../components/BrainyStory.astro";
+---
+
+<Layout title="What We Sell | BrainBridge">
+  <HeroSection
+    title={pageContent.hero_title}
+    content={pageContent.hero_content}
+    settings={pageContent.settings}
+    image={heroImage}
+  />
+
+  <PathToClarity clarityCardsData={pageContent.clarityCardsData} />
+
+  <BrainyStory
+    headline={pageContent.human_process.headline}
+    subheadline={pageContent.human_process.subheadline}
+    blocks={pageContent.human_process.blocks}
+  />
+
+  <WhatIsAios {...whatIsAiosContent} />
+</Layout>
+
+<style>
+  .style-bg {
+    background-color: #000000;
+    opacity: 0.8;
+    mask-image: radial-gradient(ellipse 100% 100% at center, black, #000000);
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 80% at center,
+      black,
+      transparent
+    );
+    background-image:
+      repeating-radial-gradient(circle at 0 0, transparent 0, #000000 38px),
+      repeating-linear-gradient(#ff000055, #ff0000);
+    top: 0;
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 0 7px rgba(255, 255, 255, 0.2),
+        0 0 12px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* Class to trigger the number glow */
+  .number-glow {
+    animation: pulse-glow 1.5s ease-in-out;
+  }
+</style>

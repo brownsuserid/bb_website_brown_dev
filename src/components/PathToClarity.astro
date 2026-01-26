@@ -1,0 +1,132 @@
+---
+const { clarityCardsData, gridClass = "grid-cols-1 md:grid-cols-3" } =
+  Astro.props;
+import ClarityCardModal from "./ClarityCardModal.astro";
+---
+
+<section id="path-to-clarity-section" class="relative py-20 sm:py-24 lg:py-28">
+  <div class="mx-auto relative z-10 bs-container">
+    <h2
+      class:list={[
+        "bs-h2",
+        "!text-4xl",
+        "font-bold",
+        "tracking-tight",
+        "text-gradient",
+        "text-center",
+        "sm:!text-5xl",
+        "mb-4",
+        { "mb-16": !clarityCardsData.subtitle },
+      ]}
+    >
+      {clarityCardsData.title}
+    </h2>
+    {
+      clarityCardsData.subtitle && (
+        <p
+          class="bs-h3 text-gradient text-center md:max-w-3xl mx-auto mb-16"
+          set:html={clarityCardsData.subtitle}
+        />
+      )
+    }
+
+    <div class:list={["grid gap-8 items-stretch", gridClass]}>
+      {
+        clarityCardsData.cards.map((card, index) => {
+          const modal =
+            clarityCardsData.modals && clarityCardsData.modals[index];
+          return (
+            <div
+              class:list={[
+                "group clarity-card ai-card animated-item opacity-0 intersect:opacity-100 intersect:translate-y-0 relative flex flex-col py-12 px-8 rounded-lg bg-[#070808] backdrop-blur-lg border border-gray-800 transition-transform duration-300 ease-in-out hover:-translate-y-1.5",
+                { highlighted: card.highlight },
+              ]}
+            >
+              {card.tag ? (
+                <span class="absolute top-4 right-4 text-xs font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 px-2 py-1 rounded-full">
+                  {card.tag}
+                </span>
+              ) : null}
+              <div class="relative z-2 flex-shrink-0 mb-6 h-32 flex items-center justify-center">
+                {card.image ? (
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="absolute -top-4 left-0 text-8xl font-black bg-gradient-to-b from-white/8 to-white/70 bg-clip-text text-transparent transition-all duration-300 group-hover:from-white/10 group-hover:to-white/100">
+                    {card.pathNumber}
+                  </span>
+                )}
+              </div>
+              <div class="flex-grow z-2">
+                <h3 class="bs-h3 text-xl font-semibold text-white mb-3">
+                  {card.title}
+                </h3>
+                <p class="text-gray-400 leading-relaxed">{card.description}</p>
+              </div>
+              <button
+                class="bs-btn mt-8 z-2"
+                onclick={
+                  modal
+                    ? `document.getElementById('clarity-modal-${index}').showModal()`
+                    : "demo.showModal()"
+                }
+              >
+                {card.buttonText || "Learn More"}
+              </button>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Render modals at the bottom of the component -->
+{
+  clarityCardsData.modals &&
+    clarityCardsData.modals.map((modal, index) => (
+      <ClarityCardModal {modal} {index} />
+    ))
+}
+
+<style>
+  .clarity-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
+    padding: 1px;
+    z-index: -1;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.2)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: background 0.3s ease;
+  }
+
+  .clarity-card.highlighted::after {
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.4)
+    );
+  }
+
+  .clarity-card:hover::after {
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.6)
+    );
+  }
+</style>

@@ -1,0 +1,121 @@
+---
+
+import X from '../assets/theme-images/icon-x.svg'
+
+const { content } = Astro.props
+
+import BrainyChatImage from '../assets/theme-images/Briany-Chat-CTA-min.png'
+
+---
+
+<dialog id="demo" closedby="any" class="fixed inset-0 bg-bs-surface-0 m-auto z-50 p-0 rounded-xl w-full max-w-[95%] md:max-w-6xl max-h-[90vh] overflow-hidden">
+  <button 
+    onclick="this.closest('dialog').close('close')" 
+    aria-label="Close"
+    class="absolute top-4 -right-[85%] md:-right-[95%] z-50 bs-btn rounded-full !p-0 flex items-center justify-center h-10 w-10 bg-bs-surface-2 hover:bg-bs-surface-3 transition-colors">
+    <X class="scale-75 opacity-75" width="32" height="32" />
+  </button>
+
+  <div class="overflow-y-auto max-h-[90vh] p-6 md:p-12">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+      
+      <div class="lg:col-span-2 flex flex-col gap-6 justify-center">
+        
+        <h2 class="bs-h2 text-gradient uppercase tracking-tight">
+          Let's Get Something Scheduled
+        </h2>
+        
+        <h3 class="bs-h2 text-gradient uppercase tracking-tight">
+          Brainy's Your Wingbot
+        </h3>
+        
+        <div class="flex justify-center lg:justify-start my-4">
+          <img 
+            src={BrainyChatImage.src} 
+            alt="Brainy Chat Assistant" 
+            class="w-full max-w-xs lg:max-w-sm rounded-lg shadow-lg"
+            loading="lazy"
+          />
+        </div>
+        
+        <div class="border-2 border-bs-surface-3 rounded-xl p-6 bg-bs-surface-1/50 backdrop-blur-sm">
+          <p class="bs-body-text text-base md:text-lg leading-relaxed mb-4">
+            I'll help you lock in a meeting faster than a human can say "looping back."
+          </p>
+          <div class="flex flex-col gap-2 text-base md:text-lg">
+            <p class="flex items-center gap-2">
+              <span class="text-2xl">📅</span>
+              <span class="bs-body-text">Just pick a time.</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <span class="text-2xl">🚀</span>
+              <span class="bs-body-text">Brainy will handle the rest.</span>
+            </p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="lg:col-span-3 flex items-center">
+        <div class="w-full h-full min-h-[600px] lg:min-h-[700px]">
+          <div 
+            class="calendly-inline-widget rounded-lg overflow-hidden" 
+            data-url="https://calendly.com/brown-brainbridge/30min" 
+            style="position: relative; min-width: 320px; height: 100%; min-height: 600px;">
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+</dialog>
+
+<script is:inline>
+  if (typeof window !== 'undefined' && !document.querySelector('script[src*="calendly"]')) {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+</script>
+
+<style>
+
+html:has(dialog[open]) {
+  overflow: hidden;
+  backdrop-filter: blur(0);
+  scrollbar-gutter: stable;
+}
+
+dialog[open]::backdrop {
+  backdrop-filter: blur(50px);
+}
+
+@keyframes scale-up {
+
+  to {
+    translate: 0 0;
+    scale: 1;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  dialog {
+    translate: 0 2rem;
+    scale: .8
+  }
+
+  dialog[open] {
+    animation: scale-up forwards 1s;
+    animation-timing-function: var(--ease-bs-spring);
+  }
+
+}
+
+
+</style>

@@ -1,0 +1,24 @@
+{
+  "name": "blackspike-astro-landing-page",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.49.0",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.16.9",
+    "swiper": "^11.2.10",
+    "tailwindcss": "^4.1.7",
+    "tailwindcss-intersect": "^2.2.0",
+    "three": "^0.178.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.178.1"
+  }
+}

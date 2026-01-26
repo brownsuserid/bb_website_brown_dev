@@ -1,0 +1,22 @@
+{
+  "title": "Explore Other Ways We Can Help",
+  "description": "Whether you need a one-day deep dive for immediate clarity or long-term strategic guidance, we have an engagement model that fits",
+  "isNot": {
+    "title": "AI Workshops",
+    "points": [
+      "A practical first step to gain immediate clarity on a key operational problem."
+    ],
+    "cta": {
+      "text": "Learn More"
+    }
+  },
+  "is": {
+    "title": "Fractional CAIO Services",
+    "points": [
+      "Strategic guidance for leaders seeking to build and implement a long-term AI roadmap."
+    ],
+    "cta": {
+      "text": "Learn More"
+    }
+  }
+}

@@ -1,0 +1,258 @@
+---
+// src/components/ProcessDiagram.astro
+
+// Updated Props interface to match the new JSON structure
+export interface Props {
+  header: {
+    title: string;
+    subtitle: string;
+  };
+  philosophy: {
+    subtitle: string;
+    title: string;
+    content: string; // Can contain HTML
+  };
+  process: {
+    title: string;
+    content: string;
+  }[];
+  offerings: {
+    title: string;
+    subtitle?: string; // Optional subtitle
+    content: string;
+    cta: {
+      text: string;
+      url: string;
+    };
+  }[];
+}
+
+const { header, philosophy, process, offerings } = Astro.props;
+---
+
+<section class="container mx-auto px-4 py-20 sm:py-32">
+  <header class="text-center mb-20 sm:mb-24 max-w-3xl mx-auto">
+    <h2
+      class="bs-h1 text-4xl sm:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400"
+    >
+      {header.title}
+    </h2>
+    <p class="mt-5 text-lg text-gray-400">
+      {header.subtitle}
+    </p>
+  </header>
+
+  <div class="relative w-full max-w-6xl mx-auto">
+    <svg
+      class="absolute inset-0 w-full h-full z-0 hidden md:block"
+      viewBox="0 0 1200 1100"
+      preserveAspectRatio="xMidYMin meet"
+      aria-hidden="true"
+    >
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 600 130 V 380"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 280 410 H 580"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 620 410 H 920"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 280 440 V 720"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 920 440 V 720"></path>
+    </svg>
+
+    <svg
+      class="absolute inset-0 w-full h-full z-0 block md:hidden"
+      viewBox="0 0 100 2400"
+      preserveAspectRatio="xMidYMin meet"
+      aria-hidden="true"
+    >
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 50 200 V 420"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 50 560 V 780"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 50 920 V 1140"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 50 1280 V 1500"></path>
+      <path
+        class="draw-path stroke-gray-700"
+        fill="none"
+        stroke-width="2"
+        d="M 50 1780 V 2000"></path>
+    </svg>
+
+    <div
+      class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12 sm:gap-y-20"
+    >
+      <div class="animated-item md:col-span-8 md:col-start-3 text-center">
+        <div
+          class="inline-block bg-black/50 backdrop-blur-sm border border-white/80 rounded-xl p-6"
+        >
+          <h3 class=" font-display text-lg font-semibold text-gray-400 mb-2">
+            {philosophy.subtitle}
+          </h3>
+          <h4 class="font-display text-2xl font-bold text-white">{philosophy.title}</h4>
+          <p
+            class="mt-3 text-gray-400 max-w-md mx-auto"
+            set:html={philosophy.content}
+          />
+        </div>
+      </div>
+
+      {
+        process.map((step, index) => (
+          <div
+            class="animated-item md:col-span-4"
+            style={`--animation-delay: ${index * 200 + 200}ms`}
+          >
+            <div class="bg-black border border-gray-800 rounded-xl relative p-6 h-full flex flex-col text-center shadow-lg shadow-white/5">
+              <span class="relative text-6xl font-black bg-gradient-to-b from-white/8 to-white/70 bg-clip-text text-transparent transition-all duration-300 group-hover:from-white/10 group-hover:to-white/100">{index + 1}</span>
+              <span class="font-display text-lg font-bold text-white intersect:text-shadow-amber-50 intersect:text-shadow-xs mb-2">
+                {step.title}
+              </span>
+              <p class="text-gray-300">{step.content}</p>
+            </div>
+          </div>
+        ))
+      }
+
+      <div
+        class="animated-item md:col-span-5 md:col-start-2"
+        style="--animation-delay: 700ms"
+      >
+        <div
+          class="bg-black border border-gray-800 rounded-xl p-8 h-full flex flex-col text-center"
+        >
+          <h3 class="text-2xl font-bold text-gradient">{offerings[0].title}</h3>
+          <p class="mt-3 text-gray-200 flex-grow">{offerings[0].content}</p>
+          <button
+            type="button"
+            class="mt-6 self-center border border-gray-600 text-gray-300 font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 hover:border-gray-500 hover:text-white transition-colors duration-300"
+            onclick="demo.showModal()"
+          >
+            {offerings[0].cta.text}
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="animated-item md:col-span-5 md:col-start-7"
+        style="--animation-delay: 1000ms"
+      >
+        <div
+          class="bg-black border border-gray-500 rounded-xl p-8 h-full flex flex-col shadow-2xl shadow-white/10 text-center"
+        >
+          {
+            offerings[1].subtitle && (
+              <div class="text-sm font-bold uppercase tracking-wider text-gray-400">
+                {offerings[1].subtitle}
+              </div>
+            )
+          }
+          <h3 class="mt-2 text-2xl font-bold bg-gradient-to-b from-white/40 to-white/100 bg-clip-text text-transparent transition-all duration-300 group-hover:from-white/10 group-hover:to-white/100">
+            {offerings[1].title}
+          </h3>
+          <p class="mt-3 text-gray-200 flex-grow">{offerings[1].content}</p>
+          <button
+            type="button"
+            class="min-w-32 bs-btn mt-3 block"
+            onclick="demo.showModal()"
+          >
+            {offerings[1].cta.text}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // This script handles the fade-in and line-drawing animations.
+  document.addEventListener("DOMContentLoaded", () => {
+    // Observer for fading in content blocks
+    const animatedItems = document.querySelectorAll(".animated-item");
+    const itemObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            itemObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    animatedItems.forEach((item) => itemObserver.observe(item));
+
+    // Observer for drawing SVG paths
+    const paths = document.querySelectorAll(".draw-path");
+    const pathObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-drawing");
+            pathObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    ); // Trigger when path container is 50% visible
+
+    paths.forEach((path) => pathObserver.observe(path));
+  });
+</script>
+
+<style>
+  /* Initial state for fade-in items */
+  .animated-item {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+    transition-delay: var(--animation-delay, 0s);
+  }
+  .animated-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* NEW: Styles for the SVG line drawing animation */
+  .draw-path {
+    stroke-dasharray: 1500; /* A large value that will cover any path length */
+    stroke-dashoffset: 1500;
+    transition: stroke-dashoffset 2.5s cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  /* The class added by the Intersection Observer to trigger the animation */
+  .draw-path.is-drawing {
+    stroke-dashoffset: 0;
+  }
+</style>

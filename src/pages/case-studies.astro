@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+import CaseStudiesSection from "../components/CaseStudiesSection.astro"
+import ClientsSection from "../components/ClientsSection.astro"
+import FaqSection from "../components/FaqSection.astro"
+import HeroSection from "../components/HeroSection.astro"
+import NewsletterSection from "../components/NewsletterSection.astro"
+import QuoteSection from "../components/QuoteSection.astro"
+import TestimonialsSection from "../components/TestimonialsSection.astro"
+
+import caseStudies from "../data/case_studies.json"
+import clients from "../data/clients.json"
+import faq from "../data/faq.json"
+import global_settings from "../data/global_settings.json"
+import home from "../data/home.json"
+import newsletter from "../data/newsletter.json"
+import testimonials from "../data/testimonials.json"
+
+// Transform case studies to match the expected format for CaseStudiesSection
+const transformedCaseStudies = caseStudies.map((study) => ({
+  ...study,
+  // Ensure required fields are present
+  cta: study.cta || "View Case Study",
+  bg: study.bg || "bg-gradient-to-r from-bs-primary to-bs-secondary",
+  image_alt: study.image_alt || `${study.title} case study`
+}))
+---
+
+<Layout title={`${global_settings.title} | Case Studies`}>
+  <!-- Hero Section -->
+  <HeroSection
+    title="Our Case Studies"
+    subtitle="Real-world solutions delivering measurable results"
+    content="<p>Explore how we've helped businesses transform their operations with our AI-powered solutions. Each case study demonstrates our approach to solving complex challenges and delivering exceptional value.</p>"
+    settings={global_settings}
+  />
+
+  <!-- All Case Studies Section -->
+  <CaseStudiesSection
+    title="Featured Case Studies"
+    caseStudies={transformedCaseStudies}
+  />
+
+  <!-- Testimonials Section -->
+  <TestimonialsSection
+    testimonials={testimonials}
+    title={home.testimonials_title}
+  />
+
+  <!-- Quote Section -->
+  <QuoteSection
+    cite={home.quote_cite}
+    content={home.quote_content}
+    role={home.quote_role}
+  />
+
+  <!-- Clients Section -->
+  <ClientsSection
+    clients={clients}
+    title="Trusted by Industry Leaders"
+  />
+
+  <!-- FAQ Section -->
+  <FaqSection
+    faq={faq}
+    title="Frequently Asked Questions"
+  />
+
+</Layout>
+
+<style>
+  /* Custom styles can be added here if needed */
+  .case-study-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .case-study-card:hover {
+    transform: translateY(-5px);
+  }
+</style>

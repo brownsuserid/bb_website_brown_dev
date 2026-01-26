@@ -1,0 +1,98 @@
+---
+// src/components/WhatIsAios.astro
+
+// Define the shape of the data the component will receive
+export interface Column {
+  title: string;
+  points: string[];
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  isNot: Column;    
+  is: Column;
+  cta: {
+    text: string;
+    url: string;
+  };
+}
+
+const { title, description, isNot, is, cta } = Astro.props;
+---
+
+<section class="container mx-auto px-4 py-20 sm:py-32">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+        <h2 class="bs-h2 text-gradient sm:text-4xl font-bold tracking-tight text-white">{title}</h2>
+        <p class="mt-4 text-lg text-gray-400">{description}</p>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-800"></div>
+        </div>
+        <div class="relative flex justify-center">
+            <span class="bg-[#0a0a0a] px-4 text-gray-300">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            </span>
+        </div>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- The AI-OS is NOT -->
+        <div class="group relative ai-card border border-gray-800 rounded-xl p-8 transition-all duration-300 hover:border-gray-700 hover:-translate-y-1">
+            <div class="relative z-2">
+            <h3 class="text-2xl  z-2 font-semibold text-gradient">{isNot.title}</h3>
+            <ul class="mt-4 space-y-3 text-gray-400 z-2">
+                {isNot.points.map(point => (
+                    <li class="flex items-start z-2">
+                        <span class="text-red-400/70 mr-3 mt-1 flex-shrink-0">&ndash;</span>
+                        <span>{point}</span>
+                    </li>
+                ))}
+            </ul>
+            {isNot.cta && (
+                <div class="flex flex-col mt-3 lg:flex-row gap-3 z-4" >
+                <button
+                    id="btn-diag"
+                    type="button"
+                    class="bs-btn btn-diag self-center bs-mt-sm"
+                    onclick="demo.showModal()"
+                    >
+                    {isNot.cta.text}
+                </button>
+            </div>
+            )}
+            </div>
+        </div>
+
+        <!-- The AI-OS IS -->
+        <div class="group relative ai-card border border-gray-700 rounded-xl p-8 transition-all duration-300 hover:border-white/20 hover:-translate-y-1">
+            <div class="relative z-2">
+                <h3 class="text-2xl z-4 font-semibold text-gradient">{is.title}</h3>
+                <ul class="mt-4 space-y-3 text-gray-300 z-2">
+                    {is.points.map(point => (
+                        
+                         <li class="flex items-start z-2">
+                        <span class="text-green-400/70 mr-3 flex-shrink-0">+</span>
+                        <span>{point}</span>
+                    </li>
+                ))}
+            </ul>
+
+            {is.cta && (
+                <div class="flex flex-col mt-3 lg:flex-row gap-3 z-4" >
+                <button
+                    id="btn-diag"
+                    type="button"
+                    class="bs-btn btn-diag self-center bs-mt-sm"
+                    onclick="demo.showModal()"
+                    >
+                    {isNot.cta.text}
+                </button>
+                </div>
+            )}
+            </div>
+        </div>
+    </div>
+</section>

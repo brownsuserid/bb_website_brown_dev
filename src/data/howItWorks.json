@@ -1,0 +1,23 @@
+{
+  "header": {
+    "title": "How Brainy Works",
+    "subtitle": "The AI-OS Difference"
+  },
+  "features": [
+    {
+      "title": "Seamless Integration",
+      "content": "Works inside your existing tools (Slack, Email, Docs) without requiring new logins or training.",
+      "icon": "integration"
+    },
+    {
+      "title": "Proactive Notifications",
+      "content": "Gets ahead of issues by flagging what's falling through the cracks before it becomes a problem.",
+      "icon": "notifications"
+    },
+    {
+      "title": "Automated Workflows",
+      "content": "Turns repetitive tasks into automated sequences that run silently in the background.",
+      "icon": "workflows"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'Hikasami';
+  src: url('/src/assets/fonts/Hikasami-VF.woff2') format('woff2');
+  font-weight: 100 400 500 600 700 800 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@import "tailwindcss";
+
+@theme {
+
+  --font-display: 'Hikasami', var(--font-inter-display), "ui-sans-serif", "system-ui", "sans-serif";
+  --font-body: var(--font-inter), "ui-sans-serif", "system-ui", "sans-serif";
+
+  --color-bs-surface-0: #121212;
+  --color-bs-surface-1: #18181B;
+  --color-bs-surface-2: rgba(255, 255, 255, 0.03);
+  --color-bs-surface-3: #fafafafa;
+  --color-bs-foreground-light: #ffffff;
+  --color-bs-foreground-dark: #9f9f9f;
+  --color-bs-foreground-darker: #0f0f0f;
+
+  --color-current: currentColor;
+
+  --ease-bs-bounce: linear(0, .01, .04 1.6%, .161 3.3%, .816 9.4%, 1.046, 1.189 14.4%, 1.231, 1.254 17%, 1.259, 1.257 18.6%, 1.236, 1.194 22.3%, 1.057 27%, .999 29.4%, .955 32.1%, .942, .935 34.9%, .933, .939 38.4%, 1 47.3%, 1.011, 1.017 52.6%, 1.016 56.4%, 1 65.2%, .996 70.2%, 1.001 87.2%, 1);
+
+  --ease-bs-spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017,
+      1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,
+      1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%,
+      0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
+}
+
+
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  z-index: -1;
+  box-shadow:
+    -21vw 8vh 1px 0px #fff, 93vw 15vh 0px 0px #fff,
+    3vw 4vh 1px 0px #fff, 88vw 35vh 1px 0px #fff,
+    64vw 3vh 1px 0px #fff, -17vw 64vh 0px 0px #fff,
+    94vw 9vh 1px 0px #fff, 9vw 9vh 0px 0px #fff,
+    -11vw 79vh 0px 0px #fff, 73vw 93vh 1px 0px #fff,
+    -2vw 85vh 1px 0px #fff, 74vw 80vh 0px 0px #fff,
+    98vw 89vh 0px 0px #fff, 6vw 91vh 0px 0px #fff,
+    38vw 60vh 1px 0px #fff, -18vw 89vh 0px 0px #fff,
+    -12vw 81vh 1px 0px #fff, 52vw 74vh 0px 0px #fff,
+    6vw 11vh 1px 0px #fff, -11vw 3vh 1px 0px #fff;
+}
+
+/* Animation for vertical line */
+.draw-path-on-load {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Fallback for non-JS/older browsers */
+.no-js .draw-path-on-load {
+  stroke-dashoffset: 0;
+}
+
+#mobile-menu-button.is-open svg {
+  transform: rotate(180deg);
+}
+
+#mobile-menu-button.is-open .menu-toggle-bar--top {
+  transform: translate(0, 4px) rotate(45deg);
+}
+
+#mobile-menu-button.is-open .menu-toggle-bar--middle {
+  opacity: 0;
+}
+
+#mobile-menu {
+  transform: translateX(100%);
+}
+
+#mobile-menu-button.is-open .menu-toggle-bar--bottom {
+  transform: translate(0, -12px) rotate(-45deg);
+}
+
+#mobile-menu-button svg path {
+  transition: transform 0.3s ease-in-out;
+}
+
+#mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.menu-toggle-bar {
+  @apply block bg-white top-1/2 mt-1 w-full h-1 rounded-sm transition-all duration-300 ease-in-out;
+}
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400;
+}
+
+
+.animate-typewriter {
+  animation: typewriter 2s steps(11) forwards;
+}
+.ai-card {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.ai-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(14, 13, 89, 0.463),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 1;
+  inset: 0;
+}
+
+.ai-card:hover:before {
+  opacity: 1;
+}
+
+.ai-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes typewriter {
+
+  to {
+    left: 100%;
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "hero_title": "More Than a Tool. A Real Teammate",
+  "hero_content": "<p>We build custom AI Teammates that operate alongside your people, fixing execution gaps and turning friction into flow. It's a human-centric approach to AI that enhances your existing investments, without a major tech overhaul.</p>",
+  "settings": {
+    "demo": {
+      "cta": "How We Co-Build in your Business",
+      "url": "#path-to-clarity-section"
+    },
+    "demo2": {
+      "cta": "Start your Workshop"
+    }
+  },
+  "intro_section": {
+    "title": "Your Business, But Smarter",
+    "subtitle": "AI-OS: The Invisible Advantage",
+    "content": "An AI Operating System (AI-OS) is the missing link between your team's tools and their work. It's not another platform to log into, but an intelligent layer that works within your existing systems to close loops, surface what matters, and keep work moving forward.",
+    "cta": {
+      "text": "See How It Works",
+      "url": "#how-it-works"
+    }
+  },
+
+  "problems_section": {
+    "title": "An AI Team Built For Flow",
+    "subtitle": "We fix what's really slowing you down",
+    "problems": [
+      {
+        "title": "RELAY: The TenStreet Specialist",
+        "description_highlight": "Built to Get Drivers on the Road.",
+        "description_body": "Relay eliminates hiring bottlenecks by automating credential validation and compliance to accelerate revenue recognition."
+      },
+      {
+        "title": "HITCH: The Driver Experience Specialist",
+        "description_highlight": "Built to Capture What Matters.",
+        "description_body": "Hitch captures structured feedback from drivers on why they accept or reject jobs, improving matchmaking, increasing retention, and reducing turnover costs."
+      },
+      {
+        "title": "FUSE: The Carrier Development Assistant",
+        "description_highlight": "Built to Drive Revenue Growth.",
+        "description_body": "Fuse automates prospecting, enriches lead profiles, and prioritizes opportunities so your sales team can focus on the most valuable deals."
+      }
+    ]
+  },
+
+  "solutions_section": {
+    "title": "How Brainy Works",
+    "subtitle": "The AI-OS Difference",
+    "solutions": [
+      {
+        "title": "Seamless Integration",
+        "description": "Works inside your existing tools (Slack, Email, Docs) without requiring new logins or training.",
+        "icon": "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+      },
+      {
+        "title": "Proactive Notifications",
+        "description": "Gets ahead of issues by flagging what's falling through the cracks before it becomes a problem.",
+        "icon": "M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+      },
+      {
+        "title": "Automated Workflows",
+        "description": "Turns repetitive tasks into automated sequences that run silently in the background.",
+        "icon": "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+      }
+    ]
+  },
+
+  "cta_section": {
+    "title": "Ready to See It in Action?",
+    "content": "<p>Book a discovery call to see how Brainy's AI-OS can transform your operations.</p>",
+    "buttons": [
+      {
+        "text": "Book a Call",
+        "url": "/contact",
+        "variant": "primary"
+      },
+      {
+        "text": "See Case Studies",
+        "url": "/case-studies",
+        "variant": "secondary"
+      }
+    ]
+  },
+
+  "clarityCardsData": {
+    "title": "How We Co-Build Your Teammates",
+    "cards": [
+      {
+        "pathNumber": "01",
+        "title": "Diagnose",
+        "description": "We map your actual workflows to find the real source of friction and identify the opportunities with the greatest impact for AI. It's not about selling a toolbox, but about finding the right solution for your team.",
+        "buttonText": "See How It Works",
+        "highlight": false
+      },
+      {
+        "pathNumber": "02",
+        "title": "Co-Build",
+        "description": "We design and build high-impact automations with complete transparency, involving your team directly. This ensures that the solution aligns perfectly with the way your team already works",
+        "buttonText": "Learn More",
+        "highlight": true
+      },
+      {
+        "pathNumber": "03",
+        "title": "Embed",
+        "description": "We stay until the system is fully adopted and delivers measurable results, ensuring that the change lasts. We focus on adoption over automation.",
+        "buttonText": "Get Started",
+        "highlight": false
+      }
+    ]
+  },
+  "journey_title": "I want this team in the room",
+  "journey_content": "<p>An AI-OS Lab is an immersive, personalized session to build an operational layer your team trusts, controls, and can keep building on—without getting locked into a SaaS model.</p>",
+  "journey_button": "Schedule AI-OS Lab Discovery Call",
+  "journey_button_2": "Book an AI Strategy Session",
+  "journey_button_url": "/contact",
+  "brainyStory": {
+    "headline": "Our First Teammate: The Story of Brainy",
+    "subheadline": "We don't just sell AI solutions; we live them. Brainy is our internal AI Operator, born from our own need to eliminate friction and streamline our workflow. It's our proof of concept and a testament to our human-first philosophy.",
+    "blocks": [
+      {
+        "title": "From Tool to Teammate",
+        "content": "Brainy started as a simple internal tool to answer questions. As we integrated it deeper into our processes, it evolved into an indispensable team member, handling everything from project management to sales coordination."
+      },
+      {
+        "title": "A Few of Brainy's Roles",
+        "content": "",
+        "items": [
+          "Project Manager: Generates status updates and keeps projects on track.",
+          "Sales Coordinator: Drafts follow-up emails and prepares meeting summaries.",
+          "Personal Assistant: Manages schedules and sends reminders to the team."
+        ]
+      },
+      {
+        "title": "You Can't Have Our Brainy...",
+        "content": "...but we can help you build your own. Brainy is custom-built for our unique needs. Let's have a strategy session to discover what a custom AI Teammate could do for your team.",
+        "isCTA": true,
+        "buttonText": "Book a Free AI Strategy Session"
+      }
+    ]
+  },
+  "human_process": {
+    "headline": "Human Process",
+    "subheadline": "AI is never going to replace people. Instead, it is going to make us all more capable and efficient in our workplace roles doing the things that humans do best.",
+    "blocks": [
+      {
+        "title": "People First, Always",
+        "content": "We design solutions from the start with people top-of-mind. It's not about 'man vs. machine', it is about creating the freedom to do more human-driven work by spending less time and money on the mundane."
+      },
+      {
+        "title": "Supercharge Your Team",
+        "content": "Our goal is to create and implement new tools that supercharge your team's capabilities into smooth workflows and functionalities. Real magic happens when humans focus on what they do best."
+      },
+      {
+        "title": "Beyond the Media Hype",
+        "content": "The media has a bit of a misled view. AI isn't here to replace your workforce—it's here to amplify their potential, eliminate repetitive tasks, and unlock creativity and strategic thinking.",
+        "isCTA": true,
+        "buttonText": "See How We Do It"
+      }
+    ]
+  }
+}

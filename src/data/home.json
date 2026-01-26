@@ -1,0 +1,305 @@
+{
+  "hero_title": "Is the grind Stealing your best people <br> from their best work?",
+  "hero_content": "Routine work will always need done. Throwing peop at it is now optional.<br> When AI becomes a true TeamMate, the manual work is always done.",
+  "services_title": "Your Path from Friction to Flow",
+  "problem_cards": {
+    "title": "If This Sounds Familiar, You're in the Right Place.",
+    "subtitle": "Stop letting operational friction slow you down. We help you build systems that actually work",
+    "cards": [
+      {
+        "title": "Tasks consistently die in Slack threads or email chains.",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#f87171\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"></path></svg>",
+        "description": "Important requests and follow-ups get lost in the stream of conversation, leading to dropped balls and missed deadlines.",
+        "visualHTML": "<div class=\"mt-6 bg-black/30 p-4 rounded-lg border border-gray-700\">\n                            <div class=\"flex items-center space-x-3\">\n                                <img src=\"https://placehold.co/40x40/7c3aed/ffffff?text=A\" alt=\"Avatar Alex\" class=\"rounded-full w-10 h-10 border-2 border-gray-600\">\n                                <div>\n                                    <p class=\"font-bold text-sm text-white\">Alex</p>\n                                    <p class=\"text-xs text-gray-400\">11:46 AM</p>\n                                </div>\n                            </div>\n                            <div class=\"mt-3 text-sm bg-gray-900/50 p-3 rounded-md\">\n                                Hey, can you send over the final proposal for Q3?\n                            </div>\n                            <div class=\"mt-2 text-center text-xs font-semibold text-red-400 py-1 px-3 bg-red-900/50 rounded-full w-fit\">\n                                THREAD DIED • NO FOLLOW-UP\n                            </div>\n                        </div>"
+      },
+      {
+        "title": "Your Standard Operating Procedures (SOPs) exist, but no one reads or updates them.",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#facc15\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path><polyline points=\"14 2 14 8 20 8\"></polyline><line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"></line><line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"></line><polyline points=\"10 9 9 9 8 9\"></polyline></svg>",
+        "description": "Your documented processes are out of date and live in a folder nobody opens, so your team relies on memory and ad-hoc requests.",
+        "visualHTML": "<div class=\"mt-6 bg-black/30 p-4 rounded-lg border border-gray-700 text-center\">\n        <p class=\"font-semibold text-white\">SOPs_and_Guidelines</p>\n        <p class=\"text-sm text-gray-500\">12 files</p>\n        <div class=\"mt-3 bg-gray-900/50 p-3 rounded-md text-left\">\n            <p class=\"text-sm text-white truncate\">Onboarding_v2_FINAL.docx</p>\n            <p class=\"text-xs text-yellow-400\">Last updated: 2 years ago</p>\n        </div>\n    </div>",
+        "lottie": "<canvas id=\"dotlottie-canvas-2\" class=\"w-full rounded-lg max-w-xs\" style=\"width: 300px; height: 200px;\"></canvas>"
+      },
+      {
+        "title": "Your team loses hours to rework because of missed updates and scattered tools.",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#60a5fa\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 2h4\"></path><path d=\"M12 14v-4\"></path><path d=\"M4 18v-4h16v4\"></path><path d=\"M4 10h16\"></path><rect x=\"2\" y=\"6\" width=\"20\" height=\"16\" rx=\"2\"></rect></svg>",
+        "description": "Team members waste hours trying to find the latest information, leading to duplicated work and frustrating delays.",
+        "visualHTML": "<div class=\"card-content w-full  bg-black/30 p-4 rounded-lg border border-gray-700\">\n                        <div class=\"space-y-3\">\n                            <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n                                <span class=\"text-sm text-white\">Launch Prep</span>\n                                <span class=\"text-xs font-semibold text-green-400 py-1 px-3 bg-green-900/50 rounded-full\">On Track</span>\n                            </div>\n                            <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n                                <span class=\"text-sm text-white\">Asset Design</span>\n                                <span class=\"text-xs font-semibold text-yellow-400 py-1 px-3 bg-yellow-900/50 rounded-full\">Stalled</span>\n                            </div>\n                            <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n                                <span class class=\"text-sm text-white\">Final Review</span>\n                                <span class=\"text-xs font-semibold text-red-400 py-1 px-3 bg-red-900/50 rounded-full\">Rework</span>\n                            </div>\n                        </div>",
+        "lottie": "<canvas id=\"dotlottie-canvas-3\" style=\"width: 300px; height: 200px;\"></canvas>"
+      }
+    ]
+  },
+  "painToPromise": {
+    "title": "Teammates Work For Pennies",
+    "subtitle": "Track your input costs in cents, not salaries. AI TeamMates perform their job duties for 87% less than a person.",
+    "cards": [
+      {
+        "challenge": {
+          "title": "Operations",
+          "description": "Keeps work moving. Routes people to the right work and information using system-wide knowledge."
+        },
+        "solution": {
+          "agentName": "Brainy",
+          "description": "Owns operational routing and system knowledge. Ensures questions, issues, and requests are directed to the correct owner using complete, up-to-date internal data."
+        },
+        "modalContent": {
+          "title": "TeamMate Position Description",
+          "role": "Operations Coordinator",
+          "roleSummary": "Brainy owns operational routing and institutional system knowledge. The role ensures questions, issues, and work requests are consistently directed to the correct owner using complete, current internal context.",
+          "responsibilities": [
+            "Maintain awareness of internal workflows, ownership, and operating context",
+            "Route operational questions, requests, and issues to the appropriate individual or team",
+            "Reduce manual triage, repeated interruptions, and stalled work",
+            "Ensure work progresses without dependency on individual memory or leadership"
+          ],
+          "deliverables": [
+            "Routed operational requests with clear ownership",
+            "Escalation paths for unresolved issues",
+            "Context-aware handoff summaries",
+            "Internal routing records and decision trails"
+          ],
+          "cta": {
+            "text": "See How This Role Works In Practice",
+            "link": "#relay-details"
+          }
+        },
+        "visualHTML": "<div class=\"card-content w-full bg-black/30 p-4 rounded-lg border border-gray-700\">\n    <div class=\"space-y-3\">\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Application Received</span>\n            <span class=\"text-xs font-semibold text-blue-400 py-1 px-3 bg-blue-900/50 rounded-full\">Pending</span>\n        </div>\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Manual Credential Review</span>\n            <span class=\"text-xs font-semibold text-yellow-400 py-1 px-3 bg-yellow-900/50 rounded-full\">Bottleneck</span>\n        </div>\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Compliance Check</span>\n            <span class=\"text-xs font-semibold text-yellow-400 py-1 px-3 bg-yellow-900/50 rounded-full\">In Progress</span>\n        </div>\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Authorization</span>\n            <span class=\"text-xs font-semibold text-red-400 py-1 px-3 bg-red-900/50 rounded-full\">Delayed</span>\n        </div>\n    </div>\n</div>"
+      },
+      {
+        "challenge": {
+          "title": "Sales Intelligence Analyst",
+          "description": "Noggin owns the capture and synthesis of sales intelligence. The role ensures buyer feedback, objections, and decision drivers are consistently documented and made visible for use across sales, marketing, pricing, and growth planning."
+        },
+        "solution": {
+          "agentName": "Noggin",
+          "description": "Noggin owns the capture and synthesis of sales intelligence. The role ensures buyer feedback, objections, and decision drivers are consistently documented and made visible for use across sales, marketing, pricing, and growth planning."
+        },
+        "modalContent": {
+          "title": "TeamMate Position Description",
+          "role": "Sales Intelligence Lead",
+          "roleSummary": "Noggin owns the rigorous capture and synthesis of sales interactions. The role ensures that every prospect conversation fuels smarter pricing, messaging, and process improvements without burdening sales reps with data entry.",
+          "responsibilities": [
+            "Capture insights from sales conversations, follow-ups, and deal outcomes",
+            "Document objections, buyer criteria, and recurring decision patterns",
+            "Reduce reliance on anecdotal feedback and individual recall",
+            "Ensure sales insights are accessible beyond individual sellers"
+          ],
+          "deliverables": [
+            "Structured objection and feedback records",
+            "Summaries of buyer decision drivers and patterns",
+            "Insight briefs tied to wins, losses, and stalled deals",
+            "Historical sales intelligence trails for review and planning"
+          ],
+          "cta": {
+            "text": "See How This Role Works In Practice",
+            "link": "#"
+          }
+        },
+        "visualHTML": "<div class=\"card-content w-full bg-black/30 p-4 rounded-lg border border-gray-700\">\n    <div class=\"space-y-3\">\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Exit Interview Feedback</span>\n            <span class=\"text-xs font-semibold text-gray-400 py-1 px-3 bg-gray-800/50 rounded-full\">Unstructured</span>\n        </div>\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Offer Rejection Reasons</span>\n            <span class=\"text-xs font-semibold text-red-400 py-1 px-3 bg-red-900/50 rounded-full\">Not Captured</span>\n        </div>\n        <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Role Preferences</span>\n            <span class=\"text-xs font-semibold text-red-400 py-1 px-3 bg-red-900/50 rounded-full\">Not Captured</span>\n        </div>\n         <div class=\"flex justify-between items-center bg-gray-900/50 p-2 rounded-md\">\n            <span class=\"text-sm text-white\">Retention Insights</span>\n            <span class=\"text-xs font-semibold text-gray-400 py-1 px-3 bg-gray-800/50 rounded-full\">Missing</span>\n        </div>\n    </div>\n</div>"
+      },
+      {
+        "challenge": {
+          "title": "Team Support",
+          "description": "Handles the glue work. Prepares, coordinates, and follows up so teams don’t stall."
+        },
+        "solution": {
+          "agentName": "REM",
+          "description": "Owns execution continuity across teams. Manages team meeting data, task coordination, and follow-through to prevent handoff failures and stalled work."
+        },
+        "modalContent": {
+          "title": "TeamMate Position Description",
+          "role": "Project Manager",
+          "roleSummary": "REM owns execution continuity across teams. The role ensures work moves forward after decisions are made by maintaining clarity around preparation, ownership, and follow-through.",
+          "responsibilities": [
+            "Prepare work before meetings, handoffs, and project milestones",
+            "Track decisions, action items, and ownership across teams",
+            "Reduce execution gaps caused by missed follow-ups or unclear responsibility",
+            "Ensure momentum is maintained between people and teams"
+          ],
+          "deliverables": [
+            "Prepared agendas and pre-work summaries",
+            "Action item and ownership records",
+            "Follow-up summaries after decisions and meetings",
+            "Execution checkpoints to prevent stalled work"
+          ],
+          "cta": {
+            "text": "See How This Role Works In Practice",
+            "link": "#"
+          }
+        },
+        "visualHTML": "<div class=\"card-content w-full bg-black/30 p-4 rounded-lg border border-gray-700\">\n    <div class=\"space-y-4\">\n        <div>\n            <span class=\"text-sm text-white\">Qualified Calls / Week</span>\n            <div class=\"w-full bg-gray-700 rounded-full h-2.5 mt-1\">\n                <div class=\"bg-red-500 h-2.5 rounded-full\" style=\"width: 25%\"></div>\n            </div>\n        </div>\n        <div>\n            <span class=\"text-sm text-white\">Manual Prospecting Hours</span>\n            <div class=\"w-full bg-gray-700 rounded-full h-2.5 mt-1\">\n                <div class=\"bg-yellow-500 h-2.5 rounded-full\" style=\"width: 85%\"></div>\n            </div>\n        </div>\n        <div>\n            <span class=\"text-sm text-white\">New Business Pipeline</span>\n             <div class=\"w-full bg-gray-700 rounded-full h-2.5 mt-1\">\n                <div class=\"bg-red-500 h-2.5 rounded-full\" style=\"width: 35%\"></div>\n            </div>\n        </div>\n    </div>\n</div>"
+      }
+    ]
+  },
+  "clarityCardsData": {
+    "title": "Make Smarter Decisions Before You Commit",
+    "subtitle": "Better Informed AI decisions help everyone. We offer these options to support leaders navigating a noisy, fast-moving market.",
+    "cards": [
+      {
+        "pathNumber": "01",
+        "tag": "Recommended",
+        "title": "100% Free AI Coaching",
+        "description": "WGet weekly hands-on AI experience while exploring where AI fits in your business",
+        "buttonText": "Learn About Teammates",
+        "highlight": false
+      },
+      {
+        "pathNumber": "02",
+        "title": "Free AI Expert Office Hours",
+        "description": "Ask your raw AI questions and get direct, practical answers with no pressure.",
+        "buttonText": "See Workshop Dates",
+        "highlight": true
+      },
+      {
+        "pathNumber": "03",
+        "title": "Free AI Reality Checks",
+        "description": "Pressure test your AI ideas to see what’s viable, risky, or not worth doing.",
+        "buttonText": "Book a Strategy Call",
+        "highlight": false
+      }
+    ],
+    "modals": [
+      {
+        "id": "aiTeammatesModal",
+        "title": "AI Teammates: Beyond the Toolbox",
+        "content": [
+          "Generic AI tools often fall short, failing to integrate smoothly or address the specific ways your team works. Brain Bridge AI Teammates are different.",
+          "We **co-build custom AI co-workers** directly with your team[cite: 28]. They aren't just software; they are intelligent, integrated members designed for your team's unique functions and workflows[cite: 21, 23].",
+          "Our human-centric approach focuses on fixing execution gaps, automating repetitive tasks, and interconnecting your existing tools to solve *human* challenges, not just technological ones[cite: 24, 29]. Think of them as having a 'second brain' on the team, catching things proactively.",
+          "Examples include teammates specializing in accelerating hiring (like Relay), capturing structured feedback (like Hitch), or boosting sales prospecting (like Fuse)."
+        ],
+        "cta": {
+          "text": "Explore AI Teammate Roles",
+          "link": "#teammates-deep-dive"
+        }
+      },
+      {
+        "id": "aiWorkshopsModal",
+        "title": "AI Workshops: Your First Step to Flow",
+        "content": [
+          "Curious about custom AI but not ready for a full 'AI-OS Lab' engagement? Our AI Workshop is the perfect starting point.",
+          "This **practical, low-risk 1-day session** allows you to experience our unique co-building process firsthand.",
+          "We'll work directly with your team to map out a key operational problem, identify the true source of friction, and gain immediate clarity on how a custom AI Teammate could create significant impact.",
+          "Leave with a clear understanding of potential AI opportunities and experience our 'adoption over automation' philosophy in action."
+        ],
+        "cta": {
+          "text": "See Upcoming Workshop Dates",
+          "link": "#workshop-dates"
+        }
+      },
+      {
+        "id": "fractionalCAIOModal",
+        "title": "Fractional CAIO Services: Strategic AI Leadership",
+        "content": [
+          "Many leaders recognize the need for AI strategic guidance but aren't ready for a full-time Chief AI Officer.",
+          "Our Fractional CAIO service embeds an experienced AI strategist directly into your leadership team on a part-time basis[cite: 21].",
+          "We partner with you to understand your business goals, build a practical, long-term AI roadmap, and oversee its implementation, ensuring AI initiatives drive tangible growth and efficiency[cite: 21].",
+          "Get expert guidance focused on solving your specific business challenges and navigating the complexities of AI adoption without the overhead of a full-time executive."
+        ],
+        "cta": {
+          "text": "Book a Strategy Consultation",
+          "link": "#strategy-call"
+        }
+      }
+    ]
+  },
+  "clients_title": "Our Clients",
+  "testimonials_title": "Clients ♥ us",
+  "case_studies_title": "Case studies",
+  "pricing_title": "We do design retainers",
+  "quote_content": "Our team says it feels like <strong>having a second brain in the background,</strong> catching things <strong>before they become problems</strong>.",
+  "quote_cite": "Head of Operations",
+  "quote_role": "Interia",
+  "quote_image": "/content-images/quote-man.avif",
+  "OptimizedWorkflow": {
+    "header": {
+      "titleLine1": "Optimized To Live & Work",
+      "titleHighlight": "In Your World",
+      "description": "Seamlessly integrating human expertise with automated intelligence."
+    },
+    "team": {
+      "sectionTitle": "Your Team",
+      "roles": [
+        "Leaders",
+        "Operators",
+        "Frontline",
+        "Back Office"
+      ]
+    },
+    "humanWork": {
+      "title": "Co-Work With Humans",
+      "items": [
+        "Review Work",
+        "Approve Changes",
+        "Handle Exceptions",
+        "Resolve Scheduling",
+        "Improve Processes",
+        "Write Proposals",
+        "Create Presentations",
+        "Communicate Outcomes",
+        "Manage Agreements"
+      ]
+    },
+    "aiCore": {
+      "title": "Your AI\nTeammates",
+      "badge": "Bi-Directional Sync"
+    },
+    "automatedWork": {
+      "title": "Automated Work",
+      "items": [
+        "Update the CRM",
+        "Alert Team on Messages",
+        "Flag Project Risks",
+        "Summarize Documents",
+        "Send Follow-Ups",
+        "Track Metrics",
+        "Preserve Knowledge",
+        "Sync Systems",
+        "Analyze Sales Trends"
+      ]
+    },
+    "tools": {
+      "sectionTitle": "Your Current Tools & Systems",
+      "list": [
+        {
+          "name": "Email",
+          "key": "email"
+        },
+        {
+          "name": "CRM",
+          "key": "crm"
+        },
+        {
+          "name": "HR Systems",
+          "key": "hr"
+        },
+        {
+          "name": "Project Tools",
+          "key": "project"
+        }
+      ]
+    }
+  },
+  "faq_title": "Frequently Asked Questions",
+  "videoShowcase": {
+    "rows": [
+      {
+        "title": "Everyday Work Becomes Institutional Knowledge",
+        "subtitle": "The decisions you make and the context behind them don’t live in someone’s head or get buried in old messages. TeamMates keep them always available, so the organization gets smarter without extra effort.",
+        "videoUrl": "~/assets/theme-images/brainy1.gif",
+        "ctaText": "Learn More About TeamMate Skills"
+      },
+      {
+        "title": "Keep The Same Tools You Always Use",
+        "subtitle": "There’s no need to change how you work or switch systems. TeamMates adapt to you to use the tools you already rely on, so work continues uninterrupted.",
+        "videoUrl": "~/assets/theme-images/Home-section4-tools.png",
+        "ctaText": "Learn More About TeamMate Compatibility"
+      },
+      {
+        "title": "Easier Handoffs, Less Guesswork",
+        "subtitle": "When work moves from one person to another, the why goes with it. Teammates can pick things up confidently instead of retracing steps or filling in gaps.",
+        "videoUrl": "~/assets/theme-images/home/contract.png",
+        "ctaText": "Learn More About AI Processes"
+      }
+    ]
+  }
+}

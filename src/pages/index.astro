@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import FaqSection from "../components/FaqSection.astro";
+import QuoteSection from "../components/QuoteSection.astro";
+
+import faq from "../data/faq.json";
+import home from "../data/home.json";
+import global_settings from "../data/global_settings.json";
+import PathToClarity from "../components/PathToClarity.astro";
+import HeroParticles from "../components/HeroParticles.astro";
+import PainToPromise from "../components/PainToPromise.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import testimonials from "../data/testimonials.json";
+import VideoShowcase from "../components/VideoShowcase.astro";
+import OptimizedWorkflow from "../components/OptimizedWorkflow.astro";
+import LogoGrid from "../components/LogoGrid.astro";
+---
+
+<Layout title={global_settings.title}>
+  <HeroParticles
+    content={home.hero_content}
+    settings={global_settings}
+    title={home.hero_title}
+  />
+
+  <PainToPromise {...home.painToPromise} />
+
+  <OptimizedWorkflow {...home.OptimizedWorkflow} />
+
+  <PathToClarity clarityCardsData={home.clarityCardsData} />
+
+  <VideoShowcase rows={home.videoShowcase.rows} />
+
+  <LogoGrid />
+
+  <TestimonialsSection
+    testimonials={testimonials}
+    title={home.testimonials_title}
+  />
+
+  <canvas
+    id="particle-canvas-connect"
+    class="fixed top-0 left-0 w-full h-full -z-1 opacity-10"></canvas>
+  <FaqSection faq={faq} title={home.faq_title} />
+</Layout>
+
+<!-- <CaseStudiesSection
+    caseStudies={ caseStudies }
+    title={ home.case_studies_title }
+  />
+
+  
+
+  <FaqSection faq={faq} title={home.faq_title} />
+  <canvas
+    id="particle-canvas-connect"
+    class="fixed top-0 left-0 w-full h-full -z-1 opacity-10"></canvas>
+</Layout>
+-->

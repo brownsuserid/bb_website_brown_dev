@@ -1,0 +1,53 @@
+---
+const { title, description, visual } = Astro.props;
+---
+
+<section class="bs-container py-20 lg:py-32 relative overflow-hidden">
+    <div class="relative z-10 flex flex-col items-center text-center">
+        {title && <h2 class="bs-h2 mb-6" set:html={title} />}
+        {
+            description && (
+                <p class="bs-body-text max-w-3xl mx-auto mb-16 text-gray-400 text-lg">
+                    {description}
+                </p>
+            )
+        }
+
+        <!-- Visual Container -->
+        <div class="w-full max-w-4xl relative">
+            <div
+                class="aspect-[16/9] rounded-2xl bg-black/40 border border-gray-800 backdrop-blur-sm flex items-center justify-center p-8 shadow-2xl shadow-indigo-500/10"
+            >
+                <div
+                    class="text-center relative z-10 w-full h-full flex items-center justify-center"
+                >
+                    {
+                        visual ? (
+                            <img
+                                src={visual}
+                                alt={title || "Concept Visual"}
+                                class="w-full h-full object-contain mx-auto opacity-80 hover:opacity-100 transition-opacity duration-500"
+                            />
+                        ) : (
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <p class="text-gray-600 text-sm font-mono opacity-50">
+                                    Visual Placeholder
+                                </p>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <!-- Decorative Elements -->
+                <div
+                    class="absolute -top-10 -right-10 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl"
+                >
+                </div>
+                <div
+                    class="absolute -bottom-10 -left-10 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

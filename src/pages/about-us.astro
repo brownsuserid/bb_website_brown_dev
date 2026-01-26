@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import BrainyStory from "../components/BrainyStory.astro";
+import aboutContent from "../data/about-us.json";
+import global_settings from "../data/global_settings.json";
+import heroImage from "../assets/theme-images/about-us/hero-about.png";
+import secretSauceImage from "../assets/theme-images/Brainy-Connected-min-Photoroom.png";
+import adoptionImage from "../assets/theme-images/about-us/about-section1.png";
+import greatPeopleImage from "../assets/theme-images/about-us/about-section2.png";
+import roiImage from "../assets/theme-images/about-us/about-section3.png";
+---
+
+<Layout title={global_settings.title}>
+  <HeroSection
+    title={aboutContent.hero_title}
+    content={aboutContent.hero_content}
+    settings={aboutContent}
+    image={heroImage}
+  />
+
+  <style>
+    .card-bg {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(42, 42, 42, 0.5) 100%
+      );
+    }
+  </style>
+
+  <div class="py-16 space-y-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h2 class="bs-h2 text-3xl md:text-5xl text-white font-bold mb-4">
+          {aboutContent.secret_sauce_title}
+        </h2>
+        <div
+          class="bs-body-text text-lg text-gray-300 max-w-2xl mx-auto"
+          set:html={aboutContent.secret_sauce_content}
+        />
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="md:col-span-1">
+          <img
+            src={adoptionImage.src}
+            alt="Adoption > Automation"
+            class="w-full h-auto rounded-lg"
+          />
+        </div>
+        <div class="md:col-span-1 space-y-6">
+          <h3 class="text-2xl md:text-3xl font-bold text-white">
+            {aboutContent.secret_sauce_cards[0].title}
+          </h3>
+          <p class="text-gray-300 leading-relaxed">
+            {aboutContent.secret_sauce_cards[0].description}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-black/30 py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+          <h2 class="bs-h2 text-3xl md:text-5xl text-white font-bold mb-4">
+            {aboutContent.secret_sauce_cards[1].title}
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            {aboutContent.secret_sauce_cards[1].description}
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="md:col-span-1 space-y-6 order-2 md:order-1">
+            <h3 class="text-2xl md:text-3xl font-bold text-white">
+              {aboutContent.secret_sauce_cards[2].title}
+            </h3>
+            <p class="text-gray-300 leading-relaxed">
+              {aboutContent.secret_sauce_cards[2].description}
+            </p>
+          </div>
+          <div class="md:col-span-1 order-1 md:order-2">
+            <img
+              src={greatPeopleImage.src}
+              alt="Great AI Requires Great People"
+              class="w-full h-auto rounded-lg border border-indigo-500/30"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 pb-16">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h2 class="bs-h2 text-3xl md:text-5xl text-white font-bold mb-4">
+          {aboutContent.secret_sauce_cards[3].title}
+        </h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          {aboutContent.secret_sauce_cards[3].description}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="md:col-span-1">
+          <img
+            src={roiImage.src}
+            alt="AI With ROI Should Be Boring"
+            class="w-full h-auto rounded-lg"
+          />
+        </div>
+        <div class="md:col-span-1 space-y-6">
+          <h3 class="text-2xl md:text-3xl font-bold text-white">
+            {aboutContent.secret_sauce_cards[4].title}
+          </h3>
+          <p class="text-gray-300 leading-relaxed">
+            {aboutContent.secret_sauce_cards[4].description}
+          </p>
+          <div class="space-y-4 pt-4">
+            <p class="text-gray-300">
+              Brain Bridge takes the opposite approach. We start with boring
+              problems that cost real money and solve them with simple, durable
+              systems that teams can understand, trust, and maintain.
+            </p>
+            <p class="text-gray-300 italic">
+              When AI works, it does not feel like a breakthrough. It feels like
+              things finally run the way they should.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Human Process Section -->
+  <BrainyStory {...aboutContent.brainyStory} />
+</Layout>

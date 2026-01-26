@@ -1,0 +1,105 @@
+---
+// src/components/HowItWorks.astro
+
+// Define the SVG icons in an object for easy access
+const icons = {
+  integration: `
+    <svg  xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-400 transition-colors duration-300 group-hover:text-white"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-layers-intersect"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 4m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /><path d="M4 8m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /></svg>
+  `,
+  notifications: `
+    <svg class="w-7 h-7 text-gray-400 transition-colors duration-300 group-hover:text-white" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.75 4.75c-2.43.52-4.25 2.65-4.25 5.25v2.5c0 .8-.25 1.55-.7 2.15l-.5.65h10.4l-.5-.65c-.45-.6-.7-1.35-.7-2.15v-2.5c0-2.6-1.82-4.73-4.25-5.25zm-1.5 14.5a2.5 2.5 0 004.5 0m-8.5-14.5s.4-.5 1-.5m9.5 0s-.4-.5-1-.5"></path></svg>
+  `,
+  workflows: `
+    <svg  xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-400 transition-colors duration-300 group-hover:text-white"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-automation"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20.693c-.905 .628 -2.36 .292 -2.675 -1.01a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.492 .362 1.716 2.219 .674 3.03" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M17 22l5 -3l-5 -3z" /></svg>
+  `
+};
+
+// Define the shape of the props the component expects
+export interface Feature {
+  title: string;
+  content: string;
+  icon: keyof typeof icons; // Ensures icon name is valid
+}
+
+export interface Props {
+  header: {
+    title: string;
+    subtitle: string;
+  };
+  features: Feature[];
+}
+
+const { header, features } = Astro.props;
+---
+
+<section class="relative overflow-hidden py-20 sm:py-32">
+    <!-- Subtle background gradient -->
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+
+    <header class="text-center mb-20 max-w-3xl mx-auto px-4">
+        <h2 class="bs-h2 !text-4xl font-bold tracking-tight text-white">{header.title}</h2>
+        <p class="mt-4 text-lg text-gray-400">{header.subtitle}</p>
+    </header>
+    
+    <div class="relative container mx-auto px-4">
+        <!-- The vertical connecting line -->
+        <div class="absolute left-4 top-0 md:left-1/2 md:-translate-x-1/2 h-full w-0.5 bg-gray-800">
+            <div class="h-full w-full bg-gradient-to-b from-transparent via-white/50 to-transparent intersect-half draw-path-on-load" style="animation-duration: 3s;"></div>
+        </div>
+        
+        <div class="space-y-16">
+            <!-- Dynamically render each feature from props -->
+            {features.map((feature, index) => {
+              const isReversed = index % 2 !== 0; // Alternate layout
+              return (
+                <div class={`group relative transition-all duration-300 opacity-0 intersect:opacity-100 intersect-full intersect-once ${isReversed ? "is-reversed" : ""}`}>
+                    <div class="md:flex md:items-start md:gap-12">
+                        
+                        <!-- Text Content Box -->
+                        <div class={`md:w-1/2 ${isReversed ? "md:order-3 md:text-left" : "md:text-right"}`}>
+                            <div class="inline-block p-6 bg-[#111111]/50 backdrop-blur-sm border border-gray-800 rounded-xl transition-all duration-300 group-hover:border-white/20 group-hover:shadow-2xl group-hover:shadow-white/10">
+                                <h3 class="text-xl font-semibold text-white">{feature.title}</h3>
+                                <p class="mt-2 text-gray-400">{feature.content}</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon -->
+                        <div class={`hidden md:flex flex-shrink-0 h-12 w-12 rounded-full border-2 border-gray-600 bg-gray-900 items-center justify-center transition-all duration-300 group-hover:border-white/50 group-hover:bg-white/20 ${isReversed ? "md:order-2 lg:ml-1.5" : ""}`}>
+                            <Fragment set:html={icons[feature.icon]} />
+                        </div>
+
+                        <!-- Spacer -->
+                        <div class={`md:w-1/2 ${isReversed ? "md:order-1" : ""}`}></div>
+                    </div>
+                </div>
+              )
+            })}
+        </div>
+    </div>
+</section>
+
+<style>
+
+
+  /* Fade-in animation for content blocks */
+  .fade-in {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out forwards;
+  }
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+
+
+  @media (max-width: 767px) {
+    .group .md\:flex {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 2.5rem;
+    }
+    .group .hidden.md\:flex {
+        display: none;
+    }
+  }
+</style>

@@ -1,0 +1,319 @@
+{
+    "hero_title": "AI With a <br> Job Description",
+    "hero_content": "AI TeamMates are digital employees built to work alongside you and your people. Each one is carefully onboardeded to your unique culture, processes and systems to get the right work done at the right time.",
+    "hero_settings": {
+        "demo": {
+            "cta": "How We Co-Build in your Business"
+        },
+        "demo2": {
+            "cta": "See How It Works",
+            "url": "/what-we-sell"
+        }
+    },
+    "how_it_works": {
+        "title": "How a Great <br> Teammate Works",
+        "content": "An AI Teammate doesn’t replace your team.<br>It works alongside them, handling repeatable execution so humans can focus on judgment, decisions, and creativity.",
+        "settings": {
+            "demo": {
+                "cta": "See Examples",
+                "url": "/what-we-sell"
+            }
+        }
+    },
+    "train_tasks": {
+        "title": "Train Them On Your Actual Tasks",
+        "subtitle": "<span class='text-red-400'>Setup, skills, and execution</span>",
+        "cards": [
+            {
+                "pathNumber": "01",
+                "title": "Execution",
+                "description": "They draft, prepare, and complete the routine work that used to fill up your team's day. ",
+                "buttonText": "See Execution",
+                "highlight": false
+            },
+            {
+                "pathNumber": "02",
+                "title": "Support",
+                "description": "They assist people in their unique roles, expanding what's possible in a workday.",
+                "buttonText": "See Support",
+                "highlight": true
+            },
+            {
+                "pathNumber": "03",
+                "title": "Coordination",
+                "description": "They coordinate work across people and systems, so workflows don't bottleneck.",
+                "buttonText": "See Coordination",
+                "highlight": false
+            },
+            {
+                "pathNumber": "04",
+                "title": "Analysis",
+                "description": "They compile and dissect the right metrics, information and patterns for clearer, faster decision making.",
+                "buttonText": "See Analysis",
+                "highlight": false
+            }
+        ]
+    },
+    "tools_integration": {
+        "title": "Connect Them To The Tools You Already Use",
+        "list": [
+            {
+                "title": "Microsoft Teams",
+                "image": "/assets/tools/teams.svg",
+                "link": "#"
+            },
+            {
+                "title": "Salesforce",
+                "image": "/assets/tools/salesforce.svg",
+                "link": "#"
+            },
+            {
+                "title": "HubSpot",
+                "image": "/assets/tools/hubspot.svg",
+                "link": "#"
+            },
+            {
+                "title": "Zendesk",
+                "image": "/assets/tools/zendesk.svg",
+                "link": "#"
+            },
+            {
+                "title": "Zoom",
+                "image": "/assets/tools/zoom.svg",
+                "link": "#"
+            },
+            {
+                "title": "Jira",
+                "image": "/assets/tools/jira.svg",
+                "link": "#"
+            },
+            {
+                "title": "Trello",
+                "image": "/assets/tools/trello.svg",
+                "link": "#"
+            },
+            {
+                "title": "Asana",
+                "image": "/assets/tools/asana.svg",
+                "link": "#"
+            },
+            {
+                "title": "Google Workspace",
+                "image": "/assets/tools/google.svg",
+                "link": "#"
+            },
+            {
+                "title": "Slack",
+                "image": "/assets/tools/slack.svg",
+                "link": "#"
+            },
+            {
+                "title": "Workato",
+                "image": "/assets/tools/workato.svg",
+                "link": "#"
+            },
+            {
+                "title": "Make",
+                "image": "/assets/tools/make.svg",
+                "link": "#"
+            },
+            {
+                "title": "Notion",
+                "image": "/assets/tools/notion.svg",
+                "link": "#"
+            },
+            {
+                "title": "Monday",
+                "image": "/assets/tools/monday.svg",
+                "link": "#"
+            },
+            {
+                "title": "Airtable",
+                "image": "/assets/tools/airtable.svg",
+                "link": "#"
+            }
+        ]
+    },
+    "onboarding": {
+        "title": "Onboard Them Into Your Team",
+        "list": [
+            {
+                "title": "Healthcare",
+                "image": "/assets/icons/healthcare.svg",
+                "link": "#"
+            },
+            {
+                "title": "Sales",
+                "image": "/assets/icons/sales.svg",
+                "link": "#"
+            },
+            {
+                "title": "Marketing",
+                "image": "/assets/icons/marketing.svg",
+                "link": "#"
+            },
+            {
+                "title": "Staffing",
+                "image": "/assets/icons/staffing.svg",
+                "link": "#"
+            },
+            {
+                "title": "HR & Culture",
+                "image": "/assets/icons/hr.svg",
+                "link": "#"
+            },
+            {
+                "title": "Leadership",
+                "image": "/assets/icons/leadership.svg",
+                "link": "#"
+            },
+            {
+                "title": "Construction",
+                "image": "/assets/icons/construction.svg",
+                "link": "#"
+            },
+            {
+                "title": "Admin & Support",
+                "image": "/assets/icons/admin.svg",
+                "link": "#"
+            },
+            {
+                "title": "Finance",
+                "image": "/assets/icons/finance.svg",
+                "link": "#"
+            },
+            {
+                "title": "Purchasing",
+                "image": "/assets/icons/purchasing.svg",
+                "link": "#"
+            },
+            {
+                "title": "Nonprofit",
+                "image": "/assets/icons/nonprofit.svg",
+                "link": "#"
+            },
+            {
+                "title": "R&D",
+                "image": "/assets/icons/rnd.svg",
+                "link": "#"
+            },
+            {
+                "title": "Consulting",
+                "image": "/assets/icons/consulting.svg",
+                "link": "#"
+            },
+            {
+                "title": "Education",
+                "image": "/assets/icons/education.svg",
+                "link": "#"
+            }
+        ]
+    },
+    "hiring_process_cards": {
+        "title": "The TeamMate Hiring Process",
+        "subtitle": "Step-by-step to your new hire",
+        "cards": [
+            {
+                "pathNumber": "01",
+                "title": "Role Design",
+                "description": "Define scope, success metrics, and responsibilities.",
+                "buttonText": "Learn More",
+                "highlight": false
+            },
+            {
+                "pathNumber": "02",
+                "title": "Onboarding & Training",
+                "description": "Train the AI on your workflows, tools, and rules.",
+                "buttonText": "Learn More",
+                "highlight": true
+            },
+            {
+                "pathNumber": "03",
+                "title": "First Day",
+                "description": "Deploy into real work with guardrails and oversight.",
+                "buttonText": "Get Started",
+                "highlight": false
+            }
+        ]
+    },
+    "ai_pillars": {
+        "title": "AI Doesn’t Come Naturally To Everyone",
+        "subtitle": " We've woven AI literacy into every step of the process. Learning and buy-in happen naturally when people get to help build the TeamMate they'll work with. ",
+        "cards": [
+            {
+                "pathNumber": "1",
+                "title": "AI Awareness",
+                "description": "We design solutions from the start with people top-of-mind. It's not about 'man vs. machine', it is about creating the freedom to do more human-driven work by spending less time and money on the mundane.",
+                "buttonText": "Learn More",
+                "highlight": false
+            },
+            {
+                "pathNumber": "2",
+                "title": "Co-Building",
+                "description": "Our goal is to create and implement new tools that supercharge your team's capabilities into smooth workflows and functionalities. Real magic happens when humans focus on what they do best."
+            },
+            {
+                "pathNumber": "3",
+                "title": "Confidence",
+                "description": "The media has a bit of a misled view. AI isn't here to replace your workforce—it's here to amplify their potential, eliminate repetitive tasks, and unlock creativity and strategic thinking.",
+                "buttonText": "Learn Our Secret",
+                "highlight": true
+            }
+        ]
+    },
+    "roi_offers": {
+        "title": "We Offer ROI On Any Budget (Even Zero Budget)",
+        "subtitle": "Whether you need a one-day deep dive for immediate clarity or long-term strategic guidance, we have something to get you started on your AI journey.",
+        "cards": [
+            {
+                "pathNumber": "FREE",
+                "title": "Free AI Readiness Coaching",
+                "description": "Hands-on, sales-free sessions that help leaders build real AI judgment by using AI on their actual work before making any strategic decisions.",
+                "buttonText": "Book A Kickoff Session",
+                "highlight": false
+            },
+            {
+                "pathNumber": "FREE",
+                "title": "Free AI Office Hours",
+                "description": "An open, low-pressure forum for leaders can ask real AI questions, test assumptions, and get grounded guidance without committing to anything.",
+                "buttonText": "Book 60 Min Strategy Call",
+                "highlight": true
+            },
+            {
+                "pathNumber": "LABS",
+                "title": "Custom AI TeamMate Labs",
+                "description": "A structured sprint that designs and builds custom AI TeamMates directly inside existing workflows once the organization is ready for real execution.",
+                "buttonText": "Book a Clarity Session",
+                "highlight": true
+            },
+            {
+                "pathNumber": "EXEC",
+                "title": "Personal AI TeamMate for Executives",
+                "description": "A 30-day immersion where an executive builds and uses a personal AI TeamMate to save time and gain firsthand confidence before sponsoring AI broadly. ",
+                "buttonText": "Schedule An AI Personalization Consult",
+                "highlight": false
+            },
+            {
+                "pathNumber": "WORK",
+                "title": "Hands-On Workshops",
+                "description": "Instructor-led sessions that give teams immediately usable AI skills and a shared language by applying AI to real work, not hypotheticals.",
+                "buttonText": "Get A Team AI Literacy Assessment",
+                "highlight": false
+            },
+            {
+                "pathNumber": "ACCEL",
+                "title": "AI & Automation Accelerator Track",
+                "description": "A 30-day alignment engagement that replaces abstract AI debates with ROI-backed priorities and clear, ready-to-execute automation starting points.",
+                "buttonText": "Create A LEAN Plan Forward ",
+                "highlight": false
+            },
+            {
+                "pathNumber": "CAIO",
+                "title": "CAIO Immersion Labs",
+                "description": "A 90-day embedded AI leadership engagement that prepares the organization culturally, structurally, and operationally for responsible AI adoption.",
+                "buttonText": "Meet With A CAIO",
+                "highlight": false
+            }
+        ]
+    }
+}

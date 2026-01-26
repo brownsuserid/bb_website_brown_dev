@@ -1,0 +1,78 @@
+{
+  "title": "Brain Bridge AI LABS",
+  "description": "AI technology guidance for businesses, focusing on transformative growth, efficiency, and ROI through empathetic implementation and market-ready AI tools. Combines decades of technology expertise with current AI leaders, aiming for practical, scalable, and profitable transitions while building stellar workplace cultures.",
+  "social_image": null,
+  "base_url": "https://www.brainbridge.app",
+  "demo": {
+    "title": "Ready to Start Your AI Journey?",
+    "content": "Transforming technology ambitions into action, combining expertise for practical, scalable, profitable AI with ROI, building stellar workplace cultures.",
+    "cta": "Get A Free AI Reality Check",
+    "cta2": "Explore AI TeamMates"
+  },
+  "theme_color": null,
+  "nav": [
+    {
+      "title": "About Us",
+      "link": "/about-us"
+    },
+    {
+      "title": "AI Teammates",
+      "link": "/ai-teammates"
+    },
+    {
+      "title": "AI That Works",
+      "link": "/what-we-sell"
+    }
+  ],
+  "companyInfo": {
+    "name": "Brain Bridge AI LABS",
+    "tagline": "Brain Bridge helps leaders design and implement custom AI solutions that drive measurable outcomes without unnecessary risk. We translate advanced AI capabilities into real operational advantage by focusing on adoption, not novelty."
+  },
+  "navigation": {
+    "title": "Navigation",
+    "links": [
+      {
+        "title": "About Us",
+        "link": "/about-us"
+      },
+      {
+        "title": "AI That Works",
+        "link": "/what-we-sell"
+      },
+      {
+        "title": "AI Teammates",
+        "link": "/ai-teammates"
+      }
+    ]
+  },
+  "getStarted": {
+    "title": "Get Started",
+    "links": [
+      {
+        "title": "About Us",
+        "link": "/about-us"
+      },
+      {
+        "title": "Case Studies",
+        "link": "/case-studies"
+      },
+      {
+        "title": "AI That Works",
+        "link": "/what-we-sell"
+      },
+      {
+        "title": "AI That Works",
+        "link": "/what-we-sell"
+      },
+      {
+        "title": "Contact Us",
+        "link": "/contact-us"
+      }
+    ]
+  },
+  "ctaButton": {
+    "title": "Get Started",
+    "link": "/contact-us"
+  },
+  "social_links": []
+}

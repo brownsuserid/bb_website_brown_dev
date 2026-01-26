@@ -1,0 +1,72 @@
+---
+const { title, subtitle, items } = Astro.props;
+---
+
+<section class="py-20 bg-black/30 border-y border-white/5">
+    <div class="bs-container">
+        <div class="text-center mb-16">
+            <h2 class="bs-h2 mb-4">{title}</h2>
+            {subtitle && <p class="text-xl text-gray-400">{subtitle}</p>}
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {
+                items.map((item) => (
+                    <div class="group p-6 rounded-2xl bg-[#0a0a0a] border border-gray-800 hover:border-indigo-500/50 hover:bg-[#111] transition-all duration-300">
+                        <div class="w-12 h-12 mb-6 rounded-lg bg-indigo-500/10 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-6 h-6 text-indigo-400"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                {item.icon === "search" && (
+                                    <>
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line
+                                            x1="21"
+                                            y1="21"
+                                            x2="16.65"
+                                            y2="16.65"
+                                        />
+                                    </>
+                                )}
+                                {item.icon === "chat" && (
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                )}
+                                {item.icon === "users" && (
+                                    <>
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </>
+                                )}
+                                {item.icon === "chart" && (
+                                    <>
+                                        <line x1="18" y1="20" x2="18" y2="10" />
+                                        <line x1="12" y1="20" x2="12" y2="4" />
+                                        <line x1="6" y1="20" x2="6" y2="14" />
+                                    </>
+                                )}
+                                {!["search", "chat", "users", "chart"].includes(
+                                    item.icon,
+                                ) && <circle cx="12" cy="12" r="10" />}
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            {item.title}
+                        </h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            {item.description}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

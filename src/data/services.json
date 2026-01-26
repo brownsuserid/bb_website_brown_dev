@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Our Philosophy: Adoption Over Automation",
+    "content": "<strong>AI tools fail. Adopted systems don't.</strong> We focus on building an AI layer that works inside the tools your team already uses. By solving real friction, we create systems people actually want to use, making change a relief, not a mandate.",
+    "cta": "Explore Our Approach",
+    "image": "/content-images/PRocess-Mapping-workshop.png",
+    "image_alt": "A whiteboard session mapping out a company's internal process flow."
+  },
+  {
+    "title": "Our Process: Diagnose, Co-Build, Embed",
+    "content": "<strong>We don't sell black boxes. We build with you.</strong> Our three-step process ensures solutions that stick. 1. <strong>Diagnose:</strong> We map your real workflows to find the true source of friction. 2. <strong>Co-Build:</strong> We design high-impact automations with your team. 3. <strong>Embed:</strong> We stay until the system is delivering measurable results.",
+    "cta": "Book a Discovery Call", 
+    "image": "/content-images/team-collaborating.png",
+    "image_alt": "Team members collaborating over a desk with laptops and documents."
+  },
+  {
+    "title": "The AI-OS Lab: Your New Operating System",
+    "content": "<strong>This is our flagship engagement.</strong> In a multi-week sprint, we embed with your team to build a custom AI Operating System. The outcome is a permanent, intelligent layer that fixes execution gaps and scales with your business.",
+    "cta": "Get an AI-OS Diagnostic",
+    "image": "/content-images/brainy-workflow.png",
+    "image_alt": "An annotated screenshot showing an AI-OS automatically resolving a workflow issue."
+  },
+  {
+    "title": "The Workshop: Your First Step to Clarity",
+    "content": "<strong>Ready to start, but not ready for a full Lab?</strong> Our 1-day workshop is a low-risk way to experience our process. We tackle one of your real operational problems, delivering tangible clarity and a roadmap for what's possible.",
+    "cta": "Start Your Workshop",
+    "image": "/content-images/Collaborative-workshop.jpg",
+    "image_alt": "A small group working together in a hands-on workshop setting."
+  },
+  {
+    "title": "Our Process: Diagnose, Co-Build, Embed",
+    "content": "<strong>We don't sell black boxes. We build with you.</strong> Our three-step process ensures solutions that stick. 1. <strong>Diagnose:</strong> We map your real workflows to find the true source of friction. 2. <strong>Co-Build:</strong> We design high-impact automations with your team. 3. <strong>Embed:</strong> We stay until the system is delivering measurable results.",
+    "cta": "Book a Discovery Call",
+    "image": "/content-images/team-collaborating.png",
+    "image_alt": "Team members collaborating over a desk with laptops and documents."
+  }
+]

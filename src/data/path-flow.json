@@ -1,0 +1,44 @@
+{
+  "header": {
+    "title": "Your Path from Friction to Flow",
+    "subtitle": "We transform your operations by building intelligent systems your team will actually use. Here's how we do it."
+  },
+  "philosophy": {
+    "subtitle": "Our Philosophy",
+    "title": "Adoption Over Automation",
+    "content": "<strong>AI tools fail. Adopted systems don't.</strong> We focus on building an AI layer that works inside the tools your team already uses."
+  },
+  "process": [
+    {
+      "title": "Diagnose",
+      "content": "We map your real workflows to find the true source of friction and identify the highest-impact opportunities for AI."
+    },
+    {
+      "title": "Co-Build",
+      "content": "We don't sell black boxes. We design and build high-impact automations transparently, with your team's direct input."
+    },
+    {
+      "title": "Embed",
+      "content": "We stay until the system is fully adopted and delivering measurable results, ensuring the change sticks."
+    }
+  ],
+  "offerings": [
+    {
+      "title": "The Workshop: Your First Step",
+      "content": "Ready to start, but not ready for a full Lab? Our 1-day workshop is a low-risk way to experience our process and get immediate clarity on a key operational problem.",
+      "cta": {
+        "text": "Start Your Workshop",
+        "url": "/workshop"
+      }
+    },
+    {
+      "subtitle": "Flagship Engagement",
+      "title": "The AI-OS Lab",
+      "content": "We embed with your team in a multi-week sprint to build a custom AI Operating System—a permanent, intelligent layer that fixes execution gaps and scales with your business.",
+      "cta": {
+        "text": "Get an AI-OS Diagnostic",
+        "url": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+---
+const { title, subtitle, tools } = Astro.props;
+---
+
+<section class="py-24 bs-container">
+    <div class="text-center mb-16">
+        <h2 class="bs-h2 mb-4">{title}</h2>
+        {subtitle && <p class="text-xl text-gray-400">{subtitle}</p>}
+    </div>
+
+    <div
+        class="flex flex-wrap justify-center gap-8 md:gap-12 max-w-5xl mx-auto"
+    >
+        {
+            tools.map((tool) => (
+                <div class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#0a0a0a] border border-gray-800 flex items-center justify-center shadow-lg group-hover:border-gray-600 group-hover:bg-[#111] group-hover:-translate-y-1 transition-all duration-300">
+                        {/* 
+                   Ideally these would be images, but for now we emulate the logic 
+                  from the previous inline implementation or use text/icons.
+                  The user provided logos in their json earlier (as text).
+                  If actual SVGs or images are available, they should be passed in JSON.
+              */}
+                        <span class="text-gray-500 font-bold text-xs uppercase">
+                            {tool.name.substring(0, 2)}
+                        </span>
+                    </div>
+                    <span class="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">
+                        {tool.name}
+                    </span>
+                </div>
+            ))
+        }
+    </div>
+</section>

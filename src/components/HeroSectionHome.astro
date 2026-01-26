@@ -1,0 +1,320 @@
+---
+const { settings, title, content } = Astro.props;
+import slides from "../data/slides-brainy.json";
+---
+
+<!-- Main Hero Content Section -->
+<section class="bs-container py-6 flex flex-col items-center text-center">
+  <!-- Content -->
+  <div class="flex flex-col items-center gap-6 lg:max-w-6xl w-full py-8 md:py-16">
+    <!-- Title -->
+    <h1 class="bs-h1 font-extrabold" set:html={title} />
+
+    <div
+      class="bs-body-text xl:text-xl flex flex-col gap-4 lg:max-w-3xl"
+      set:html={content}
+    />
+    <div class="flex flex-col lg:flex-row gap-3">
+      <button
+        type="button"
+        class="bs-btn self-center bs-mt-sm"
+        onclick="demo.showModal()"
+      >
+        {settings.demo.cta}
+      </button>
+      <button
+        type="button"
+        class="bs-btn-secondary self-center bs-mt-sm"
+        onclick="demo.showModal()"
+      >
+        {settings.demo.cta2}
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="chaos-clarity-section"
+    class="py-2 sm:py-8 lg:py-8 w-full overflow-hidden"
+  >
+    <div class="w-full mx-auto">
+      <div class="flex flex-col lg:flex-row items-center justify-center w-full">
+        <div class="w-full max-w-3xl h-48 mb-0 md:mb-8">
+          <canvas id="particle-canvas"></canvas>
+        </div>
+
+        <div class="flex items-center w-full max-w-xl flex-col mb-8 md:mb-0">
+          <div
+            class="animate-item arrow-item flex flex-row w-full items-center lg:pr-8"
+          >
+            <div class="line-growth h-0.5 bg-[#f3f3f3] w-full ml-2 rounded-[100%]">
+            </div>
+          </div>
+          <p class="mt-4 text-gray-400 animate-item arrow-item">
+            Chaos to Clarity
+          </p>
+        </div>
+        <div
+          class="w-full flex justify-center rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 p-2"
+        >
+          <div class="animate-item card-item w-full max-w-md text-left">
+            <div class="js-fc-swiper-brainy swiper max-h-32">
+              <div class="swiper-wrapper">
+                {
+                  slides.map((slide) => (
+                    <div class="swiper-slide ">
+                      <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                          <div
+                            class:list={[
+                              "w-10 h-10 rounded-md flex items-center justify-center shadow-lg",
+                              slide.bgColor,
+                            ]}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="text-white"
+                              set:html={slide.iconSvg}
+                            />
+                          </div>
+                        </div>
+                        <div class="flex-1">
+                          <div class="flex items-baseline space-x-2">
+                            <span class="font-bold text-white">Brainy</span>
+                            <span class="text-xs text-gray-500">
+                              {slide.time}
+                            </span>
+                          </div>
+                          <p class="text-gray-300 mt-1">{slide.message}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+            <p
+              class="mt-4 text-sm text-gray-500 animate-item text-item text-center"
+            >
+              ...the invisible layer that bridges the gap for operations leaders.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .animate-item {
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+    }
+
+    .line-growth {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    #chaos-clarity-section.is-visible .animate-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #chaos-clarity-section.is-visible .line-growth {
+      transform: scaleX(1);
+    }
+    #chaos-clarity-section.is-visible .line-growth::after {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform 1s ease-out;
+      transition-delay: 1s;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    #chaos-clarity-section.is-visible .arrow-item {
+      transition-delay: 0.5s;
+    }
+    #chaos-clarity-section.is-visible .line-growth {
+      transition-delay: 0.8s;
+    }
+    #chaos-clarity-section.is-visible .card-item {
+      transition-delay: 1.2s;
+    }
+    #chaos-clarity-section.is-visible .text-item {
+      transition-delay: 1.4s;
+    }
+  </style>
+
+  <script>
+    import Swiper from "swiper";
+    import {
+      EffectCoverflow,
+      Autoplay,
+      Controller,
+      Manipulation,
+    } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+    import "swiper/css/autoplay";
+    import "swiper/css/effect-coverflow";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const brainySwiper = new Swiper(".js-fc-swiper-brainy", {
+        modules: [EffectCoverflow, Autoplay, Controller, Manipulation],
+        effect: "coverflow",
+        centeredSlides: true,
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        direction: "vertical",
+        loop: true,
+        autoplay: {
+          delay: 4500,
+        },
+      });
+      brainySwiper.init?.();
+
+      const section = document.querySelector("#chaos-clarity-section");
+      const canvas = document.getElementById("particle-canvas");
+      if (!canvas || !section) return;
+
+      const ctx = canvas.getContext("2d");
+      let width = canvas.clientWidth;
+      let height = canvas.clientHeight;
+      canvas.width = width;
+      canvas.height = height * 2;
+
+      const PARTICLE_COUNT = 150;
+      const CIRCLE_RADIUS = 30;
+      const NUM_CIRCLES = 5;
+      const PARTICLE_COLOR = "rgba(99, 99, 99, 0.9)"; 
+      const EASING = 0.01;
+
+      let particles = [];
+      let isVisible = false;
+
+      // Particle class
+      class Particle {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.vx = Math.random() * 2 - 1;
+          this.vy = Math.random() * 2 - 1;
+          this.radius = Math.random() * 1.5 + 0.5;
+          this.targetX = x;
+          this.targetY = y;
+        }
+
+        update() {
+          if (isVisible) {
+            this.x += (this.targetX - this.x) * EASING;
+            this.y += (this.targetY - this.y) * EASING;
+          } else {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = PARTICLE_COLOR;
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        particles = [];
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        const totalSpacing = (NUM_CIRCLES - 1) * 10;
+        const totalCircleWidth = NUM_CIRCLES * CIRCLE_RADIUS * 2;
+        const startX = (width - totalCircleWidth - totalSpacing) / 2;
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const particle = new Particle(
+            Math.random() * width,
+            Math.random() * height
+          );
+
+          const circleIndex = i % NUM_CIRCLES;
+          const angle = (i / (PARTICLE_COUNT / NUM_CIRCLES)) * Math.PI * 2;
+
+          const circleCenterX =
+            startX + circleIndex * (CIRCLE_RADIUS * 2 + 10) + CIRCLE_RADIUS;
+          const circleCenterY = height / 2;
+
+          particle.targetX = circleCenterX + Math.cos(angle) * CIRCLE_RADIUS;
+          particle.targetY = circleCenterY + Math.sin(angle) * CIRCLE_RADIUS;
+
+          particles.push(particle);
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener("resize", init);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              isVisible = true;
+              section.classList.add("is-visible");
+            } else {
+              isVisible = false;
+              section.classList.remove("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.4,
+        }
+      );
+
+      observer.observe(section);
+
+      init();
+      animate();
+    });
+  </script>
+</section>

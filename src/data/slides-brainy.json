@@ -1,0 +1,20 @@
+[
+  {
+    "bgColor": "bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur",
+    "iconSvg": "<path d=\"M12 8V4H8\"/><rect x=\"4\" y=\"12\" width=\"16\" height=\"8\" rx=\"2\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"M12 12v-2a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2\"/>",
+    "time": "10:32 AM",
+    "message": "Just a heads-up, the follow-up with Project Falcon was flagged as stalled. I've drafted a nudge email for you."
+  },
+  {
+    "bgColor": "bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur",
+    "iconSvg": "<path d=\"M12 20h9\"/><path d=\"M4 20h2\"/><path d=\"M4 12h2\"/><path d=\"M12 12h9\"/><path d=\"M4 4h2\"/><path d=\"M12 4h9\"/>",
+    "time": "10:33 AM",
+    "message": "I've analyzed recent support tickets and found a recurring issue with the new login flow. Here's a summary report."
+  },
+  {
+    "bgColor": "bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur",
+    "iconSvg": "<path d=\"M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"8.5\" cy=\"7\" r=\"4\"/><path d=\"M20 8v6\"/><path d=\"M23 11h-6\"/>",
+    "time": "10:35 AM",
+    "message": "The new marketing lead from 'Innovate Corp' just opened your proposal. You might want to follow up."
+  }
+]

@@ -1,0 +1,88 @@
+---
+const { settings, title, content } = Astro.props;
+import ParticleCanvas from "./ParticleCanvas.astro";
+---
+
+<!-- Main Hero Content Section -->
+<section
+  id="hero-section"
+  class="min-h-[90vh] bg-bs-surface-0 relative flex flex-col p-4 py-6 items-center justify-center text-center overflow-hidden"
+>
+  <ParticleCanvas />
+  <div class="gradient-overlay"></div>
+  <!-- Content -->
+  <div
+    class="relative flex flex-col items-center justify-center gap-6 lg:max-w-6xl w-full py-24 md:py-16"
+  >
+    <!-- Title -->
+    <h1
+      class="bs-h1 font-extrabold z-3 text-shadow-2xl text-gradient"
+      set:html={title}
+    />
+
+    <div
+      class="bs-body-text xl:text-xl flex flex-col gap-4 lg:max-w-3xl"
+      set:html={content}
+    />
+    <div class="flex flex-col lg:flex-row gap-3 z-4">
+      <button
+        id="btn-diag"
+        type="button"
+        class="bs-btn btn-diag self-center bs-mt-sm"
+        onclick="demo.showModal()"
+      >
+        {settings.demo.cta}
+      </button>
+      <a
+        id="btn-pro"
+        type="button"
+        class="bs-btn-secondary self-center bs-mt-sm"
+        href="/ai-teammates"
+      >
+        {settings.demo.cta2}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f10f0f;
+    background: radial-gradient(
+      circle at top center,
+      rgba(254, 93, 93, 0.5) 0%,
+      /* Starting color at top center */ transparent 65%
+        /* Fades to transparent toward the bottom */
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+  .content-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  #ai-modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+  }
+  #ai-results::-webkit-scrollbar {
+    width: 8px;
+  }
+  #ai-results::-webkit-scrollbar-track {
+    background: #2d3748;
+    border-radius: 10px;
+  }
+  #ai-results::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 10px;
+  }
+  #ai-results::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+</style>
