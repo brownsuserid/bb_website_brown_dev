@@ -1,0 +1,14 @@
+# CDK
+node_modules/
+*.js
+!jest.config.js
+*.d.ts
+cdk.out/
+.cdk.staging/
+
+# Build artifacts
+dist/
+
+# Environment
+.env
+.env.local

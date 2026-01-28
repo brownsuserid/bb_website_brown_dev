@@ -17,6 +17,9 @@ import FooterMain from "../components/FooterMain.astro";
 import HeaderMain from "../components/HeaderMain.astro";
 
 const { title, description } = Astro.props;
+
+// Canonical URL for SEO - brainbridge.app is the primary domain
+const canonicalURL = new URL(Astro.url.pathname, 'https://brainbridge.app');
 ---
 
 <html lang="en">
@@ -43,6 +46,9 @@ const { title, description } = Astro.props;
 
     <link rel="icon" type="image/svg+xml" href="/brainbridgefavicon.jpg" />
     <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Canonical URL - brainbridge.app is the primary domain -->
+    <link rel="canonical" href={canonicalURL} />
 
     <meta
       name="description"
@@ -50,6 +56,10 @@ const { title, description } = Astro.props;
     />
     <meta name="theme-color" content={global_settings.theme_color} />
 
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Brain Bridge" />
     <meta property="og:title" content={title ?? global_settings.title} />
     <meta
       property="og:description"
