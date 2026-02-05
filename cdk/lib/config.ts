@@ -23,16 +23,25 @@ export interface SiteConfig {
 
 /**
  * Production configuration
- * 
+ *
  * Hosted Zones:
  * - brainbridge.app: Z0886717BPNWIHS2PKZD (existing)
  * - brainbridgelabs.ai: Will be created by CDK
+ *
+ * Note: www subdomains use the same hosted zone as their parent domain
  */
 export const PROD_CONFIG: SiteConfig = {
-    domains: ['brainbridge.app', 'brainbridgelabs.ai'],
+    domains: [
+        'brainbridge.app',
+        'www.brainbridge.app',
+        'brainbridgelabs.ai',
+        'www.brainbridgelabs.ai',
+    ],
     hostedZoneIds: {
         'brainbridge.app': 'Z0886717BPNWIHS2PKZD',  // Existing hosted zone
+        'www.brainbridge.app': 'Z0886717BPNWIHS2PKZD',  // Same zone as parent
         // brainbridgelabs.ai zone will be created by CDK
+        // www.brainbridgelabs.ai will use the same zone (handled in stack)
     },
     environment: 'prod',
     // certificateArn will be created by CDK on first deployment

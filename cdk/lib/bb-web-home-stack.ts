@@ -59,8 +59,19 @@ export class BBWebHomeStack extends cdk.Stack {
 
         const hostedZones: { [domain: string]: route53.IHostedZone } = {};
 
-        // Import or create hosted zones for each domain
-        for (const domain of config.domains) {
+        // Helper to get parent domain (e.g., www.example.com -> example.com)
+        const getParentDomain = (domain: string): string | null => {
+            if (domain.startsWith('www.')) {
+                return domain.slice(4);
+            }
+            return null;
+        };
+
+        // Get unique apex domains (exclude www subdomains)
+        const apexDomains = config.domains.filter(d => !d.startsWith('www.'));
+
+        // Import or create hosted zones for apex domains only
+        for (const domain of apexDomains) {
             if (config.hostedZoneIds[domain]) {
                 // Import existing hosted zone using plain string ID
                 hostedZones[domain] = route53.HostedZone.fromHostedZoneAttributes(
@@ -140,12 +151,15 @@ export class BBWebHomeStack extends cdk.Stack {
         // ========================================
 
         for (const domain of config.domains) {
-            const zone = hostedZones[domain];
+            // Determine which zone to use and the record name
+            const parentDomain = getParentDomain(domain);
+            const zone = parentDomain ? hostedZones[parentDomain] : hostedZones[domain];
+            const recordName = parentDomain ? 'www' : domain;
 
             // A record (IPv4)
             new route53.ARecord(this, `ARecord-${domain.replace(/\./g, '-')}`, {
                 zone: zone,
-                recordName: domain,
+                recordName: recordName,
                 target: route53.RecordTarget.fromAlias(
                     new targets.CloudFrontTarget(distribution)
                 ),
@@ -155,7 +169,7 @@ export class BBWebHomeStack extends cdk.Stack {
             // AAAA record (IPv6)
             new route53.AaaaRecord(this, `AAAARecord-${domain.replace(/\./g, '-')}`, {
                 zone: zone,
-                recordName: domain,
+                recordName: recordName,
                 target: route53.RecordTarget.fromAlias(
                     new targets.CloudFrontTarget(distribution)
                 ),
@@ -191,8 +205,8 @@ export class BBWebHomeStack extends cdk.Stack {
             exportName: undefined,  // Explicitly no export
         });
 
-        // Output nameservers for newly created hosted zones
-        for (const domain of config.domains) {
+        // Output nameservers for newly created hosted zones (apex domains only)
+        for (const domain of apexDomains) {
             if (!config.hostedZoneIds[domain]) {
                 const zone = hostedZones[domain] as route53.HostedZone;
                 new cdk.CfnOutput(this, `NameServers-${domain.replace(/\./g, '-')}`, {
