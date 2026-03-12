@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BB-GTM System Architecture | Brain Bridge</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface-2: #242836;
+      --border: #2e3344;
+      --text: #e2e4ea;
+      --text-muted: #8b8fa3;
+      --accent: #6c63ff;
+      --accent-light: #8b83ff;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --blue: #60a5fa;
+      --cyan: #22d3ee;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a1d27 0%, #1e2235 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-light);
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .toc-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.25rem 0;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--accent-light); }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--text);
+    }
+
+    h2 .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text-muted);
+    }
+
+    p { margin-bottom: 1rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card-green {
+      border-left: 3px solid var(--green);
+    }
+
+    .card-amber {
+      border-left: 3px solid var(--amber);
+    }
+
+    .card-red {
+      border-left: 3px solid var(--red);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .badge-required { background: rgba(248, 113, 113, 0.15); color: var(--red); }
+    .badge-optional { background: rgba(251, 191, 36, 0.15); color: var(--amber); }
+    .badge-auto { background: rgba(52, 211, 153, 0.15); color: var(--green); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      background: var(--surface-2);
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:hover td { background: rgba(108, 99, 255, 0.03); }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em;
+      background: var(--surface-2);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--cyan);
+    }
+
+    pre {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+    }
+
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .mermaid-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .mermaid-wrapper .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .toc-columns, .grid-2 { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.8rem; }
+      .container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>BB-GTM System Architecture</h1>
+  <p>Complete technical architecture of the Brain Bridge GTM platform</p>
+</div>
+
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <div class="toc-columns">
+      <div>
+        <a href="#system-overview">1. System Overview</a>
+        <a href="#cdk-stack-dependencies">2. CDK Stack Dependencies</a>
+        <a href="#e2e-data-flow">3. End-to-End Data Flow</a>
+        <a href="#outreach-manager">4. Outreach Manager Detail</a>
+        <a href="#guard-system">5. Guard System</a>
+        <a href="#communication-processing">6. Communication Processing</a>
+      </div>
+      <div>
+        <a href="#communication-logging">7. Communication Logging Pipeline</a>
+        <a href="#airtable-data-model">8. Airtable Data Model</a>
+        <a href="#eventbridge-schedules">9. EventBridge Schedule Map</a>
+        <a href="#multi-customer">10. Multi-Customer Deployment Model</a>
+        <a href="#mcp-integration">11. MCP Lambda Integration Layer</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: SYSTEM OVERVIEW -->
+  <section id="system-overview">
+    <h2><span class="section-tag">Section 1</span>System Overview</h2>
+    <p>High-level view of all modules, external services, and data stores.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+graph TB
+    subgraph External["External Services"]
+        Apollo["Apollo.io&lt;br/&gt;(Prospect Data)"]
+        Gmail["Gmail API"]
+        Outlook["Outlook / Graph API"]
+        Lindy["Lindy AI"]
+        Slack["Slack"]
+        AIBrain["AI Teammates&lt;br/&gt;(Claude Lambdas)"]
+    end
+
+    subgraph BBGtm["BB-GTM Platform (AWS Serverless)"]
+        CC["Campaign Creator&lt;br/&gt;Stack"]
+        OM["Outreach Manager&lt;br/&gt;Stack"]
+        CP["Communication&lt;br/&gt;Processing Stack"]
+        CL["Communication&lt;br/&gt;Logging Stack"]
+        SM["Stage Manager&lt;br/&gt;Stack"]
+        MON["Monitoring&lt;br/&gt;(Alarm Forwarder)"]
+    end
+
+    subgraph DataLayer["Data Layer"]
+        MCP["MCP Lambdas&lt;br/&gt;(bb-os-mcp-at-*)"]
+        AT["Airtable&lt;br/&gt;(CRM Database)"]
+        SM_SSM["SSM Parameter Store"]
+        SEC["Secrets Manager"]
+    end
+
+    subgraph EventDriven["Event-Driven Triggers"]
+        EB["EventBridge&lt;br/&gt;Schedules"]
+    end
+
+    CC -->|search/enrich| Apollo
+    CP -->|send email| Gmail
+    CP -->|send email| Outlook
+    CP -->|send email| Lindy
+    CL -->|ingest email| Gmail
+    CL -->|ingest email| Outlook
+    OM -->|notify| Slack
+    CC -->|notify| Slack
+    OM -->|plan/execute/enrich| AIBrain
+    SM -->|evaluate stages| AIBrain
+
+    CC -->|"creates Deals&lt;br/&gt;with plan update flag"| MCP
+    OM -->|"reads Deals/Tasks&lt;br/&gt;writes Plans/Tasks"| MCP
+    CP -->|"sends outreach&lt;br/&gt;messages"| MCP
+    CL -->|"logs activities&lt;br/&gt;flags deals"| MCP
+    SM -->|"updates Deal&lt;br/&gt;stages"| MCP
+    MCP -->|CRUD| AT
+
+    EB -->|"5 min"| OM
+    EB -->|"1 min"| OM
+    EB -->|"15 min"| CL
+    EB -->|"daily 6AM"| SM
+
+    OM --- MON
+    CC -.->|alarm SNS| MON
+    SM -.->|alarm SNS| MON
+    CL -.->|alarm SNS| MON
+    CP -.->|alarm SNS| MON
+    MON -->|alert| Slack
+
+    CP --> SEC
+    CL --> SEC
+    CC --> SEC
+    OM --> SM_SSM
+
+    classDef external fill:#f0e6ff,stroke:#7c3aed,color:#000
+    classDef stack fill:#dbeafe,stroke:#2563eb,color:#000
+    classDef data fill:#dcfce7,stroke:#16a34a,color:#000
+    classDef event fill:#fef3c7,stroke:#d97706,color:#000
+
+    class Apollo,Gmail,Outlook,Lindy,Slack,AIBrain external
+    class CC,OM,CP,CL,SM,MON stack
+    class MCP,AT,SM_SSM,SEC data
+    class EB event
+      </pre>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 2: CDK STACK DEPENDENCIES -->
+  <section id="cdk-stack-dependencies">
+    <h2><span class="section-tag">Section 2</span>CDK Stack Dependencies</h2>
+    <p>How the 5 CDK stacks relate to each other per customer/environment deployment.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+graph TD
+    subgraph Deployment["BBGtm-{Customer}-{Env}"]
+        Outreach["Outreach Stack&lt;br/&gt;&lt;i&gt;Planner, Executor, HITL,&lt;br/&gt;Enricher, Alarm Forwarder&lt;/i&gt;"]
+        StageMgr["StageManager Stack&lt;br/&gt;&lt;i&gt;Daily Pipeline Eval&lt;/i&gt;"]
+        Campaign["Campaign Stack&lt;br/&gt;&lt;i&gt;Apollo, Post-Approval&lt;/i&gt;"]
+        Comm["Communication Stack&lt;br/&gt;&lt;i&gt;Gmail/Outlook/Lindy Send&lt;/i&gt;"]
+        CommLog["CommLogging Stack&lt;br/&gt;&lt;i&gt;Email/Meeting Ingest&lt;/i&gt;"]
+    end
+
+    subgraph Shared["Shared (External)"]
+        MCPLambdas["MCP Lambdas&lt;br/&gt;bb-os-mcp-at-*&lt;br/&gt;bb-os-mcp-slack-*"]
+        AITeammates["AI Teammate Lambdas&lt;br/&gt;(resolved from SSM&lt;br/&gt;at deploy time)"]
+    end
+
+    subgraph Naming["Resource Naming"]
+        Convention["bb-gtm-{customer}-{env}-{module}-{resource}&lt;br/&gt;&lt;br/&gt;Customers: brain-bridge, aginghs, twba&lt;br/&gt;Modules: outreach, campaign, comm, comm-log, stage-mgr"]
+    end
+
+    StageMgr -->|"depends_on&lt;br/&gt;(alarm SNS)"| Outreach
+    Campaign -->|"depends_on&lt;br/&gt;(alarm SNS)"| Outreach
+    Comm -->|"depends_on&lt;br/&gt;(alarm SNS)"| Outreach
+    CommLog -->|"depends_on&lt;br/&gt;(alarm SNS)"| Outreach
+
+    Outreach -.->|"invokes by&lt;br/&gt;name convention"| Comm
+    Outreach -.->|"invokes"| MCPLambdas
+    Campaign -.->|"invokes"| MCPLambdas
+    StageMgr -.->|"invokes"| MCPLambdas
+    CommLog -.->|"invokes"| MCPLambdas
+    Outreach -.->|"invokes"| AITeammates
+    StageMgr -.->|"invokes"| AITeammates
+
+    classDef primary fill:#dbeafe,stroke:#2563eb,color:#000
+    classDef shared fill:#f0e6ff,stroke:#7c3aed,color:#000
+    classDef info fill:#f3f4f6,stroke:#6b7280,color:#000
+
+    class Outreach,StageMgr,Campaign,Comm,CommLog primary
+    class MCPLambdas,AITeammates shared
+    class Convention info
+      </pre>
+    </div>
+
+    <div class="card card-accent">
+      <h3>Key Points</h3>
+      <ul>
+        <li>All stacks depend on the Outreach stack for the shared alarm SNS topic</li>
+        <li>No CDK cross-stack exports -- ARN construction by naming convention instead</li>
+        <li>AI Teammate Lambda ARNs are resolved from SSM at deploy time</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 3: END-TO-END DATA FLOW -->
+  <section id="e2e-data-flow">
+    <h2><span class="section-tag">Section 3</span>End-to-End Data Flow</h2>
+    <p>The complete lifecycle from prospect identification through outreach and feedback.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart LR
+    subgraph Phase1["Phase 1: Campaign Creation"]
+        direction TB
+        A1["User Trigger"] --> A2["Campaign Creator Brain&lt;br/&gt;(AI Teammate)"]
+        A2 --> A3["Apollo Search"]
+        A3 --> A4["Apollo Enrich"]
+        A4 --> A5["Create Org + Contact + Deal&lt;br/&gt;in Airtable"]
+        A5 --> A6["Post-Approval:&lt;br/&gt;Flag deals for planning"]
+    end
+
+    subgraph Phase2["Phase 2: Outreach Planning"]
+        direction TB
+        B1["EventBridge&lt;br/&gt;every 5 min"] --> B2["Filter Deals&lt;br/&gt;(needs plan update)"]
+        B2 --> B3["Provide Context&lt;br/&gt;(deal + contact + history)"]
+        B3 --> B4["Outreach Brain&lt;br/&gt;(AI Teammate)"]
+        B4 --> B5["Validate Output&lt;br/&gt;(dedup, fix assignees)"]
+        B5 --> B6["Save Tasks&lt;br/&gt;to Airtable"]
+    end
+
+    subgraph Phase3["Phase 3: Execution"]
+        direction TB
+        C1["EventBridge&lt;br/&gt;every 1 min"] --> C2["Scan Due Tasks&lt;br/&gt;(Not Started, Due&lt;=NOW)"]
+        C2 --> C3["Refresh Context"]
+        C3 --> C4{"8 Guard&lt;br/&gt;Checks"}
+        C4 -->|pass| C5["Execute Action"]
+        C4 -->|fail| C6["Block + HITL"]
+        C5 --> C7["Handle Result&lt;br/&gt;(log activity, update task)"]
+    end
+
+    subgraph Phase4["Phase 4: Logging"]
+        direction TB
+        D1["EventBridge&lt;br/&gt;every 15 min"] --> D2["Ingest Emails"]
+        D2 --> D3["Filter In/Out/Team"]
+        D3 --> D4["Blacklist Check"]
+        D4 -->|pass| D5["Log Activity&lt;br/&gt;(SHA-256 dedup)"]
+        D4 -->|blocked| D6["Review Queue"]
+        D5 --> D7["Flag Deal&lt;br/&gt;(new activity)"]
+    end
+
+    subgraph Phase5["Phase 5: Enrichment + Eval"]
+        direction TB
+        E1["CRM Enricher&lt;br/&gt;every 10 min"] --> E2["Extract insights&lt;br/&gt;from task outputs"]
+        E2 --> E3["Apply updates&lt;br/&gt;to Deal/Contact/Org"]
+        E4["Stage Manager&lt;br/&gt;daily 6 AM"] --> E5["Evaluate pipeline&lt;br/&gt;stage changes"]
+        E5 --> E6["Update Deal stage"]
+    end
+
+    Phase1 --> Phase2
+    Phase2 --> Phase3
+    Phase3 --> Phase4
+    Phase4 -->|"re-plan trigger"| Phase2
+    Phase3 --> Phase5
+    Phase4 --> Phase5
+
+    classDef phase fill:#f8fafc,stroke:#94a3b8,color:#000
+    class Phase1,Phase2,Phase3,Phase4,Phase5 phase
+      </pre>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 4: OUTREACH MANAGER DETAIL -->
+  <section id="outreach-manager">
+    <h2><span class="section-tag">Section 4</span>Outreach Manager Detail</h2>
+    <p>The four Step Functions inside the Outreach Manager stack.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    subgraph Planner["Outreach Planner (rate: 5 min)"]
+        P1["FilterDealsForPlanning"] --> P2{"Deals found?"}
+        P2 -->|yes| P3["ProcessDeals (Map)"]
+        P3 --> P4["ClaimDeal (lock)"]
+        P4 --> P5["ProvideOutreachContext"]
+        P5 --> P6{"Context OK?"}
+        P6 -->|yes| P7["InvokeAIBrain"]
+        P6 -->|no| P8["Release lock + retry"]
+        P7 --> P9["ValidateBrainOutput&lt;br/&gt;(dedup, fix assignees)"]
+        P9 --> P10{"Tasks found?"}
+        P10 -->|yes| P11["SavePlan + ClearFlag"]
+        P10 -->|no| P12["Silent retry next cycle"]
+        P2 -->|no| P13["PlanningComplete"]
+    end
+
+    subgraph Executor["Outreach Executor (rate: 1 min)"]
+        E1["ResolveEmployees"] --> E2["ScanDueTasks"]
+        E2 --> E3{"Tasks found?"}
+        E3 -->|yes| E4["ProcessTasks (Map, max 5)"]
+        E4 --> E5["RefreshContext"]
+        E5 --> E6["CheckGuards (8 guards)"]
+        E6 -->|pass| E7["CheckSequenceGate"]
+        E7 -->|pass| E8["ExecuteAction"]
+        E8 --> E9["HandleResult"]
+        E6 -->|fail| E10["Block task"]
+        E7 -->|fail| E11["Skip (prereq incomplete)"]
+        E3 -->|no| E12["NoTasksDue"]
+    end
+
+    subgraph HITL["HITL Processor (rate: 2 min)"]
+        H1["ListHITLTasks&lt;br/&gt;(Human Review status)"] --> H2{"Tasks found?"}
+        H2 -->|yes| H3["ProvideHITLContext"]
+        H3 --> H4["HITL Brain (AI Teammate)"]
+        H4 --> H5{"Decision"}
+        H5 -->|approve| H6["Update status: Approved"]
+        H5 -->|reject| H7["Update status: Rejected"]
+        H5 -->|escalate| H8["Slack notification"]
+        H2 -->|no| H9["NoHITLTasks"]
+    end
+
+    subgraph Enricher["CRM Enricher (rate: 10 min)"]
+        R1["FilterDeals&lt;br/&gt;(Needs CRM Enrichment)"] --> R2["FetchEnrichmentContext"]
+        R2 --> R3["Claude Insights Lambda"]
+        R3 --> R4["ApplyUpdates&lt;br/&gt;(Deal/Contact/Org)"]
+        R4 --> R5["ClearEnrichmentFlag"]
+    end
+
+    classDef sfn fill:#dbeafe,stroke:#2563eb,color:#000
+    class Planner,Executor,HITL,Enricher sfn
+      </pre>
+    </div>
+
+    <div class="card card-green">
+      <h3>Step Function Summary</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Step Function</th>
+            <th>Trigger Rate</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Outreach Planner</td>
+            <td>Every 5 min</td>
+            <td>Generates outreach task plans for deals flagged for update</td>
+          </tr>
+          <tr>
+            <td>Outreach Executor</td>
+            <td>Every 1 min</td>
+            <td>Executes due tasks after passing 8 guard checks</td>
+          </tr>
+          <tr>
+            <td>HITL Processor</td>
+            <td>Every 2 min</td>
+            <td>AI-powered human-in-the-loop review for escalated tasks</td>
+          </tr>
+          <tr>
+            <td>CRM Enricher</td>
+            <td>Every 10 min</td>
+            <td>Extracts insights from task outputs, updates CRM records</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 5: GUARD SYSTEM -->
+  <section id="guard-system">
+    <h2><span class="section-tag">Section 5</span>Guard System</h2>
+    <p>The 8 pre-execution checks that protect outreach quality.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart LR
+    Task["Due Task"] --> G1
+
+    subgraph Guards["check_guards (sequential, fail-fast)"]
+        G1["1. contact_required&lt;br/&gt;Action needs contact&lt;br/&gt;+ email/phone?"] -->|pass| G2
+        G2["2. sender_configured&lt;br/&gt;Email actions need&lt;br/&gt;sender address?"] -->|pass| G3
+        G3["3. do_not_contact&lt;br/&gt;Contact DNC flag?"] -->|pass| G4
+        G4["4. opt_out_history&lt;br/&gt;Opted out or&lt;br/&gt;hard bounced?"] -->|pass| G5
+        G5["5. deal_disqualified&lt;br/&gt;Deal disqualified?"] -->|pass| G6
+        G6["6. action_restriction&lt;br/&gt;Rate-limited?&lt;br/&gt;(exp backoff)"] -->|pass| G7
+        G7["7. cadence_protection&lt;br/&gt;Min 24h between&lt;br/&gt;touches?"] -->|pass| G8
+        G8["8. deduplication&lt;br/&gt;Same content to&lt;br/&gt;same contact?"] -->|pass| Execute
+    end
+
+    Execute["Execute Action"]
+
+    G1 -->|fail| Block
+    G2 -->|fail| Block
+    G3 -->|fail| Block
+    G4 -->|fail| Block
+    G5 -->|fail| Block
+    G6 -->|fail| Block
+    G7 -->|fail| Block
+    G8 -->|fail| Block
+
+    Block["Block Task&lt;br/&gt;+ Optional HITL&lt;br/&gt;Escalation"]
+
+    classDef guard fill:#fef3c7,stroke:#d97706,color:#000
+    classDef action fill:#dcfce7,stroke:#16a34a,color:#000
+    classDef blocked fill:#fee2e2,stroke:#dc2626,color:#000
+
+    class G1,G2,G3,G4,G5,G6,G7,G8 guard
+    class Execute action
+    class Block blocked
+      </pre>
+    </div>
+
+    <div class="card card-amber">
+      <h3>Guard Details</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Guard</th>
+            <th>What It Checks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><code>contact_required</code></td><td>Action requires a contact with valid email or phone</td></tr>
+          <tr><td>2</td><td><code>sender_configured</code></td><td>Email actions require a configured sender address</td></tr>
+          <tr><td>3</td><td><code>do_not_contact</code></td><td>Contact-level DNC flag is not set</td></tr>
+          <tr><td>4</td><td><code>opt_out_history</code></td><td>Contact has not opted out or hard bounced</td></tr>
+          <tr><td>5</td><td><code>deal_disqualified</code></td><td>Deal is not in a disqualified state</td></tr>
+          <tr><td>6</td><td><code>action_restriction</code></td><td>Rate limiting with exponential backoff</td></tr>
+          <tr><td>7</td><td><code>cadence_protection</code></td><td>Minimum 24-hour gap between touches to same contact</td></tr>
+          <tr><td>8</td><td><code>deduplication</code></td><td>Prevents sending identical content to the same contact</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 6: COMMUNICATION PROCESSING -->
+  <section id="communication-processing">
+    <h2><span class="section-tag">Section 6</span>Communication Processing</h2>
+    <p>Pluggable email provider based on customer config.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    subgraph Outreach["Outreach Executor"]
+        SendEmail["send-outreach-email&lt;br/&gt;(threading + signature)"]
+    end
+
+    SendEmail --> Dispatcher
+
+    subgraph CommStack["Communication Processing Stack"]
+        Dispatcher["Message Dispatcher&lt;br/&gt;(Step Function)"]
+        Dispatcher -->|EMAIL| ProviderChoice{"email_provider&lt;br/&gt;config"}
+        Dispatcher -->|TEXT| SMS["send-text-msg"]
+
+        ProviderChoice -->|gmail| GmailSend["send-google-mail&lt;br/&gt;Gmail API"]
+        ProviderChoice -->|outlook| OutlookSend["send-outlook-mail&lt;br/&gt;Graph API"]
+        ProviderChoice -->|lindy| LindySend["send-lindy-mail&lt;br/&gt;Lindy Webhook"]
+    end
+
+    subgraph OAuth["OAuth Flows (API Gateway)"]
+        GmailOAuth["Gmail OAuth&lt;br/&gt;/oauth/callback"]
+        OutlookOAuth["Outlook OAuth&lt;br/&gt;/oauth/callback"]
+        LindyCallback["Lindy Callback&lt;br/&gt;/lindy/callback"]
+    end
+
+    GmailSend --> GmailAPI["Gmail API"]
+    OutlookSend --> GraphAPI["Microsoft Graph API"]
+    LindySend --> LindyAPI["Lindy AI"]
+    LindyAPI --> LindyCallback
+
+    subgraph Secrets["Credentials"]
+        GmailCreds["bb-gtm-{cust}-{env}&lt;br/&gt;-comm-gmail-credentials"]
+        OutlookCreds["bb-gtm-{cust}-{env}&lt;br/&gt;-comm-outlook-credentials"]
+        LindyCreds["bb-gtm-{cust}-{env}&lt;br/&gt;-comm-lindy-credentials"]
+    end
+
+    GmailSend --> GmailCreds
+    OutlookSend --> OutlookCreds
+    LindySend --> LindyCreds
+
+    classDef provider fill:#dbeafe,stroke:#2563eb,color:#000
+    classDef oauth fill:#f0e6ff,stroke:#7c3aed,color:#000
+    classDef secret fill:#dcfce7,stroke:#16a34a,color:#000
+
+    class GmailSend,OutlookSend,LindySend,SMS provider
+    class GmailOAuth,OutlookOAuth,LindyCallback oauth
+    class GmailCreds,OutlookCreds,LindyCreds secret
+      </pre>
+    </div>
+
+    <div class="card card-accent">
+      <h3>Provider Selection</h3>
+      <p>The email provider is configured per-customer in the JSON config file. The Message Dispatcher Step Function routes to the appropriate provider Lambda based on the <code>email_provider</code> field. Each provider stores OAuth credentials in Secrets Manager using the naming convention <code>bb-gtm-{customer}-{env}-comm-{provider}-credentials</code>.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 7: COMMUNICATION LOGGING -->
+  <section id="communication-logging">
+    <h2><span class="section-tag">Section 7</span>Communication Logging Pipeline</h2>
+    <p>Email ingestion, filtering, and activity logging.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    EB["EventBridge&lt;br/&gt;every 15 min"] --> Ingest
+
+    subgraph Ingest["Email Ingestion"]
+        IngestGmail["ingest-emails&lt;br/&gt;(Gmail)"]
+        IngestOutlook["ingest-emails-outlook&lt;br/&gt;(Outlook)"]
+    end
+
+    Ingest --> Direction{"Determine&lt;br/&gt;Direction"}
+
+    Direction -->|INBOUND| FilterIn["filter-inbound&lt;br/&gt;(5 checks: newsletter,&lt;br/&gt;marketing, system,&lt;br/&gt;meeting, auto-reply)"]
+    Direction -->|OUTBOUND| FilterOut["filter-outbound&lt;br/&gt;(4 checks: bounce,&lt;br/&gt;unsub, auto-ack, internal)"]
+
+    FilterIn --> FilterTeam["filter-team-members&lt;br/&gt;(remove internal)"]
+    FilterOut --> FilterTeam
+
+    FilterTeam --> Blacklist{"Blacklist Check&lt;br/&gt;(4 layers)"}
+
+    Blacklist -->|"blocked"| Review["Review Queue&lt;br/&gt;(HITL moderation)"]
+    Blacklist -->|"pass"| FindContact["find-contact&lt;br/&gt;(by email)"]
+
+    FindContact -->|"found"| PrepActivity["prepare-email-activity"]
+    FindContact -->|"not found (email)"| Terminal["Terminal&lt;br/&gt;(no contact match)"]
+    FindContact -->|"not found (meeting)"| CreateContact["create-contact"]
+    CreateContact --> PrepActivity
+
+    PrepActivity --> LogActivity["log-email-activity&lt;br/&gt;(SHA-256 dedup)"]
+    LogActivity --> FlagDeal["flag-deal&lt;br/&gt;(set 'New contact activity')"]
+
+    FlagDeal -->|"triggers re-plan"| Planner["Outreach Planner&lt;br/&gt;(next cycle)"]
+
+    subgraph BlacklistLayers["Blacklist: 4 Layers"]
+        BL1["Contact blacklist (SSM)"]
+        BL2["Domain blacklist (20 defaults + SSM)"]
+        BL3["Pattern blacklist (12 regex + SSM)"]
+        BL4["Airtable 'Do Not Contact' flag"]
+    end
+
+    Blacklist -.-> BlacklistLayers
+
+    classDef filter fill:#fef3c7,stroke:#d97706,color:#000
+    classDef action fill:#dcfce7,stroke:#16a34a,color:#000
+    classDef blocked fill:#fee2e2,stroke:#dc2626,color:#000
+
+    class FilterIn,FilterOut,FilterTeam,Blacklist filter
+    class LogActivity,FlagDeal,PrepActivity action
+    class Review,Terminal blocked
+      </pre>
+    </div>
+
+    <div class="card card-red">
+      <h3>Blacklist Layers</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Source</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>SSM</td><td>Contact-level blacklist (specific email addresses)</td></tr>
+          <tr><td>2</td><td>SSM + defaults</td><td>Domain blacklist (20 built-in domains + custom)</td></tr>
+          <tr><td>3</td><td>SSM + defaults</td><td>Pattern blacklist (12 regex patterns + custom)</td></tr>
+          <tr><td>4</td><td>Airtable</td><td>"Do Not Contact" flag on Contact record</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 8: AIRTABLE DATA MODEL -->
+  <section id="airtable-data-model">
+    <h2><span class="section-tag">Section 8</span>Airtable Data Model</h2>
+    <p>Entity relationships in the CRM.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+erDiagram
+    Campaign ||--o{ Deal : contains
+    Deal }o--o{ Contact : "linked to"
+    Deal ||--o{ Task : "has tasks"
+    Contact ||--o{ ContactActivityLog : "has activity"
+    Deal ||--o{ ContactActivityLog : "referenced by"
+    Organization ||--o{ Contact : employs
+    Task }o--|| Employee : "assigned to"
+    Deal ||--o{ Note : "has notes"
+    Contact ||--o{ Note : "has notes"
+
+    Campaign {
+        string Name
+        string Status
+        string Description
+        linked OutreachPlan
+    }
+
+    Deal {
+        string Name
+        string Stage
+        string Status
+        checkbox NeedsOutreachPlanUpdate
+        checkbox NewContactActivity
+        checkbox NeedsCRMEnrichment
+        string ProcessingLock
+        datetime LastActivityAt
+        linked Campaign
+        linked Contacts
+    }
+
+    Contact {
+        string FirstName
+        string LastName
+        string EmailWork
+        string EmailPersonal
+        string Phone
+        checkbox DoNotContact
+        linked Deals
+        linked Organization
+    }
+
+    Organization {
+        string Name
+        string Website
+        string Industry
+    }
+
+    Task {
+        string Name
+        string Type
+        string Status
+        string HITLStatus
+        date DueDate
+        string Priority
+        text DefinitionOfDone
+        linked Assignee
+        linked Deal
+    }
+
+    ContactActivityLog {
+        string ActivityType
+        text Details
+        string Hash
+        string ThreadId
+        datetime Date
+        linked Contact
+        linked Deal
+    }
+
+    Employee {
+        string Name
+        string Email
+    }
+
+    Note {
+        string Title
+        text Content
+    }
+      </pre>
+    </div>
+
+    <div class="card card-green">
+      <h3>Core Entities</h3>
+      <div class="grid-2">
+        <div>
+          <h4>Pipeline Entities</h4>
+          <ul>
+            <li><strong>Campaign</strong> -- groups related deals under a single outreach initiative</li>
+            <li><strong>Deal</strong> -- central pipeline record tracking stage, status, and flags</li>
+            <li><strong>Task</strong> -- individual outreach actions assigned to employees</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Entities</h4>
+          <ul>
+            <li><strong>Contact</strong> -- prospect or customer with email/phone</li>
+            <li><strong>Organization</strong> -- company that employs contacts</li>
+            <li><strong>ContactActivityLog</strong> -- email/meeting history with SHA-256 dedup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 9: EVENTBRIDGE SCHEDULES -->
+  <section id="eventbridge-schedules">
+    <h2><span class="section-tag">Section 9</span>EventBridge Schedule Map</h2>
+    <p>All scheduled triggers across the platform.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+gantt
+    title EventBridge Schedules (Recurring)
+    dateFormat HH:mm
+    axisFormat %H:%M
+
+    section Outreach Executor
+    Every 1 min           :crit, 00:00, 1m
+
+    section Outreach Planner
+    Every 5 min           :active, 00:00, 5m
+
+    section HITL Processor
+    Every 2 min           :00:00, 2m
+
+    section CRM Enricher
+    Every 10 min          :00:00, 10m
+
+    section Cascade Shift Checker
+    Every 5 min           :00:00, 5m
+
+    section Comm Logging (Email)
+    Every 15 min          :00:00, 15m
+
+    section Stale HITL Check
+    Every 1 hour          :00:00, 60m
+
+    section Stage Manager
+    Daily 6 AM UTC        :milestone, 06:00, 0m
+      </pre>
+    </div>
+
+    <div class="card card-accent">
+      <h3>Schedule Summary</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Frequency</th>
+            <th>Stack</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Outreach Executor</td><td>Every 1 min</td><td>Outreach</td></tr>
+          <tr><td>Outreach Planner</td><td>Every 5 min</td><td>Outreach</td></tr>
+          <tr><td>HITL Processor</td><td>Every 2 min</td><td>Outreach</td></tr>
+          <tr><td>CRM Enricher</td><td>Every 10 min</td><td>Outreach</td></tr>
+          <tr><td>Cascade Shift Checker</td><td>Every 5 min</td><td>Outreach</td></tr>
+          <tr><td>Comm Logging (Email)</td><td>Every 15 min</td><td>CommLogging</td></tr>
+          <tr><td>Stale HITL Check</td><td>Every 1 hour</td><td>Outreach</td></tr>
+          <tr><td>Stage Manager</td><td>Daily 6 AM UTC</td><td>StageManager</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 10: MULTI-CUSTOMER DEPLOYMENT -->
+  <section id="multi-customer">
+    <h2><span class="section-tag">Section 10</span>Multi-Customer Deployment Model</h2>
+    <p>How the same codebase serves multiple customers.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    subgraph Config["config/customers/"]
+        BB_DEV["brain-bridge-dev.json"]
+        BB_PROD["brain-bridge-prod.json"]
+        AHS_PROD["aginghs-prod.json"]
+        TWBA_DEV["twba-dev.json"]
+        TWBA_PROD["twba-prod.json"]
+    end
+
+    subgraph CDKApp["cdk/app.py"]
+        LoadConfig["Load customer config"]
+        Validate["config_validator.py"]
+        ResolveAIT["agent_lambda_resolver.py&lt;br/&gt;(SSM lookup)"]
+    end
+
+    Config --> LoadConfig --> Validate --> ResolveAIT
+
+    ResolveAIT --> Deploy
+
+    subgraph Deploy["Per-Customer Stack Set"]
+        direction LR
+        subgraph BB["BrainBridge-Dev"]
+            BB_O["Outreach"]
+            BB_C["Campaign"]
+            BB_S["StageManager"]
+            BB_CM["Communication"]
+            BB_CL["CommLogging"]
+        end
+        subgraph AHS["Aginghs-Prod"]
+            AHS_O["Outreach"]
+            AHS_C["Campaign"]
+            AHS_S["StageManager"]
+            AHS_CM["Communication"]
+            AHS_CL["CommLogging"]
+        end
+    end
+
+    subgraph Isolation["Customer Isolation"]
+        Naming["Resource naming:&lt;br/&gt;bb-gtm-{customer}-{env}-{module}-{resource}"]
+        NoExports["No CDK cross-stack exports&lt;br/&gt;(ARN construction instead)"]
+        RuntimeResolve["Employee IDs resolved&lt;br/&gt;at Lambda runtime"]
+    end
+
+    classDef config fill:#fef3c7,stroke:#d97706,color:#000
+    classDef stack fill:#dbeafe,stroke:#2563eb,color:#000
+
+    class BB_DEV,BB_PROD,AHS_PROD,TWBA_DEV,TWBA_PROD config
+    class BB_O,BB_C,BB_S,BB_CM,BB_CL,AHS_O,AHS_C,AHS_S,AHS_CM,AHS_CL stack
+      </pre>
+    </div>
+
+    <div class="card card-green">
+      <h3>Isolation Mechanisms</h3>
+      <ul>
+        <li><strong>Resource naming</strong> -- all AWS resources include customer and environment in the name: <code>bb-gtm-{customer}-{env}-{module}-{resource}</code></li>
+        <li><strong>No CDK cross-stack exports</strong> -- stacks reference each other by constructing ARNs from naming conventions, avoiding CloudFormation coupling</li>
+        <li><strong>Runtime resolution</strong> -- Employee IDs, sender configs, and other customer-specific data are resolved at Lambda runtime, not baked into the deployment</li>
+        <li><strong>Config-driven</strong> -- each customer has a dedicated JSON config file that drives all stack parameters</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECTION 11: MCP INTEGRATION -->
+  <section id="mcp-integration">
+    <h2><span class="section-tag">Section 11</span>MCP Lambda Integration Layer</h2>
+    <p>How all modules access Airtable through the shared MCP service.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart LR
+    subgraph Callers["BB-GTM Modules"]
+        OM["Outreach Manager"]
+        CC["Campaign Creator"]
+        SM["Stage Manager"]
+        CL["Comm Logging"]
+    end
+
+    subgraph MCPLayer["MCP Lambdas (bb-os repo)"]
+        List["bb-os-mcp-at-list-{env}"]
+        Get["bb-os-mcp-at-get-{env}"]
+        Create["bb-os-mcp-at-create-{env}"]
+        Update["bb-os-mcp-at-update-{env}"]
+        Delete["bb-os-mcp-at-delete-{env}"]
+        Schema["bb-os-mcp-at-schema-{env}"]
+        SlackPost["bb-os-mcp-slack-post-{env}"]
+    end
+
+    subgraph AirtableDB["Airtable"]
+        AT_BB["Brain Bridge Base"]
+        AT_AHS["AgingHS Base"]
+        AT_TWBA["TWBA Base"]
+    end
+
+    OM --> List & Get & Create & Update
+    CC --> List & Get & Create & Update
+    SM --> List & Get & Update
+    CL --> List & Get & Create & Update
+
+    List & Get & Create & Update & Delete --> AirtableDB
+    Schema --> AirtableDB
+
+    OM & CC --> SlackPost --> Slack["Slack API"]
+
+    subgraph SchemaNote["Dynamic Schema Discovery"]
+        Note["MCP Lambdas use dynamic&lt;br/&gt;schema discovery via pyairtable&lt;br/&gt;metadata API. Writable fields&lt;br/&gt;pass through automatically.&lt;br/&gt;Readonly fields (formulas,&lt;br/&gt;rollups, lookups) filtered out.&lt;br/&gt;1-hour in-memory cache per Lambda."]
+    end
+
+    classDef caller fill:#dbeafe,stroke:#2563eb,color:#000
+    classDef mcp fill:#f0e6ff,stroke:#7c3aed,color:#000
+    classDef db fill:#dcfce7,stroke:#16a34a,color:#000
+    classDef note fill:#dcfce7,stroke:#16a34a,color:#000
+
+    class OM,CC,SM,CL caller
+    class List,Get,Create,Update,Delete,Schema,SlackPost mcp
+    class AT_BB,AT_AHS,AT_TWBA db
+    class Note note
+      </pre>
+    </div>
+
+    <div class="card card-accent">
+      <h3>MCP Lambda Operations</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Lambda</th>
+            <th>Operation</th>
+            <th>Used By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>bb-os-mcp-at-list-{env}</code></td><td>Query records with filters</td><td>All modules</td></tr>
+          <tr><td><code>bb-os-mcp-at-get-{env}</code></td><td>Fetch single record by ID</td><td>All modules</td></tr>
+          <tr><td><code>bb-os-mcp-at-create-{env}</code></td><td>Create new records</td><td>Outreach, Campaign, CommLogging</td></tr>
+          <tr><td><code>bb-os-mcp-at-update-{env}</code></td><td>Update existing records</td><td>All modules</td></tr>
+          <tr><td><code>bb-os-mcp-at-delete-{env}</code></td><td>Delete records</td><td>Admin only</td></tr>
+          <tr><td><code>bb-os-mcp-at-schema-{env}</code></td><td>Dynamic schema discovery</td><td>All Lambdas (internal cache)</td></tr>
+          <tr><td><code>bb-os-mcp-slack-post-{env}</code></td><td>Post Slack notifications</td><td>Outreach, Campaign</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card-amber">
+      <h3>Schema Caching</h3>
+      <p>Each MCP Lambda maintains its own in-memory schema cache with a 1-hour TTL. After adding new Airtable fields, you must force cold starts on the relevant Lambdas by updating their description (never use <code>--environment Variables={...}</code> as this replaces all env vars). Alternatively, invoke the schema Lambda with <code>"refresh": true</code> to refresh its cache specifically.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">
+  <p>BB-GTM System Architecture -- Brain Bridge</p>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#242836',
+      primaryTextColor: '#e2e4ea',
+      primaryBorderColor: '#6c63ff',
+      lineColor: '#6c63ff',
+      secondaryColor: '#1a1d27',
+      tertiaryColor: '#1a1d27',
+      noteBkgColor: '#242836',
+      noteTextColor: '#e2e4ea',
+      noteBorderColor: '#2e3344',
+      actorBkg: '#242836',
+      actorBorder: '#6c63ff',
+      actorTextColor: '#e2e4ea',
+      signalColor: '#6c63ff',
+      signalTextColor: '#e2e4ea'
+    },
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis'
+    },
+    sequence: {
+      useMaxWidth: true,
+      actorMargin: 50,
+      noteMargin: 10,
+      messageMargin: 35
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BB-GTM Customer Onboarding Guide | Brain Bridge</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface-2: #242836;
+      --border: #2e3344;
+      --text: #e2e4ea;
+      --text-muted: #8b8fa3;
+      --accent: #6c63ff;
+      --accent-light: #8b83ff;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --blue: #60a5fa;
+      --cyan: #22d3ee;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a1d27 0%, #1e2235 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-light);
+    }
+
+    .toc-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.25rem 0;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--accent-light); }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--text);
+    }
+
+    h2 .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--text-muted);
+    }
+
+    p { margin-bottom: 1rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card-green {
+      border-left: 3px solid var(--green);
+    }
+
+    .card-amber {
+      border-left: 3px solid var(--amber);
+    }
+
+    .card-red {
+      border-left: 3px solid var(--red);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .badge-required { background: rgba(248, 113, 113, 0.15); color: var(--red); }
+    .badge-optional { background: rgba(251, 191, 36, 0.15); color: var(--amber); }
+    .badge-auto { background: rgba(52, 211, 153, 0.15); color: var(--green); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      background: var(--surface-2);
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:hover td { background: rgba(108, 99, 255, 0.03); }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85em;
+      background: var(--surface-2);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--cyan);
+    }
+
+    pre {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+    }
+
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .mermaid-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .mermaid-wrapper .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .callout {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .callout-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .email-option {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .email-option h4 {
+      margin-top: 0;
+      color: var(--text);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .step-list {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: step;
+    }
+
+    .step-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .toc-columns, .grid-2 { grid-template-columns: 1fr; }
+      .header h1 { font-size: 1.8rem; }
+      .container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>BB-GTM Customer Onboarding Guide</h1>
+  <p>Everything needed to deploy Brain Bridge GTM for a new customer -- from account setup through live deployment.</p>
+</div>
+
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>Contents</h2>
+    <div class="toc-columns">
+      <div>
+        <a href="#overview">High-Level Overview</a>
+        <a href="#part1">Part 1: Pre-Deployment Setup</a>
+        <a href="#accounts">1.1 External Account Setup</a>
+        <a href="#airtable-setup">1.2 Airtable Base Setup</a>
+        <a href="#config-table">1.3 Airtable Config Table</a>
+        <a href="#config-file">1.4 Customer Config File</a>
+        <a href="#mcp-setup">1.5 MCP Lambda Config</a>
+        <a href="#ssm-secrets">1.6 SSM Parameters &amp; Secrets</a>
+      </div>
+      <div>
+        <a href="#email-options">1.7 Email Provider Options</a>
+        <a href="#part2">Part 2: Deployment</a>
+        <a href="#deploy-steps">2.1 CDK Deployment Steps</a>
+        <a href="#ai-teammates">2.2 AI Teammates Deployment</a>
+        <a href="#oauth-flow">2.3 Email OAuth Flow</a>
+        <a href="#verification">2.4 Verification Checklist</a>
+        <a href="#reference">Quick Reference</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2><span class="section-tag">Overview</span>High-Level Onboarding Flow</h2>
+    <p>Onboarding a new customer involves two distinct phases: <strong>setup</strong> (accounts, Airtable, config files, secrets) and <strong>deployment</strong> (CDK stacks, AI Teammates, OAuth, verification). The setup phase is where most of the work lives.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    subgraph SETUP["PART 1: PRE-DEPLOYMENT SETUP"]
+        direction TB
+        A["Create External Accounts\n(Airtable, Apollo, Slack, Email)"] --> B["Clone & Configure\nAirtable Template Base"]
+        B --> C["Populate Config Table\n(owner_context_doc, system_defaults)"]
+        C --> D["Create Customer Config JSON\n(config/customers/slug-env.json)"]
+        D --> E["Add Customer to MCP\n(bb-mcp config)"]
+        E --> F["Create SSM Parameters\n& Secrets Manager Entries"]
+    end
+
+    subgraph DEPLOY["PART 2: DEPLOYMENT"]
+        direction TB
+        G["CDK Deploy Round 1\n(5 stacks, creates OAuth endpoints)"] --> H["Complete Email OAuth\n(sender authenticates via browser)"]
+        H --> I["Deploy AI Teammates\n(separate repo)"]
+        I --> J["CDK Deploy Round 2\n(wires agent Lambda ARNs)"]
+        J --> K["Verification & Go-Live\n(test campaign, enable schedules)"]
+    end
+
+    SETUP --> DEPLOY
+
+    style SETUP fill:#1a1d27,stroke:#6c63ff,stroke-width:2px,color:#e2e4ea
+    style DEPLOY fill:#1a1d27,stroke:#34d399,stroke-width:2px,color:#e2e4ea
+    style A fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style B fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style C fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style D fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style E fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style F fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style G fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style H fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style I fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style J fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style K fill:#242836,stroke:#2e3344,color:#e2e4ea
+      </pre>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PART 1: SETUP -->
+  <!-- ============================================================ -->
+  <section id="part1">
+    <h2><span class="section-tag">Part 1</span>Pre-Deployment Setup</h2>
+    <p>This is the bulk of onboarding. Every item here must be completed before running <code>cdk deploy</code>.</p>
+  </section>
+
+  <!-- 1.1 External Accounts -->
+  <section id="accounts">
+    <h3>1.1 External Account Setup</h3>
+    <p>Each customer needs accounts (or access) on these external services before anything else.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart LR
+    subgraph REQUIRED["REQUIRED ACCOUNTS"]
+        AT["Airtable\n(CRM data store)"]
+        SL["Slack\n(visibility & alerts;\noptional for core pipeline)"]
+        EM["Email Provider\n(Gmail OR Outlook)"]
+    end
+
+    subgraph CONDITIONAL["CONDITIONAL"]
+        AP["Apollo.io\n(required for campaign\ncontact sourcing)"]
+    end
+
+    subgraph OPTIONAL["OPTIONAL ACCOUNTS"]
+        HS["HubSpot\n(CRM sync)"]
+    end
+
+    AT --> SEC["Store credentials\nin AWS Secrets Manager"]
+    SL --> SEC
+    EM --> SEC
+    AP --> SEC
+
+    style REQUIRED fill:#1a1d27,stroke:#f87171,stroke-width:2px,color:#e2e4ea
+    style CONDITIONAL fill:#1a1d27,stroke:#60a5fa,stroke-width:2px,color:#e2e4ea
+    style OPTIONAL fill:#1a1d27,stroke:#fbbf24,stroke-width:2px,color:#e2e4ea
+    style AT fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style SL fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style EM fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style AP fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style HS fill:#242836,stroke:#2e3344,color:#e2e4ea
+    style SEC fill:#242836,stroke:#6c63ff,color:#e2e4ea
+      </pre>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Service</th><th>What's Needed</th><th>Where It Goes</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Airtable</strong></td>
+          <td>Personal Access Token with <code>data.records:read</code>, <code>data.records:write</code>, <code>schema.bases:read</code> scopes. Access to the cloned base.</td>
+          <td>Secrets Manager: <code>bb-os-mcp-at/{slug}/{env}/api-key</code></td>
+          <td><span class="badge badge-required">Required</span></td>
+        </tr>
+        <tr>
+          <td><strong>Slack</strong></td>
+          <td>Bot token (<code>xoxb-...</code>) with <code>chat:write</code>, <code>chat:write.public</code> scopes. The bot must be added to the HITL and alerts channels. <strong>Technically optional</strong> -- the core pipeline works entirely through Airtable. Slack provides visibility, alerts, and HITL reminders but is not required for outreach execution. However, Slack <em>is</em> required if using the Campaign Creator (for campaign creation notifications).</td>
+          <td>Secrets Manager: <code>ait/{slug}/{env}/slack-credentials</code> (JSON: <code>{"SLACK_BOT_TOKEN": "xoxb-..."}</code>)</td>
+          <td><span class="badge badge-optional">Optional*</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gmail</strong></td>
+          <td>Google Cloud OAuth 2.0 Client ID + Secret. Gmail API enabled. Sender authenticates via deployed OAuth page.</td>
+          <td>Secrets Manager: <code>bb-gtm-{slug}-{env}-comm-gmail-credentials</code> (auto-populated by OAuth Lambda)</td>
+          <td><span class="badge badge-required">Required (if Gmail)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Outlook / M365</strong></td>
+          <td>Azure App Registration with <code>Mail.Send</code>, <code>Mail.Read</code>, <code>offline_access</code>, <code>User.Read</code> delegated permissions. Admin consent granted.</td>
+          <td>Secrets Manager: <code>bb-gtm-{slug}-{env}-comm-outlook-credentials</code> (auto-populated by OAuth Lambda)</td>
+          <td><span class="badge badge-required">Required (if Outlook)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Apollo.io</strong></td>
+          <td>API key for contact search and enrichment. <strong>Required only if using the Campaign Creator to source new contacts.</strong> If the customer provides their own contact lists (e.g., via data import), Apollo is not needed.</td>
+          <td>Secrets Manager: <code>apollo-api-key</code> (shared) or customer-specific name</td>
+          <td><span class="badge badge-optional">Conditional</span></td>
+        </tr>
+        <tr>
+          <td><strong>HubSpot</strong></td>
+          <td>API credentials for CRM sync (if customer uses HubSpot)</td>
+          <td>Configured via <code>hubspot</code> section in customer config + MCP Lambdas</td>
+          <td><span class="badge badge-optional">Optional</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 1.2 Airtable Base Setup -->
+  <section id="airtable-setup">
+    <h3>1.2 Airtable Base Setup</h3>
+    <p>The Airtable base is the customer's CRM -- every AI agent reads and writes to it. Start by cloning the template base.</p>
+
+    <div class="callout">
+      <span class="callout-icon">*</span>
+      <div><strong>Template Base ID:</strong> <code>appUPjXzr45sFr79j</code> -- Clone this in the Airtable UI, then configure via API.</div>
+    </div>
+
+    <h4>Required Tables (12 total -- all included in template)</h4>
+    <table>
+      <thead>
+        <tr><th>Table</th><th>Purpose</th><th>Key Fields</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Deals</strong></td>
+          <td>Sales opportunities (core entity)</td>
+          <td>Name, Status (linked to Pipeline Stages), Assignee, Outreach Plan, Processing Lock</td>
+        </tr>
+        <tr>
+          <td><strong>Tasks</strong></td>
+          <td>Actions per deal (email sends, research, etc.)</td>
+          <td>Task, Status, Assignee, HITL Brief/Response/Status, Task Type</td>
+        </tr>
+        <tr>
+          <td><strong>Contacts</strong></td>
+          <td>People at prospect organizations</td>
+          <td>First/Last Name, Email (Work), Title, Organization, DO NOT CONTACT</td>
+        </tr>
+        <tr>
+          <td><strong>Organizations</strong></td>
+          <td>Prospect/customer companies</td>
+          <td>Name, Industry, Website, Contacts</td>
+        </tr>
+        <tr>
+          <td><strong>Campaigns</strong></td>
+          <td>Groups of deals sharing outreach strategy</td>
+          <td>Name, Status, Campaign Plan, Message Guardrails, Owner</td>
+        </tr>
+        <tr>
+          <td><strong>Pipeline Stages</strong></td>
+          <td>Stage definitions (separate table, not a select)</td>
+          <td>Stage Name, Description, Exit Criteria, Display Order</td>
+        </tr>
+        <tr>
+          <td><strong>Employees</strong></td>
+          <td>Team members + AI agent records</td>
+          <td>Name, Email, Status (Employee / AI Teammate)</td>
+        </tr>
+        <tr>
+          <td><strong>Deal Contacts</strong></td>
+          <td>Junction: contact roles per deal</td>
+          <td>Deal, Contact, Role (Champion / Blocker / etc.)</td>
+        </tr>
+        <tr>
+          <td><strong>Contact Activity Logs</strong></td>
+          <td>Email/meeting/activity history</td>
+          <td>Contact, Activity Type, Details, Hash, Message ID</td>
+        </tr>
+        <tr>
+          <td><strong>Deal Stage Logs</strong></td>
+          <td>Audit trail of stage transitions</td>
+          <td>Deal, From Stage, To Stage, Timestamp</td>
+        </tr>
+        <tr>
+          <td><strong>Notes</strong></td>
+          <td>Freeform notes on contacts/orgs/deals</td>
+          <td>Content, linked entities</td>
+        </tr>
+        <tr>
+          <td><strong>Config</strong></td>
+          <td>Key-value runtime configuration (AI knowledge base)</td>
+          <td>Key (singleLineText), Value (richText)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Required Data to Populate After Cloning</h4>
+    <div class="grid-2">
+      <div class="card card-accent">
+        <h4>Pipeline Stages</h4>
+        <p>Create one record per stage from the customer's sales process. Each needs:</p>
+        <ul>
+          <li><strong>Stage Name</strong> -- e.g., "Prospecting", "Qualified", "Proposal"</li>
+          <li><strong>Description</strong> -- what this stage means</li>
+          <li><strong>Exit Criteria</strong> -- what must be true to advance</li>
+          <li><strong>Display Order</strong> -- numeric sort (1 = first)</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <h4>Employee Records</h4>
+        <p>Create records for AI teammates and human reviewers:</p>
+        <ul>
+          <li><strong>Outreach Planner</strong> -- Status: "AI Teammate"</li>
+          <li><strong>Gratje</strong> (executor) -- Status: "AI Teammate"</li>
+          <li><strong>Human reviewer(s)</strong> -- Status: "Employee"</li>
+          <li>Any additional senders (for multi-sender setups)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Critical Select Field Options</h4>
+    <p>These exact values are hardcoded in Lambda functions and must exist as select options:</p>
+    <table>
+      <thead>
+        <tr><th>Table.Field</th><th>Required Options</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tasks.Status</td>
+          <td><code>Not Started</code> / <code>In Progress</code> / <code>Blocked</code> / <code>Completed</code> / <code>Archived</code> / <code>Human Review</code> / <code>Validating</code></td>
+        </tr>
+        <tr>
+          <td>Tasks.Task Type</td>
+          <td><code>Send Email</code> / <code>Email Reply</code> / <code>Research</code> / <code>Write Content</code> / <code>Use LLM</code> / <code>Human Communication</code></td>
+        </tr>
+        <tr>
+          <td>Tasks.HITL Status</td>
+          <td><code>Pending Review</code> / <code>Response Submitted</code> / <code>Processed</code> / <code>Completed</code></td>
+        </tr>
+        <tr>
+          <td>Employees.Status</td>
+          <td><code>Contractor</code> / <code>Employee</code> / <code>Inactive</code> / <code>AI Teammate</code></td>
+        </tr>
+        <tr>
+          <td>Campaigns.Status</td>
+          <td><code>Not Started</code> / <code>In Progress</code> / <code>Done</code> / <code>Archived</code></td>
+        </tr>
+        <tr>
+          <td>Deal Contacts.Role</td>
+          <td><code>Champion</code> / <code>Blocker</code> / <code>Economic Buyer</code> / <code>Technical Evaluator</code> / <code>End User</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 1.3 Config Table -->
+  <section id="config-table">
+    <h3>1.3 Airtable Config Table Records</h3>
+    <p>The Config table is the AI's runtime knowledge base. Every agent reads it on every cycle. There are <strong>7 records total</strong>.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart LR
+    subgraph CUSTOM["CUSTOM -- Write Per Customer"]
+        OC["owner_context_doc\n(Company knowledge base)"]
+        SD["system_defaults\n(AI operating constitution)"]
+    end
+
+    subgraph TEMPLATE["TEMPLATE -- Pre-populated in Clone"]
+        ST["system_defaults_template"]
+        OPT["outreach_plan_template"]
+        CPT["campaign_plan_template"]
+        QS["qualification_system"]
+    end
+
+    subgraph LATER["CREATED AFTER OAUTH"]
+        TS["tone_style_guide_\nsender@email.com"]
+    end
+
+    CUSTOM --> |"Phase 4"| DB[(Config Table)]
+    TEMPLATE --> |"Verify intact"| DB
+    LATER --> |"Phase 8"| DB
+
+    style CUSTOM fill:#242836,stroke:#f87171,stroke-width:2px,color:#e2e4ea
+    style TEMPLATE fill:#242836,stroke:#34d399,stroke-width:2px,color:#e2e4ea
+    style LATER fill:#242836,stroke:#fbbf24,stroke-width:2px,color:#e2e4ea
+    style DB fill:#242836,stroke:#6c63ff,color:#e2e4ea
+    style OC fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style SD fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style ST fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style OPT fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style CPT fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style QS fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style TS fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+      </pre>
+    </div>
+
+    <div class="card card-red">
+      <h4>Record 1: <code>owner_context_doc</code> <span class="badge badge-required">Custom</span></h4>
+      <p>The company knowledge base read by AI Planner and Campaign Creator. Must cover:</p>
+      <ul>
+        <li>Who we are (mission, core belief, differentiation)</li>
+        <li>Target market (industries, company sizes, decision-maker titles)</li>
+        <li>Value propositions (one-liners + role-specific value)</li>
+        <li>Service offerings and pricing</li>
+        <li>Case studies (anonymized: industry, result, key insight)</li>
+        <li>Key metrics and proof points</li>
+        <li>Objection handling (common objections + responses)</li>
+        <li>Tone and style guide (how the company communicates)</li>
+      </ul>
+    </div>
+
+    <div class="card card-red">
+      <h4>Record 2: <code>system_defaults</code> <span class="badge badge-required">Custom</span></h4>
+      <p>The AI operating constitution. Copy from <code>system_defaults_template</code>, then customize three sections:</p>
+      <ul>
+        <li><strong>Section 4 -- Role Registry:</strong> HITL reviewer name, email, Slack handle, SLA, availability</li>
+        <li><strong>Section 8 -- Sending Identity:</strong> Sender email, display name, title, Secrets Manager alias</li>
+        <li><strong>Section 11 -- Pipeline Stage Index:</strong> All stages with description, entry/exit criteria, authority level</li>
+      </ul>
+      <p>All other sections (authority levels, task matrix, timing, reply classification, etc.) are copied verbatim.</p>
+    </div>
+
+    <div class="card card-green">
+      <h4>Records 3-6: Template Records <span class="badge badge-auto">Pre-populated</span></h4>
+      <table>
+        <thead><tr><th>Key</th><th>Purpose</th><th>Edit?</th></tr></thead>
+        <tbody>
+          <tr><td><code>system_defaults_template</code></td><td>Blank template for generating system_defaults</td><td>Never</td></tr>
+          <tr><td><code>outreach_plan_template</code></td><td>8-section structure for AI outreach plans</td><td>Never</td></tr>
+          <tr><td><code>campaign_plan_template</code></td><td>16-section campaign constitution template</td><td>Never</td></tr>
+          <tr><td><code>qualification_system</code></td><td>F.L.O.O.R. + B.A.N.T. qualification frameworks</td><td>Rarely</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card-amber">
+      <h4>Record 7: <code>tone_style_guide_{sender_email}</code> <span class="badge badge-optional">Post-OAuth</span></h4>
+      <p>Key format: <code>tone_style_guide_jane@acme.com</code>. Generated from real sent emails after OAuth is confirmed. One record per sender. Covers tone, typical length/structure, greetings, CTAs, patterns to preserve and avoid.</p>
+    </div>
+
+    <div class="card card-accent">
+      <h4>Tip: Using NotebookLM to Generate Config Content</h4>
+      <p>The <code>owner_context_doc</code> and <code>system_defaults</code> records require deep company knowledge. An efficient approach:</p>
+      <ol>
+        <li>Create a <strong>Google NotebookLM</strong> notebook and upload all past sales calls, discovery recordings, and company materials.</li>
+        <li>Export the Config record templates from the <strong>Airtable template base</strong> (<code>appUPjXzr45sFr79j</code>) -- specifically the <code>system_defaults_template</code>, <code>outreach_plan_template</code>, and <code>campaign_plan_template</code> Values.</li>
+        <li>Feed those templates to NotebookLM and ask it to fill them based on the uploaded source material.</li>
+        <li>Review and refine the output with the customer before pasting into Airtable Config records.</li>
+      </ol>
+      <p>This approach produces higher-quality, more authentic config content than manual interviews alone, especially for the owner context doc and tone/style profiles.</p>
+    </div>
+  </section>
+
+  <!-- 1.4 Customer Config File -->
+  <section id="config-file">
+    <h3>1.4 Customer Config File</h3>
+    <p>Each customer-environment pair needs a JSON config file at <code>config/customers/{slug}-{env}.json</code>. This is the central configuration that CDK reads to deploy all stacks.</p>
+
+    <div class="callout">
+      <span class="callout-icon">*</span>
+      <div><strong>Template:</strong> Copy <code>config/customers/_template.json</code> and fill in all fields. The config validator will catch missing required fields at deploy time.</div>
+    </div>
+
+    <h4>Complete Config File Reference</h4>
+    <pre><code>{
+  "customer_id": "{slug}",
+  "environment": "{env}",
+  "description": "{Company Name} - {Environment} environment",
+  "aws_profile": "PowerUser-398105904466",
+  "email_provider": "gmail",       // "gmail" or "outlook"
+
+  "airtable": {
+    "base_id_param": "/bb-gtm/{slug}/airtable-base-id"
+  },
+
+  "slack": {
+    "alerts_channel": "gtm-alerts",       // Channel name or ID
+    "hitl_channel": "CXXXXXXXXXX"          // Channel ID (required)
+  },
+
+  "mcp_lambdas": {
+    "at_list": "bb-os-mcp-at-list",        // Shared MCP Lambdas
+    "at_get": "bb-os-mcp-at-get",          // (same for all customers)
+    "at_create": "bb-os-mcp-at-create",
+    "at_update": "bb-os-mcp-at-update"
+  },
+
+  "agent_lambdas": {
+    "gtm_stage_manager": "PLACEHOLDER",    // Filled after AI Teammates deploy
+    "outreach_manager_brain": "PLACEHOLDER",
+    "campaign_creator_brain": "PLACEHOLDER",
+    "task_executor": "PLACEHOLDER",
+    "hitl_processor": "PLACEHOLDER"
+  },
+
+  "stage_manager": {
+    "activity_lookback_days": 180,
+    "owner_context_config_key": "Owner Context",
+    "deal_excluded_fields": ["id", "created_by", "last_updated_by",
+                             "probability", "engagement"],
+    "schedules_enabled": false             // Enable after verification
+  },
+
+  "outreach_manager": {
+    "planner_assignee_name": "Outreach Planner",
+    "executor_assignee_name": "Gratje",
+
+    // --- Ownership Mode (pick one) ---
+    "task_owner_mode": "individual",       // or "deal_owner" or "campaign_owner"
+    "task_owner_name": "{HITL Reviewer Name}",  // Required if mode=individual
+
+    // --- Sender Mode (pick one) ---
+    "sender_mode": "individual",           // or "deal_owner" or "campaign_owner"
+    "sender_employee_name": "{Sender Name}",    // Required if mode=individual
+    "sender_display_name": "{Sender Name}",
+    "sender_title": "{Company Name}",
+    "email_signature_param": "/bb-gtm/{slug}/email-signature",  // Optional SSM
+
+    // --- Intervals & Limits ---
+    "schedule_interval": "rate(2 minutes)",
+    "planner_interval": "rate(2 minutes)",
+    "hitl_poll_interval": "rate(2 minutes)",
+    "enricher_interval": "rate(3 minutes)",
+    "cascade_shift_interval": "rate(5 minutes)",
+    "stale_hitl_check_interval": "rate(1 hour)",
+    "stale_task_check_interval": "rate(15 minutes)",
+    "valid_actions": ["send_email"],
+    "schedules_enabled": false,            // Enable after verification
+
+    // --- Operational Parameters ---
+    "hitl_auto_approve_enabled": false,
+    "max_plan_updates_per_day": 7,
+    "planning_ttl_minutes": 15,
+    "processing_lock_ttl_minutes": 15,
+    "enrichment_ttl_minutes": 15,
+    "max_plan_failures_per_day": 5,
+    "hitl_timeout_hours": 48,
+    "hitl_escalation_hours": 96,
+    "hitl_max_history_rounds": 3,
+    "planner_max_concurrency": 2,
+    "max_executor_tasks_per_run": 50,
+    "restriction_base_cooldown_seconds": 300,
+    "max_task_retries": 3,
+    "stale_task_ttl_minutes": 30
+  },
+
+  "communication": {
+    "email_provider": "gmail",             // Must match top-level
+    "lindy_callback_enabled": false,
+    "email_tracking_interval": "rate(5 minutes)",
+    "schedules_enabled": false             // Enable after verification
+  },
+
+  "campaign_creator": {
+    "apollo_api_key_secret": "apollo-api-key",
+    "outreach_planner_employee_name": "Outreach Planner",
+    "max_contact_concurrency": 5
+  },
+
+  // --- Optional: Field Mappings (if customer uses different field names) ---
+  "field_mappings": {
+    "Deal": { "Pipeline Stage": "Status" },
+    "Campaign": { "Owner": "Assignee" }
+  },
+
+  // --- Optional: HubSpot Sync ---
+  "hubspot": {
+    "enabled": false,
+    "schedules_enabled": false,
+    "sync_interval": "rate(5 minutes)"
+  },
+
+  "monitoring": {
+    "alarms_enabled": false                // Enable after go-live
+  }
+}</code></pre>
+
+    <h4>Ownership & Sender Modes Explained</h4>
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    MODE{"Who sends emails?\nWho reviews HITL?"}
+
+    MODE --> IND["individual\nOne fixed person"]
+    MODE --> DO["deal_owner\nDeal's assignee"]
+    MODE --> CO["campaign_owner\nCampaign's owner"]
+
+    IND --> |"Config needs"| IND_CFG["sender_employee_name\ntask_owner_name\n(hardcoded names)"]
+    DO --> |"Config needs"| DO_CFG["No extra config\n(resolved from Deal.Assignee\nat runtime)"]
+    CO --> |"Config needs"| CO_CFG["No extra config\n(resolved from Campaign.Owner\nat runtime)"]
+
+    style MODE fill:#242836,stroke:#6c63ff,color:#e2e4ea
+    style IND fill:#242836,stroke:#60a5fa,color:#e2e4ea
+    style DO fill:#242836,stroke:#34d399,color:#e2e4ea
+    style CO fill:#242836,stroke:#fbbf24,color:#e2e4ea
+    style IND_CFG fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style DO_CFG fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style CO_CFG fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+      </pre>
+    </div>
+
+    <table>
+      <thead><tr><th>Mode</th><th>Best For</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>individual</code></td><td>Single-sender companies, solopreneurs</td><td>AgingHS: Erin Walsh sends all emails, Tripp Shannon reviews all HITL</td></tr>
+        <tr><td><code>deal_owner</code></td><td>Companies where each rep owns their deals</td><td>Each deal's assignee sends their own outreach</td></tr>
+        <tr><td><code>campaign_owner</code></td><td>Multi-sender campaigns</td><td>Brain Bridge: campaign owner sends and reviews for their campaigns</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Config Validation</h4>
+    <p>The CDK config validator (<code>cdk/helpers/config_validator.py</code>) checks all required fields before synthesis. Required sections:</p>
+    <table>
+      <thead><tr><th>Section</th><th>Required Fields</th></tr></thead>
+      <tbody>
+        <tr><td><code>airtable</code></td><td><code>base_id_param</code></td></tr>
+        <tr><td><code>slack</code></td><td><code>hitl_channel</code></td></tr>
+        <tr><td><code>mcp_lambdas</code></td><td><code>at_list</code>, <code>at_get</code>, <code>at_create</code>, <code>at_update</code></td></tr>
+        <tr><td><code>agent_lambdas</code></td><td><code>gtm_stage_manager</code>, <code>outreach_manager_brain</code>, <code>task_executor</code>, <code>hitl_processor</code></td></tr>
+        <tr><td><code>outreach_manager</code></td><td><code>planner_assignee_name</code>, <code>executor_assignee_name</code>, <code>task_owner_mode</code>, <code>sender_mode</code></td></tr>
+        <tr><td><code>communication</code></td><td><code>email_provider</code> (gmail/outlook/lindy)</td></tr>
+        <tr><td><code>campaign_creator</code></td><td><code>apollo_api_key_secret</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 1.5 MCP Setup -->
+  <section id="mcp-setup">
+    <h3>1.5 MCP Lambda Configuration</h3>
+    <p>The MCP Lambdas are shared across all customers. To add a new customer, update the config in the <strong>bb-mcp</strong> repo.</p>
+
+    <div class="card card-accent">
+      <h4>File: <code>bb-mcp/packages/airtable-bb-os/cdk/config/prod.json</code></h4>
+      <p>Add a new entry to the <code>customers</code> object:</p>
+      <pre><code>"customers": {
+  "brain-bridge": {
+    "base_id": "appwzoLR6BDTeSfyS",
+    "secret_name": "bb-os-mcp-at/api-key"
+  },
+  "{new-slug}": {
+    "base_id": "{new-base-id}",            // From Airtable clone
+    "secret_name": "bb-os-mcp-at/{slug}/prod/api-key"
+  }
+}</code></pre>
+      <p>Then redeploy the MCP stack: <code>cd bb-mcp/packages/airtable-bb-os/cdk && cdk deploy</code></p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">!</span>
+      <div><strong>Important:</strong> MCP Lambdas have a 1-hour in-memory schema cache per Lambda. After adding a new customer, force cold starts by updating each Lambda's description (NOT env vars -- that wipes all config).</div>
+    </div>
+  </section>
+
+  <!-- 1.6 SSM & Secrets -->
+  <section id="ssm-secrets">
+    <h3>1.6 SSM Parameters &amp; Secrets Manager</h3>
+    <p>Several AWS resources must be created before deployment.</p>
+
+    <h4>SSM Parameters</h4>
+    <table>
+      <thead><tr><th>Parameter Path</th><th>Value</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>/bb-gtm/{slug}/airtable-base-id</code></td>
+          <td><code>appXXXXXXXXXXXXXX</code></td>
+          <td>Airtable base ID (resolved at CDK synth time)</td>
+        </tr>
+        <tr>
+          <td><code>/bb-gtm/{slug}/email-signature</code></td>
+          <td>HTML signature block</td>
+          <td>Optional: email signature appended to outreach</td>
+        </tr>
+        <tr>
+          <td><code>/ait/{env}/{slug}/lambda/agent-*-arn</code></td>
+          <td>Lambda ARNs</td>
+          <td>Auto-created by AI Teammates CDK deploy</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Secrets Manager Entries</h4>
+    <table>
+      <thead><tr><th>Secret Name</th><th>Format</th><th>Created By</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>bb-os-mcp-at/{slug}/{env}/api-key</code></td>
+          <td>Plain string (Airtable PAT)</td>
+          <td>Manual</td>
+        </tr>
+        <tr>
+          <td><code>ait/{slug}/{env}/slack-credentials</code></td>
+          <td><code>{"SLACK_BOT_TOKEN": "xoxb-..."}</code></td>
+          <td>Manual</td>
+        </tr>
+        <tr>
+          <td><code>bb-gtm-{slug}-{env}-comm-gmail-credentials</code></td>
+          <td><code>{"default": {"refresh_token": "...", "client_id": "...", "client_secret": "..."}}</code></td>
+          <td>OAuth Lambda (auto)</td>
+        </tr>
+        <tr>
+          <td><code>bb-gtm-{slug}-{env}-comm-outlook-credentials</code></td>
+          <td><code>{"sender@co.com": {"refresh_token": "...", "client_id": "...", "client_secret": "...", "tenant_id": "..."}}</code></td>
+          <td>OAuth Lambda (auto)</td>
+        </tr>
+        <tr>
+          <td><code>apollo-api-key</code></td>
+          <td>Plain string</td>
+          <td>Manual (shared or per-customer)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 1.7 Email Options -->
+  <section id="email-options">
+    <h3>1.7 Email Provider Options</h3>
+    <p>Each customer uses exactly one email provider. The choice affects which CDK stacks are deployed and what credentials are needed.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+flowchart TB
+    EP{"email_provider\nin config"}
+
+    EP -->|"gmail"| GM["Gmail Stacks"]
+    EP -->|"outlook"| OL["Outlook Stacks"]
+
+    subgraph GMAIL["Gmail Path"]
+        GM --> GMS["CommunicationProcessingStack\n(send_mail, oauth_callback,\nmessage_dispatcher)"]
+        GM --> GML["CommunicationLoggingStack\n(ingest_emails, email_processing SFN)"]
+        GM --> GMR["Requires:\n- Google Cloud OAuth Client\n- GOOGLE_CLIENT_ID env var\n- GOOGLE_CLIENT_SECRET env var\n- .env.{slug}-{env} file"]
+    end
+
+    subgraph OUTLOOK["Outlook Path"]
+        OL --> OLS["CommunicationProcessingOutlookStack\n(send_outlook_mail, oauth_callback_outlook,\nmessage_dispatcher)"]
+        OL --> OLL["CommunicationLoggingOutlookStack\n(ingest_emails_outlook,\nemail_processing SFN)"]
+        OL --> OLR["Requires:\n- Azure App Registration\n- Client ID + Secret\n- Tenant ID\n- Admin consent granted"]
+    end
+
+    style EP fill:#242836,stroke:#6c63ff,color:#e2e4ea
+    style GM fill:#242836,stroke:#60a5fa,color:#e2e4ea
+    style OL fill:#242836,stroke:#60a5fa,color:#e2e4ea
+    style GMS fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style GML fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style GMR fill:#1a1d27,stroke:#34d399,color:#e2e4ea
+    style OLS fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style OLL fill:#1a1d27,stroke:#2e3344,color:#e2e4ea
+    style OLR fill:#1a1d27,stroke:#fbbf24,color:#e2e4ea
+    style GMAIL fill:#1a1d27,stroke:#60a5fa,stroke-width:1px,color:#e2e4ea
+    style OUTLOOK fill:#1a1d27,stroke:#60a5fa,stroke-width:1px,color:#e2e4ea
+      </pre>
+    </div>
+
+    <div class="grid-2">
+      <div class="email-option">
+        <h4>Gmail</h4>
+        <p><strong>Setup:</strong></p>
+        <ol>
+          <li>Create OAuth 2.0 Client in Google Cloud Console</li>
+          <li>Enable Gmail API</li>
+          <li>Add redirect URI (from CDK output, post-deploy)</li>
+          <li>Create <code>.env.{slug}-{env}</code> file with <code>GOOGLE_CLIENT_ID</code> and <code>GOOGLE_CLIENT_SECRET</code></li>
+          <li>Source the .env file before CDK deploy</li>
+        </ol>
+        <p><strong>Scopes needed:</strong> <code>gmail.send</code>, <code>gmail.readonly</code></p>
+        <p><strong>OAuth URL:</strong> <code>https://gmail.auth.brainbridgelabs.ai/oauth/start</code></p>
+        <p><strong>Credential storage:</strong> OAuth Lambda auto-writes to Secrets Manager after sender authenticates.</p>
+      </div>
+      <div class="email-option">
+        <h4>Outlook / Microsoft 365</h4>
+        <p><strong>Setup:</strong></p>
+        <ol>
+          <li>Register app in Azure Active Directory</li>
+          <li>Add delegated permissions: <code>Mail.Send</code>, <code>Mail.Read</code>, <code>offline_access</code>, <code>User.Read</code></li>
+          <li>Grant admin consent (requires Global Admin)</li>
+          <li>Create client secret (24-month expiry recommended)</li>
+          <li>Add redirect URI from CDK output</li>
+        </ol>
+        <p><strong>Credential storage:</strong> Create placeholder secret pre-deploy; OAuth Lambda updates with real tokens after sender authenticates.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 1.5rem;">
+      <span class="callout-icon">i</span>
+      <div><strong>For Gmail customers:</strong> You need a <code>.env.{slug}-{env}</code> file in the project root with <code>GOOGLE_CLIENT_ID</code> and <code>GOOGLE_CLIENT_SECRET</code>. Source it before CDK deploy: <code>set -a && source .env.{slug}-{env} && set +a</code></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ============================================================ -->
+  <!-- PART 2: DEPLOYMENT -->
+  <!-- ============================================================ -->
+  <section id="part2">
+    <h2><span class="section-tag">Part 2</span>Deployment</h2>
+    <p>With all setup complete, deployment is straightforward -- two rounds of CDK deploy with AI Teammates and OAuth in between.</p>
+  </section>
+
+  <!-- 2.1 CDK Deploy -->
+  <section id="deploy-steps">
+    <h3>2.1 CDK Deployment Steps</h3>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+sequenceDiagram
+    participant Dev as Developer
+    participant CDK as CDK Deploy
+    participant AWS as AWS CloudFormation
+    participant Sender as Email Sender
+    participant AIT as AI Teammates Repo
+
+    Note over Dev,AWS: Round 1: Create Infrastructure
+    Dev->>CDK: deploy.sh -c {slug} -e dev
+    CDK->>CDK: Validate config (config_validator.py)
+    CDK->>CDK: Resolve agent Lambdas from SSM
+    CDK->>CDK: Build bundles (build_bundles.sh)
+    CDK->>AWS: Deploy 5 stacks
+    AWS-->>Dev: OAuth endpoint URLs
+
+    Note over Dev,Sender: OAuth Flow
+    Dev->>Sender: Share OAuth start URL
+    Sender->>AWS: Authenticate via browser
+    AWS-->>AWS: Store credentials in Secrets Manager
+
+    Note over Dev,AIT: AI Teammates
+    Dev->>AIT: deploy.sh -e dev -c {slug}
+    AIT->>AWS: Deploy agent Lambdas
+    AWS-->>AWS: Write ARNs to SSM
+
+    Note over Dev,AWS: Round 2: Wire Agent ARNs
+    Dev->>CDK: deploy.sh -c {slug} -e dev
+    CDK->>CDK: Resolve new agent ARNs from SSM
+    CDK->>AWS: Update stacks with real Lambda names
+    AWS-->>Dev: All stacks updated
+      </pre>
+    </div>
+
+    <h4>CDK Stacks Deployed (5 per customer)</h4>
+    <table>
+      <thead><tr><th>Stack Name Pattern</th><th>What It Deploys</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>BBGtm-{Customer}-{Env}-Outreach</code></td>
+          <td>Outreach pipeline: planner, executor, enricher, HITL processor, check-guards, send-outreach-email, context Lambdas, Step Functions, EventBridge schedules, alarm forwarder</td>
+        </tr>
+        <tr>
+          <td><code>BBGtm-{Customer}-{Env}-StageManager</code></td>
+          <td>Pipeline stage management Step Function, SSM parameter for last-run tracking</td>
+        </tr>
+        <tr>
+          <td><code>BBGtm-{Customer}-{Env}-Communication</code><br/>(or <code>OutlookCommunication</code>)</td>
+          <td>Email send Lambda, OAuth callback Lambda, message dispatcher, Gmail/Outlook credential secret</td>
+        </tr>
+        <tr>
+          <td><code>BBGtm-{Customer}-{Env}-CommLogging</code><br/>(or <code>OutlookCommLogging</code>)</td>
+          <td>Email ingestion Lambda, email processing Step Function, activity log creation</td>
+        </tr>
+        <tr>
+          <td><code>BBGtm-{Customer}-{Env}-Campaign</code></td>
+          <td>Campaign creator Lambda, Apollo enrichment Lambda, post-approval processing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Deploy Commands</h4>
+    <pre><code># Dry run first (validates config, synthesizes templates)
+cd cdk
+./deploy.sh -c {slug} -e dev --dry-run
+
+# Full deploy (Round 1 -- agent_lambdas can be PLACEHOLDERs)
+./deploy.sh -c {slug} -e dev
+
+# After AI Teammates deploy (Round 2 -- resolves real Lambda ARNs from SSM)
+./deploy.sh -c {slug} -e dev</code></pre>
+
+    <div class="callout">
+      <span class="callout-icon">!</span>
+      <div><strong>Build bundles first:</strong> If Outreach Lambda code has changed, run <code>bash cdk/build_bundles.sh</code> before deploying. The Outreach stack uses pre-built bundles from <code>.build/</code>. Without rebuilding, CDK sees matching asset hashes and deploys stale code.</div>
+    </div>
+  </section>
+
+  <!-- 2.2 AI Teammates -->
+  <section id="ai-teammates">
+    <h3>2.2 AI Teammates Deployment</h3>
+    <p>Agent Lambdas live in the <strong>ai-teammate</strong> repo and must be deployed separately. They publish their ARNs to SSM at <code>/ait/{env}/{slug}/lambda/agent-*-arn</code>, which the bb-gtm CDK resolves automatically on the next deploy.</p>
+
+    <div class="card card-accent">
+      <h4>Agent Lambdas Created</h4>
+      <table>
+        <thead><tr><th>Config Key</th><th>SSM Suffix</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>gtm_stage_manager</code></td><td><code>agent-gtm_stage_manager-arn</code></td><td>Evaluates pipeline stages, plans transitions</td></tr>
+          <tr><td><code>outreach_manager_brain</code></td><td><code>agent-gtm_outreach_planner-arn</code></td><td>Creates and updates outreach plans per deal</td></tr>
+          <tr><td><code>campaign_creator_brain</code></td><td><code>agent-gtm_campaign_creator-arn</code></td><td>Designs campaign strategies from templates</td></tr>
+          <tr><td><code>task_executor</code></td><td><code>agent-gtm_gratje-arn</code></td><td>Executes approved tasks (email sends, research)</td></tr>
+          <tr><td><code>hitl_processor</code></td><td><code>agent-gtm_hitl_processor-arn</code></td><td>Processes human reviewer feedback</td></tr>
+          <tr><td><code>crm_enricher_brain</code></td><td>N/A (manual config)</td><td>Enriches CRM data from external sources</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pre><code># Deploy AI Teammates
+cd ai-teammate/cdk
+./deploy.sh -e dev -c {slug}
+
+# Verify SSM parameters were created
+aws ssm get-parameters-by-path \
+  --path "/ait/dev/{slug}/lambda/" \
+  --query "Parameters[].{Name:Name,Value:Value}" \
+  --output table</code></pre>
+  </section>
+
+  <!-- 2.3 OAuth -->
+  <section id="oauth-flow">
+    <h3>2.3 Email OAuth Flow</h3>
+    <p>After the first CDK deploy creates the OAuth endpoints, the sender authenticates via browser. The Lambda handles the full token exchange and writes credentials to Secrets Manager automatically.</p>
+
+    <div class="mermaid-wrapper">
+      <pre class="mermaid">
+sequenceDiagram
+    participant Admin as Admin
+    participant Sender as Email Sender
+    participant APIGW as API Gateway
+    participant Lambda as OAuth Lambda
+    participant Provider as Google / Microsoft
+    participant SM as Secrets Manager
+
+    Admin->>Sender: Share OAuth URL
+    Sender->>APIGW: gmail.auth.brainbridgelabs.ai/oauth/start
+    APIGW->>Lambda: Invoke
+    Lambda-->>Sender: Redirect to provider consent
+    Sender->>Provider: Authenticate + consent
+    Provider-->>APIGW: Redirect with auth code
+    APIGW->>Lambda: GET /oauth/callback?code=...
+    Lambda->>Provider: Exchange code for tokens
+    Provider-->>Lambda: access_token + refresh_token
+    Lambda->>SM: Store credentials
+    Lambda-->>Sender: Success page
+      </pre>
+    </div>
+
+    <h4>Verification</h4>
+    <pre><code># Check Gmail credentials
+aws secretsmanager get-secret-value \
+  --secret-id "bb-gtm-{slug}-dev-comm-gmail-credentials" \
+  --query SecretString --output text | python3 -m json.tool
+
+# Test email send
+aws lambda invoke \
+  --function-name "bb-gtm-{slug}-dev-comm-send-mail" \
+  --payload '{"to":"safe-test@company.com","subject":"Test","body":"Test from BB-GTM"}' \
+  --cli-binary-format raw-in-base64-out /tmp/response.json \
+  && cat /tmp/response.json</code></pre>
+  </section>
+
+  <!-- 2.4 Verification -->
+  <section id="verification">
+    <h3>2.4 Verification Checklist</h3>
+
+    <div class="card card-green">
+      <h4>Pre-Go-Live Verification</h4>
+      <table>
+        <thead><tr><th>#</th><th>Check</th><th>How to Verify</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>All CDK stacks deployed</td><td><code>aws cloudformation list-stacks --query "...BBGtm-{Customer}..."</code></td></tr>
+          <tr><td>2</td><td>No PLACEHOLDERs in config</td><td><code>grep PLACEHOLDER config/customers/{slug}-{env}.json</code></td></tr>
+          <tr><td>3</td><td>Pipeline Stages populated</td><td>Check Airtable UI or MCP schema Lambda</td></tr>
+          <tr><td>4</td><td>Employee records exist</td><td>Outreach Planner + Gratje + human reviewer(s)</td></tr>
+          <tr><td>5</td><td>Config table has all 7 records</td><td>Verify keys via Airtable API</td></tr>
+          <tr><td>6</td><td>Email OAuth confirmed</td><td>Test send via Lambda invoke (see above)</td></tr>
+          <tr><td>7</td><td>Slack HITL notification works</td><td>Invoke Slack post Lambda with test message</td></tr>
+          <tr><td>8</td><td>MCP customer config deployed</td><td>Invoke MCP schema Lambda with <code>{"customer":"{slug}","entity_type":"Deal"}</code></td></tr>
+          <tr><td>9</td><td>Agent Lambdas wired</td><td>SSM parameters present at <code>/ait/{env}/{slug}/lambda/</code></td></tr>
+          <tr><td>10</td><td>Demo campaign created</td><td>Run test setup script, verify in Airtable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Go-Live: Enable Schedules</h4>
+    <p>After verification, enable EventBridge schedules by setting these to <code>true</code> in the config and redeploying:</p>
+    <ul>
+      <li><code>stage_manager.schedules_enabled</code></li>
+      <li><code>outreach_manager.schedules_enabled</code></li>
+      <li><code>communication.schedules_enabled</code></li>
+    </ul>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- QUICK REFERENCE -->
+  <section id="reference">
+    <h2><span class="section-tag">Reference</span>Quick Reference</h2>
+
+    <h4>Naming Conventions</h4>
+    <table>
+      <thead><tr><th>Resource</th><th>Pattern</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>CDK Stack</td><td><code>BBGtm-{CustomerCap}-{EnvCap}-{Module}</code></td><td><code>BBGtm-Aginghs-Prod-Outreach</code></td></tr>
+        <tr><td>Lambda</td><td><code>bb-gtm-{slug}-{env}-{module}-{name}</code></td><td><code>bb-gtm-aginghs-prod-outreach-planner</code></td></tr>
+        <tr><td>Secret</td><td><code>bb-gtm-{slug}-{env}-comm-{provider}-credentials</code></td><td><code>bb-gtm-aginghs-prod-comm-gmail-credentials</code></td></tr>
+        <tr><td>SSM Param</td><td><code>/bb-gtm/{slug}/{key}</code></td><td><code>/bb-gtm/aginghs/airtable-base-id</code></td></tr>
+        <tr><td>Config File</td><td><code>config/customers/{slug}-{env}.json</code></td><td><code>config/customers/aginghs-prod.json</code></td></tr>
+        <tr><td>MCP Secret</td><td><code>bb-os-mcp-at/{slug}/{env}/api-key</code></td><td><code>bb-os-mcp-at/aginghs/prod/api-key</code></td></tr>
+        <tr><td>Slack Secret</td><td><code>ait/{slug}/{env}/slack-credentials</code></td><td><code>ait/aginghs/prod/slack-credentials</code></td></tr>
+      </tbody>
+    </table>
+
+    <h4>Existing Customers</h4>
+    <table>
+      <thead><tr><th>Customer</th><th>Slug</th><th>Email Provider</th><th>Sender Mode</th><th>HubSpot</th></tr></thead>
+      <tbody>
+        <tr><td>Brain Bridge</td><td><code>brain-bridge</code></td><td>Gmail</td><td>campaign_owner</td><td>No</td></tr>
+        <tr><td>Aging Health Sciences</td><td><code>aginghs</code></td><td>Gmail</td><td>individual</td><td>Yes</td></tr>
+        <tr><td>Transworld Business Advisors</td><td><code>twba</code></td><td>Lindy</td><td>individual</td><td>No</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Key Repos</h4>
+    <table>
+      <thead><tr><th>Repo</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>bb-gtm</code></td><td>GTM infrastructure: Lambdas, Step Functions, CDK stacks, customer configs</td></tr>
+        <tr><td><code>bb-mcp</code></td><td>MCP Lambdas: Airtable CRUD, Apollo, HubSpot, shared across all customers</td></tr>
+        <tr><td><code>ai-teammate</code></td><td>AI agent Lambdas: brains for planning, execution, HITL processing</td></tr>
+        <tr><td><code>bb-web-home</code></td><td>Brain Bridge website (this page is hosted here)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer">
+    <p>Brain Bridge GTM -- Internal Documentation</p>
+    <p>Last updated: March 2026</p>
+  </div>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#242836',
+      primaryTextColor: '#e2e4ea',
+      primaryBorderColor: '#6c63ff',
+      lineColor: '#6c63ff',
+      secondaryColor: '#1a1d27',
+      tertiaryColor: '#1a1d27',
+      noteBkgColor: '#242836',
+      noteTextColor: '#e2e4ea',
+      noteBorderColor: '#2e3344',
+      actorBkg: '#242836',
+      actorBorder: '#6c63ff',
+      actorTextColor: '#e2e4ea',
+      signalColor: '#6c63ff',
+      signalTextColor: '#e2e4ea'
+    },
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis'
+    },
+    sequence: {
+      useMaxWidth: true,
+      actorMargin: 50,
+      noteMargin: 10,
+      messageMargin: 35
+    }
+  });
+</script>
+
+</body>
+</html>
