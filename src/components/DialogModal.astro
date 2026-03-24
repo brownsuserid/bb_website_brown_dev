@@ -75,11 +75,26 @@ import BrainyChatImage from '../assets/theme-images/Briany-Chat-CTA-min.png'
 
 <script is:inline>
   if (typeof window !== 'undefined' && !document.querySelector('script[src*="calendly"]')) {
-    const script = document.createElement('script');
+    var script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.body.appendChild(script);
   }
+
+  // Track demo modal open/close
+  (function () {
+    var demoDialog = document.getElementById('demo');
+    if (!demoDialog) return;
+    var observer = new MutationObserver(function () {
+      if (demoDialog.hasAttribute('open')) {
+        bb_track('modal_open', { modal_name: 'demo_calendly' });
+      }
+    });
+    observer.observe(demoDialog, { attributes: true, attributeFilter: ['open'] });
+    demoDialog.addEventListener('close', function () {
+      bb_track('modal_close', { modal_name: 'demo_calendly' });
+    });
+  })();
 </script>
 
 <style>

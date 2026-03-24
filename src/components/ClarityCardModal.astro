@@ -31,7 +31,7 @@ const { modal, index } = Astro.props;
         {modal.cta && (
           <div class="mt-8">
             <button
-              onclick="demo.showModal()"
+              onclick="bb_track('cta_click', { cta_name: 'Clarity Modal CTA', cta_location: 'clarity_modal' }); demo.showModal();"
               class="bs-btn"
             >
               {modal.cta.text}

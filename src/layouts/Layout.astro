@@ -26,8 +26,6 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://brainbridge.app');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-THRPZPKP"
-    ></script>
     <script
       type="text/javascript"
       src="https://www.googletagmanager.com/gtag/js?id=GT-KVFSNLCP"
@@ -40,6 +38,50 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://brainbridge.app');
       }
       gtag("js", new Date());
       gtag("config", "GT-KVFSNLCP");
+
+      // --- BB Analytics Utility ---
+      // Naming convention: object_action (GA4 recommended)
+      // All events include page_path automatically
+      function bb_track(eventName, params) {
+        params = params || {};
+        params.page_path = window.location.pathname;
+        gtag("event", eventName, params);
+      }
+
+      // --- Scroll Depth Tracking ---
+      (function () {
+        var scrollMarks = { 25: false, 50: false, 75: false, 100: false };
+        window.addEventListener("scroll", function () {
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight <= 0) return;
+          var percent = Math.round((window.scrollY / docHeight) * 100);
+          var thresholds = [25, 50, 75, 100];
+          for (var i = 0; i < thresholds.length; i++) {
+            var t = thresholds[i];
+            if (percent >= t && !scrollMarks[t]) {
+              scrollMarks[t] = true;
+              bb_track("scroll_depth", { percent: t });
+            }
+          }
+        }, { passive: true });
+      })();
+
+      // --- Outbound Link Click Tracking ---
+      document.addEventListener("click", function (e) {
+        var link = e.target.closest("a[href]");
+        if (!link) return;
+        var href = link.getAttribute("href");
+        if (!href) return;
+        try {
+          var url = new URL(href, window.location.origin);
+          if (url.hostname && url.hostname !== window.location.hostname) {
+            bb_track("outbound_click", {
+              link_url: href,
+              link_text: (link.textContent || "").trim().substring(0, 100)
+            });
+          }
+        } catch (err) {}
+      });
     </script>
 
     <title>{title ?? global_settings.title}</title>

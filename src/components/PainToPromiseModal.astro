@@ -129,7 +129,7 @@ const { modal, index, image } = Astro.props;
           modal.cta && (
             <div class="mt-4">
               <button
-                onclick="demo.showModal()"
+                onclick="bb_track('cta_click', { cta_name: 'Pain To Promise Modal CTA', cta_location: 'pain_to_promise_modal' }); demo.showModal();"
                 class="bg-white text-black font-bold py-3 px-6 rounded-md hover:bg-gray-200 transition-colors"
               >
                 {modal.cta.text || "See How This Role Works In Practice"}

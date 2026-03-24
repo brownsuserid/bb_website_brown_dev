@@ -94,8 +94,8 @@ import PainToPromiseModal from "./PainToPromiseModal.astro";
                       <button
                         onclick={
                           card.modalContent
-                            ? `document.getElementById('paintopromise-modal-${index}').showModal()`
-                            : "demo.showModal()"
+                            ? `bb_track('cta_click', { cta_name: 'See How ${card.solution.agentName} Works', cta_location: 'pain_to_promise' }); document.getElementById('paintopromise-modal-${index}').showModal();`
+                            : `bb_track('cta_click', { cta_name: 'See How ${card.solution.agentName} Works', cta_location: 'pain_to_promise' }); demo.showModal();`
                         }
                         class="bs-btn mt-4 opacity-0 transition-opacity duration-600 intersect:opacity-100 intersect-full"
                       >

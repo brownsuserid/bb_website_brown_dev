@@ -29,15 +29,15 @@ import ParticleCanvas from "./ParticleCanvas.astro";
         id="btn-diag"
         type="button"
         class="bs-btn btn-diag self-center bs-mt-sm"
-        onclick="demo.showModal()"
+        onclick="bb_track('cta_click', { cta_name: 'Get Free Reality Check', cta_location: 'hero_particles' }); demo.showModal();"
       >
         {settings.demo.cta}
       </button>
       <a
         id="btn-pro"
-        type="button"
         class="bs-btn-secondary self-center bs-mt-sm"
         href="/ai-teammates"
+        onclick="bb_track('cta_click', { cta_name: 'Explore AI Teammates', cta_location: 'hero_particles' });"
       >
         {settings.demo.cta2}
       </a>

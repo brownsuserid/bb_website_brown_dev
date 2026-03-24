@@ -46,7 +46,7 @@ const { settings } = Astro.props;
     <button
       type="button"
       class="min-w-32 bs-btn hidden md:block"
-      onclick="demo.showModal()"
+      onclick="bb_track('cta_click', { cta_name: 'Ready to Start Your AI Journey', cta_location: 'header' }); demo.showModal();"
     >
       {settings.demo.title}
     </button>

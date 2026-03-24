@@ -48,7 +48,7 @@ const processedRows = rows.map(row => {
                     <button
                       type="button"
                       class="bs-btn"
-                      onclick="demo.showModal()"
+                      onclick={`bb_track('cta_click', { cta_name: '${row.ctaText}', cta_location: 'video_showcase' }); demo.showModal();`}
                     >
                       {row.ctaText}
                     </button>

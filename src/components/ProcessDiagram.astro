@@ -156,7 +156,7 @@ const { header, philosophy, process, offerings } = Astro.props;
           <button
             type="button"
             class="mt-6 self-center border border-gray-600 text-gray-300 font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 hover:border-gray-500 hover:text-white transition-colors duration-300"
-            onclick="demo.showModal()"
+            onclick={`bb_track('cta_click', { cta_name: '${offerings[0].cta.text}', cta_location: 'process_diagram' }); demo.showModal();`}
           >
             {offerings[0].cta.text}
           </button>
@@ -184,7 +184,7 @@ const { header, philosophy, process, offerings } = Astro.props;
           <button
             type="button"
             class="min-w-32 bs-btn mt-3 block"
-            onclick="demo.showModal()"
+            onclick={`bb_track('cta_click', { cta_name: '${offerings[1].cta.text}', cta_location: 'process_diagram' }); demo.showModal();`}
           >
             {offerings[1].cta.text}
           </button>

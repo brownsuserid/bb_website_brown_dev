@@ -118,7 +118,7 @@ const siteContext = {
     <button
       type="button"
       class="min-w-32 bs-btn hidden md:block"
-      onclick="demo.showModal()"
+      onclick="bb_track('cta_click', { cta_name: 'AI with ROI', cta_location: 'brainy_chat' }); demo.showModal();"
     >
       AI with ROI
     </button>
@@ -192,6 +192,8 @@ const siteContext = {
     problemCards.forEach((card) => {
       card.addEventListener("click", () => {
         const query = card.getAttribute("data-query");
+        const title = card.querySelector(".font-semibold")?.textContent || "";
+        bb_track("chat_submit", { query_text: title, query_source: "problem_card" });
         chatInput.value = query;
         chatForm.dispatchEvent(new Event("submit", { cancelable: true }));
       });
@@ -203,6 +205,7 @@ const siteContext = {
       const userInput = chatInput.value.trim();
       if (!userInput) return;
 
+      bb_track("chat_submit", { query_text: userInput.substring(0, 100), query_source: "text_input" });
       appendMessage(userInput, "user");
       chatInput.value = "";
       setLoading(true);

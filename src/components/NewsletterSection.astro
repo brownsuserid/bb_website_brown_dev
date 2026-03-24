@@ -24,7 +24,7 @@ const { newsletter } = Astro.props
       <div class="bs-body-text flex-grow" set:html={ newsletter.content } />
 
       <!-- Form -->
-      <form class="flex gap-4 flex-col" action="">
+      <form class="flex gap-4 flex-col" action="" onsubmit="bb_track('form_submit', { form_name: 'newsletter', form_location: 'newsletter_section' });">
 
         <label class="sr-only" for="nl-name">Name</label>
         <input

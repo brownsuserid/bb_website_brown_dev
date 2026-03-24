@@ -59,7 +59,7 @@ const imageClasses = isGif
             id="btn-diag"
             href={url}
             class="bs-btn btn-diag self-center bs-mt-sm"
-            onclick="handleLinkClick(event)"
+            onclick={`bb_track('cta_click', { cta_name: '${settings.demo.cta}', cta_location: 'hero' }); handleLinkClick(event);`}
           >
             {settings.demo.cta}
           </a>
@@ -68,7 +68,7 @@ const imageClasses = isGif
             id="btn-diag"
             type="button"
             class="bs-btn btn-diag self-center bs-mt-sm"
-            onclick="demo.showModal()"
+            onclick={`bb_track('cta_click', { cta_name: '${settings.demo.cta}', cta_location: 'hero' }); demo.showModal();`}
           >
             {settings.demo.cta}
           </button>
@@ -83,7 +83,7 @@ const imageClasses = isGif
                 id="btn-pro"
                 href={url2}
                 class="bs-btn-secondary self-center bs-mt-sm"
-                onclick="handleLinkClick(event)"
+                onclick={`bb_track('cta_click', { cta_name: '${settings.demo2.cta}', cta_location: 'hero' }); handleLinkClick(event);`}
               >
                 {settings.demo2.cta}
               </a>
@@ -92,7 +92,7 @@ const imageClasses = isGif
                 id="btn-pro"
                 type="button"
                 class="bs-btn-secondary self-center bs-mt-sm"
-                onclick="demo.showModal()"
+                onclick={`bb_track('cta_click', { cta_name: '${settings.demo2.cta}', cta_location: 'hero' }); demo.showModal();`}
               >
                 {settings.demo2.cta}
               </button>

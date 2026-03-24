@@ -11,7 +11,7 @@ const { settings } = Astro.props;
         </a>
       ))}
     </nav>
-    <button type="button" class="nav-item min-w-32 bs-btn mt-12 opacity-0 intersect:opacity-100 transition-opacity duration-1000" onclick="demo.showModal()">
+    <button type="button" class="nav-item min-w-32 bs-btn mt-12 opacity-0 intersect:opacity-100 transition-opacity duration-1000" onclick="bb_track('cta_click', { cta_name: 'Mobile Nav CTA', cta_location: 'mobile_nav' }); demo.showModal();">
       {settings.demo.title}
     </button>
   </div>

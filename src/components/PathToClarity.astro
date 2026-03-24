@@ -71,8 +71,8 @@ import ClarityCardModal from "./ClarityCardModal.astro";
                 class="bs-btn mt-8 z-2"
                 onclick={
                   modal
-                    ? `document.getElementById('clarity-modal-${index}').showModal()`
-                    : "demo.showModal()"
+                    ? `bb_track('cta_click', { cta_name: '${card.buttonText || "Learn More"}', cta_location: 'path_to_clarity' }); document.getElementById('clarity-modal-${index}').showModal();`
+                    : `bb_track('cta_click', { cta_name: '${card.buttonText || "Learn More"}', cta_location: 'path_to_clarity' }); demo.showModal();`
                 }
               >
                 {card.buttonText || "Learn More"}

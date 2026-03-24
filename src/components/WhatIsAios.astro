@@ -57,7 +57,7 @@ const { title, description, isNot, is, cta } = Astro.props;
                     id="btn-diag"
                     type="button"
                     class="bs-btn btn-diag self-center bs-mt-sm"
-                    onclick="demo.showModal()"
+                    onclick="bb_track('cta_click', { cta_name: 'What Is AI-OS CTA', cta_location: 'what_is_aios' }); demo.showModal();"
                     >
                     {isNot.cta.text}
                 </button>
@@ -86,7 +86,7 @@ const { title, description, isNot, is, cta } = Astro.props;
                     id="btn-diag"
                     type="button"
                     class="bs-btn btn-diag self-center bs-mt-sm"
-                    onclick="demo.showModal()"
+                    onclick="bb_track('cta_click', { cta_name: 'What Is AI-OS CTA', cta_location: 'what_is_aios' }); demo.showModal();"
                     >
                     {isNot.cta.text}
                 </button>

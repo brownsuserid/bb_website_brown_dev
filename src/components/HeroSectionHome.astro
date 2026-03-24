@@ -18,17 +18,17 @@ import slides from "../data/slides-brainy.json";
       <button
         type="button"
         class="bs-btn self-center bs-mt-sm"
-        onclick="demo.showModal()"
+        onclick="bb_track('cta_click', { cta_name: 'Get Free Reality Check', cta_location: 'hero' }); demo.showModal();"
       >
         {settings.demo.cta}
       </button>
-      <button
-        type="button"
+      <a
+        href="/ai-teammates"
         class="bs-btn-secondary self-center bs-mt-sm"
-        onclick="demo.showModal()"
+        onclick="bb_track('cta_click', { cta_name: 'Explore AI Teammates', cta_location: 'hero' });"
       >
         {settings.demo.cta2}
-      </button>
+      </a>
     </div>
   </div>
 

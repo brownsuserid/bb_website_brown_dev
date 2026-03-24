@@ -99,7 +99,7 @@ const { headline, subheadline, blocks } = Astro.props;
                 <button
                   type="button"
                   class="bs-btn-mono mt-8 w-full relative overflow-hidden group-hover:scale-105 transition-transform duration-300"
-                  onclick="demo.showModal()"
+                  onclick={`bb_track('cta_click', { cta_name: '${block.buttonText}', cta_location: 'brainy_story' }); demo.showModal();`}
                 >
                   <span class="relative z-10">{block.buttonText}</span>
                   <div class="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
